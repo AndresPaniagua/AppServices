@@ -5,5 +5,7 @@
         public int Id { get; set; }
 
         public UserEntity User { get; set; }
+
+        public ServiceEntity Service { get; set; }
     }
 }

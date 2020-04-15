@@ -39,6 +39,6 @@ namespace AppServices.Web.Data.Entities
 
         public ServiceTypeEntity ServiceType { get; set; }
 
-
+        public UserEntity User { get; set; }
     }
 }
