@@ -40,7 +40,7 @@ namespace AppServices.Web.Data.Entities
         [Display(Name = "Photo")]
         public string PhotoPath { get; set; }
 
-        *[Display(Name = "Photo")]
+        [Display(Name = "Photo")]
         public string PhotoFullPath => string.IsNullOrEmpty(PhotoPath)
             ? "https://primerentrega.azurewebsites.net//images/noimage.png"
             : $"https://primerentrega.azurewebsites.net{PhotoPath.Substring(1)}";
