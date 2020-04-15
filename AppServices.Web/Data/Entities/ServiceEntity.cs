@@ -37,6 +37,14 @@ namespace AppServices.Web.Data.Entities
 
         public decimal Price { get; set; }
 
+        [Display(Name = "Photo")]
+        public string PhotoPath { get; set; }
+
+        *[Display(Name = "Photo")]
+        public string PhotoFullPath => string.IsNullOrEmpty(PhotoPath)
+            ? "https://primerentrega.azurewebsites.net//images/noimage.png"
+            : $"https://primerentrega.azurewebsites.net{PhotoPath.Substring(1)}";
+
         public ServiceTypeEntity ServiceType { get; set; }
 
         public UserEntity User { get; set; }
