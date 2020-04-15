@@ -15,4 +15,8 @@
     <Folder Include="wwwroot\images\Photos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppServices.Common\AppServices.Common.csproj" />
+  </ItemGroup>
+
 </Project>
