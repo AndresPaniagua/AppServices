@@ -6,5 +6,6 @@
 
         public UserEntity User { get; set; }
 
+        public ServiceEntity Service { get; set; }
     }
 }

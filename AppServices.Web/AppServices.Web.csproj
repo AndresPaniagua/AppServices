@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Resources\" />
     <Folder Include="wwwroot\images\Photos\" />
   </ItemGroup>
