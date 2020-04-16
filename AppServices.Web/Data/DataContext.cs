@@ -11,5 +11,11 @@ namespace AppServices.Web.Data
         {
 
         }
+    
+        public DbSet<ServiceEntity> Services { get; set; }
+
+        public DbSet<ServiceTypeEntity> ServiceTypes { get; set; }
+
+        public DbSet<ReservationEntity> Reservations { get; set; }
     }
 }
