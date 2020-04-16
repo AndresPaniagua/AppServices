@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AppServices.Web.Data;
+using AppServices.Web.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using AppServices.Web.Data;
-using AppServices.Web.Data.Entities;
 
 namespace AppServices.Web.Controllers
 {
@@ -19,13 +16,11 @@ namespace AppServices.Web.Controllers
             _context = context;
         }
 
-        // GET: ServiceType
         public async Task<IActionResult> Index()
         {
             return View(await _context.ServiceTypes.ToListAsync());
         }
 
-        // GET: ServiceType/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,7 +28,7 @@ namespace AppServices.Web.Controllers
                 return NotFound();
             }
 
-            var serviceTypeEntity = await _context.ServiceTypes
+            ServiceTypeEntity serviceTypeEntity = await _context.ServiceTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceTypeEntity == null)
             {
@@ -43,15 +38,11 @@ namespace AppServices.Web.Controllers
             return View(serviceTypeEntity);
         }
 
-        // GET: ServiceType/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ServiceType/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] ServiceTypeEntity serviceTypeEntity)
@@ -65,7 +56,6 @@ namespace AppServices.Web.Controllers
             return View(serviceTypeEntity);
         }
 
-        // GET: ServiceType/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +63,7 @@ namespace AppServices.Web.Controllers
                 return NotFound();
             }
 
-            var serviceTypeEntity = await _context.ServiceTypes.FindAsync(id);
+            ServiceTypeEntity serviceTypeEntity = await _context.ServiceTypes.FindAsync(id);
             if (serviceTypeEntity == null)
             {
                 return NotFound();
@@ -81,9 +71,6 @@ namespace AppServices.Web.Controllers
             return View(serviceTypeEntity);
         }
 
-        // POST: ServiceType/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] ServiceTypeEntity serviceTypeEntity)
@@ -116,7 +103,6 @@ namespace AppServices.Web.Controllers
             return View(serviceTypeEntity);
         }
 
-        // GET: ServiceType/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,7 +110,7 @@ namespace AppServices.Web.Controllers
                 return NotFound();
             }
 
-            var serviceTypeEntity = await _context.ServiceTypes
+            ServiceTypeEntity serviceTypeEntity = await _context.ServiceTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (serviceTypeEntity == null)
             {
@@ -134,12 +120,11 @@ namespace AppServices.Web.Controllers
             return View(serviceTypeEntity);
         }
 
-        // POST: ServiceType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var serviceTypeEntity = await _context.ServiceTypes.FindAsync(id);
+            ServiceTypeEntity serviceTypeEntity = await _context.ServiceTypes.FindAsync(id);
             _context.ServiceTypes.Remove(serviceTypeEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
