@@ -28,7 +28,29 @@ namespace AppServices.Web.Controllers
                 .ThenBy(s => s.Price));
         }
 
-        
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            ServiceEntity service = await _context.Services
+                .Include(s => s.User)
+                .Include(s => s.ServiceType)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView(service);
+        }
+
+        public IActionResult ToLogin()
+        {
+            return RedirectToAction("Login", "Account");
+        }
     }
 }

@@ -1,0 +1,109 @@
+﻿
+#team {
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #108d6f;
+    border-color: #108d6f;
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #007b5e;
+}
+
+section {
+    padding: 60px 0;
+}
+
+    section .section-title {
+        text-align: center;
+        color: #ff0000;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+
+#team .card {
+    border-radius: 127px 10px 127px 10px; /*5%*/
+    box-shadow: 10px 13px 37px -12px rgba(0,0,0,0.75);
+    background: #ffffff;
+}
+
+.mainflip {
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.frontside {
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+.backside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-box-shadow: 10px 13px 37px -12px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 13px 37px -12px rgba(0,0,0,0.75);
+    box-shadow: 10px 13px 37px -12px rgba(0,0,0,0.75);
+}
+
+.frontside,
+.backside {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+}
+
+    .frontside .card,
+    .backside .card {
+        min-height: 312px;
+    }
+
+        .backside .card a {
+            font-size: 18px;
+            color: #007b5e !important;
+        }
+
+        .frontside .card .card-title,
+        .backside .card .card-title {
+            color: #ff0000 !important;
+        }
+
+        .frontside .card .card-body img {
+            width: 160px;
+            height: 140px;
+            margin-top: 5px;
+        }

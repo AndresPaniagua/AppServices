@@ -47,7 +47,10 @@ namespace AppServices.Web
             });
 
             services.AddTransient<SeedDB>();
+            services.AddScoped<IImageHelper, ImageHelper>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
+            services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

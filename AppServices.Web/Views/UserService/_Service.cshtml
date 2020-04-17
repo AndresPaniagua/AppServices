@@ -1,0 +1,49 @@
+﻿@model AppServices.Web.Models.ServiceViewModel
+
+<div class="form-group">
+    <label asp-for="ServicesName" class="control-label"></label>
+    <input asp-for="ServicesName" class="form-control" />
+    <span asp-validation-for="ServicesName" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="PhotoFile" class="control-label"></label>
+    <input asp-for="PhotoFile" class="form-control" type="file" />
+    <span asp-validation-for="PhotoFile" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Phone" class="control-label"></label>
+    <input asp-for="Phone" class="form-control" />
+    <span asp-validation-for="Phone" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="StartDate" class="control-label"></label>
+    <input asp-for="StartDate" type="date" class="form-control" />
+    <span asp-validation-for="StartDate" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="FinishDate" class="control-label"></label>
+    <input asp-for="FinishDate" type="date" class="form-control" />
+    <span asp-validation-for="FinishDate" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Description" class="control-label"></label>
+    <input asp-for="Description" class="form-control" />
+    <span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Price" class="control-label"></label>
+    <input asp-for="Price" class="form-control" />
+    <span asp-validation-for="Price" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="ServiceTypeId" class="control-label"></label>
+    <select asp-for="ServiceTypeId" asp-items="Model.ServicesType" class="form-control"></select>
+    <span asp-validation-for="ServiceTypeId" class="text-danger"></span>
+</div>

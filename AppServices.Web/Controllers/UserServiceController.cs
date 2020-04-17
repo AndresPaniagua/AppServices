@@ -1,10 +1,9 @@
 ﻿using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
+using AppServices.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,12 +13,23 @@ namespace AppServices.Web.Controllers
     {
         private readonly DataContext _context;
         private readonly IUserHelper _userHelper;
+        private readonly ICombosHelper _combosHelper;
+        private readonly IImageHelper _imageHelper;
+        private readonly IConverterHelper _converter;
 
-        public UserServiceController(DataContext dataContext, IUserHelper userHelper)
+        public UserServiceController(DataContext dataContext,
+            IUserHelper userHelper,
+            ICombosHelper combosHelper,
+            IImageHelper imageHelper,
+            IConverterHelper converter)
         {
             _context = dataContext;
             _userHelper = userHelper;
+            _combosHelper = combosHelper;
+            _imageHelper = imageHelper;
+            _converter = converter;
         }
+
         public async Task<IActionResult> Index()
         {
             return View(_context.Services
@@ -32,28 +42,36 @@ namespace AppServices.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            ServiceViewModel service = new ServiceViewModel
+            {
+                ServicesType = _combosHelper.GetComboTypes()
+            };
+            return View(service);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ServiceEntity model)
+        public async Task<IActionResult> Create(ServiceViewModel model)
         {
             if (ModelState.IsValid)
             {
                 string path = string.Empty;
-                UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
-
-                ServiceEntity travel = new ServiceEntity
+                if (model.PhotoFile != null)
                 {
-                    ServicesName = model.ServicesName,
-                    ServiceType = model.ServiceType
-                };
+                    path = await _imageHelper.UploadImageAsync(model.PhotoFile, "Services");
+                }
 
-                _context.Add(travel);
+                UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
+                model.User = user;
+                model.PhotoPath = path;
+
+                ServiceEntity service = await _converter.ToServiceEntityAsync(model, true); 
+
+                _context.Add(service);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
+            model.ServicesType = _combosHelper.GetComboTypes();
             return View(model);
         }
 
@@ -79,6 +97,50 @@ namespace AppServices.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-    }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            ServiceEntity serviceEntity = await _context.Services.Include(s => s.ServiceType)
+                .Include(s => s.User)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (serviceEntity == null)
+            {
+                return NotFound();
+            }
+
+            return View(_converter.ToServiceViewModel(serviceEntity));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ServiceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string path = model.PhotoPath;
+                if (model.PhotoFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.PhotoFile, "Services");
+                }
+
+                UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
+                model.User = user;
+                model.PhotoPath = path;
+
+                ServiceEntity service = await _converter.ToServiceEntityAsync(model, false);
+
+                _context.Update(service);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            model.ServicesType = _combosHelper.GetComboTypes();
+            return View(model);
+        }
+
+    }
 }

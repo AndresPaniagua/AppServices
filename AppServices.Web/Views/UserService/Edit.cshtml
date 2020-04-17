@@ -1,0 +1,42 @@
+﻿@model AppServices.Web.Models.ServiceViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Edit</h2>
+<h4>Service</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PhotoPath" />
+
+            <partial name="_Service" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.PhotoPath))
+        {
+            <img src="@Url.Content(Model.PhotoPath)" alt="Image" style="width:300px;height:300px;max-width: 100%; height: auto;" />
+        }
+    </div>
+</div>
+
+
+<div class="text-success">
+    <p>
+        @ViewBag.Message
+    </p>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

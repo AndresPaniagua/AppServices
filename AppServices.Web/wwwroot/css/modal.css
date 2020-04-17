@@ -1,0 +1,60 @@
+﻿.pa4 {
+    padding: 2rem;
+}
+
+.z2 {
+    z-index: 2;
+}
+
+.container3 {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.relative {
+    position: relative;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row .col .l6 {
+    width: 50%;
+    margin-left: 0;
+}
+
+.row .col {
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 0.75rem;
+}
+
+.modal-dialog {
+    width: 60%;
+    margin: 10% auto; /*30px auto*/
+    color: #ffffff;
+}
+
+.modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background: #343a40;
+}
+
+.th {
+    padding: 0 0 0 3%;
+}
+
+.td {
+    width: 450px;
+}
+
+.thimg {
+    padding: 2% 2% 2% 2%;
+}

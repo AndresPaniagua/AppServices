@@ -1,0 +1,67 @@
+﻿@model AppServices.Web.Data.Entities.ServiceEntity
+
+<link href="~/css/modal.css" rel="stylesheet" />
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">@Model.ServicesName</h4>
+    </div>
+
+    <div class="modal-body">
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="td">
+                            <img src="@Url.Content(Model.PhotoPath)" width="400" height="400">
+                        </td>
+
+                        <td>
+                            <div class="l6 m6 s12 col">
+                                <h1> @Model.ServicesName </h1>
+                                <h6 class="gray-text"> @Html.DisplayFor(model => model.ServiceType.Name) </h6>
+
+                                <blockquote class="mt4 gray-text">
+                                    @Html.DisplayFor(model => model.Description)
+                                    <br><br>
+                                    <label>COST: </label> @Html.DisplayFor(model => model.Price) <br>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <label>EMAIL: </label> @Html.DisplayFor(model => model.User.Email)
+                                    }
+
+                                </blockquote>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-action="Reservation" asp-route-id="@Model.Id" class="btn btn-primary">Reservation</a>
+                                }
+                                else
+                                {
+                                    <label>FOR MORE INFORMATION, LOGIN</label>
+                                    <br />
+                                    <a asp-action="ToLogin" class="btn btn-primary">login</a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+

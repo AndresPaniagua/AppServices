@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
+<link href="~/css/modal.css" rel=" stylesheet" />
+<link href="~/css/HomeArticles.css" rel=" stylesheet" />
 
 <section id="team" class="pb-5">
     <div class="container" style="background-color: #ffffff; border-radius: 91px 10px 91px 10px;">
@@ -36,7 +38,7 @@
                                             @Html.DisplayFor(modelItem => item.Price)
                                         </p>
 
-                                        <a data-targeturl="@Url.Action("Details", "Sales", new { id = item.Id })" class="btn btn-primary btn-sm modal-link"><i class="fa fa-plus"></i></a>
+                                        <a data-targeturl="@Url.Action("Details", "Service", new { id = item.Id })" class="btn btn-primary btn-sm modal-link"><i class="glyphicon glyphicon-plus"></i></a>
 
                                     </div>
                                 </div>
@@ -49,3 +51,35 @@
         </div>
     </div>
 </section>
+
+
+<div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+    <a href="#close" title="Close" class="modal-close-btn">X</a>
+    <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $("#modal-container").remove();
+                $.get($(this).data("targeturl"), function (data) {
+                    $('<div id="modal-container" class="modal fade">  <div class="modal-dialog modal-lg" style="width:59%;>' +
+                        '<div class="modal-content" id= "modalbody" >' +
+                        data +
+                        '</div></div></div>').modal();
+                });
+            });
+        });
+    </script>
+
+}
