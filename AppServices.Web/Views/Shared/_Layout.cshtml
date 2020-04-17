@@ -38,6 +38,11 @@
                     {
                         <li><a asp-area="" asp-controller="ServiceType" asp-action="Index">Service Type</a></li>
                     }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="UserService" asp-action="Index">User Service</a></li>
+                    }
+                </ul>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)

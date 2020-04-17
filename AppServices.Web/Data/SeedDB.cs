@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Enums;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -104,74 +105,96 @@ namespace AppServices.Web.Data
 
         private async Task CheckServicesPlumbingAsync(string email)
         {
-            //Id, ServicesName, Phone, startdate, finishDate, Description, price, photoPath, ServiceType, User
-            DateTime startDate = DateTime.Today.AddDays(6).ToUniversalTime();
-            DateTime finishDate = DateTime.Today.AddMonths(10).ToUniversalTime();
+            ServiceEntity service = _context.Services.FirstOrDefault(s => s.ServicesName == "Plomeria");
 
-            _context.Services.Add(new ServiceEntity
-            {
-                ServicesName = "Plomeria",
-                Phone = "3255486995",
-                StartDate = startDate,
-                FinishDate = finishDate,
-                Description = "Se hace plomeria donde seaaa",
-                Price = 36542,
-                PhotoPath = $"~/images/Services/Plomeria.jpg",
-                ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Plumbing"),
-                User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
-            });
+            if (service == null) {
+                //Id, ServicesName, Phone, startdate, finishDate, Description, price, photoPath, ServiceType, User
+                DateTime startDate = DateTime.Today.AddDays(6).ToUniversalTime();
+                DateTime finishDate = DateTime.Today.AddMonths(10).ToUniversalTime();
+
+                _context.Services.Add(new ServiceEntity
+                {
+                    ServicesName = "Plomeria",
+                    Phone = "3255486995",
+                    StartDate = startDate,
+                    FinishDate = finishDate,
+                    Description = "Se hace plomeria donde seaaa",
+                    Price = 36542,
+                    PhotoPath = $"~/images/Services/Plomeria.jpg",
+                    ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Plumbing"),
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
+                });
+            
 
             await _context.SaveChangesAsync();
+            }
         }
 
         private async Task CheckServicesComputingAsync(string email)
         {
-            //Id, ServicesName, Phone, startdate, finishDate, Description, price, photoPath, ServiceType, User
-            DateTime startDate = DateTime.Today.AddDays(6).ToUniversalTime();
-            DateTime finishDate = DateTime.Today.AddMonths(10).ToUniversalTime();
 
-            _context.Services.Add(new ServiceEntity
+            ServiceEntity service = _context.Services.FirstOrDefault(s => s.ServicesName == "Mantenimiento de PCs");
+
+            if (service == null)
             {
-                ServicesName = "Mantenimiento de PCs",
-                Phone = "643515485",
-                StartDate = startDate,
-                FinishDate = finishDate,
-                Description = "software and hardware",
-                Price = 36542,
-                PhotoPath = $"~/images/Services/Computadores.jpg",
-                ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Computer maintenance"),
-                User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
-            });
+                //Id, ServicesName, Phone, startdate, finishDate, Description, price, photoPath, ServiceType, User
+                DateTime startDate = DateTime.Today.AddDays(6).ToUniversalTime();
+                DateTime finishDate = DateTime.Today.AddMonths(10).ToUniversalTime();
 
-            await _context.SaveChangesAsync();
+                _context.Services.Add(new ServiceEntity
+                {
+                    ServicesName = "Mantenimiento de PCs",
+                    Phone = "643515485",
+                    StartDate = startDate,
+                    FinishDate = finishDate,
+                    Description = "software and hardware",
+                    Price = 36542,
+                    PhotoPath = $"~/images/Services/Computadores.jpg",
+                    ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Computer maintenance"),
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
+                });
+
+                await _context.SaveChangesAsync();
+            }
         }
 
         private async Task CheckReservationPlumbingAsync(string email, string emailService)
         {
-            DateTime reservationDate = DateTime.Today.AddDays(15).ToUniversalTime();
 
-            _context.Reservations.Add(new ReservationEntity
+            ReservationEntity reservation = _context.Reservations.FirstOrDefault(r => r.User.Email == email);
+
+            if (reservation == null)
             {
-                ReservationDate = reservationDate,
-                User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
-            });
+                DateTime reservationDate = DateTime.Today.AddDays(15).ToUniversalTime();
 
-            await _context.SaveChangesAsync();
+                _context.Reservations.Add(new ReservationEntity
+                {
+                    ReservationDate = reservationDate,
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
+                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
+                });
+
+                await _context.SaveChangesAsync();
+            }
         }
 
         private async Task CheckReservationComputingAsync(string email, string emailService)
         {
-            DateTime reservationDate = DateTime.Today.AddDays(25).ToUniversalTime();
+            ReservationEntity reservation = _context.Reservations.FirstOrDefault(r => r.User.Email == email);
 
-            _context.Reservations.Add(new ReservationEntity
+            if (reservation == null)
             {
-                ReservationDate = reservationDate,
-                User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
-            });
+                DateTime reservationDate = DateTime.Today.AddDays(25).ToUniversalTime();
 
-            await _context.SaveChangesAsync();
+                _context.Reservations.Add(new ReservationEntity
+                {
+                    ReservationDate = reservationDate,
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
+                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
+                });
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

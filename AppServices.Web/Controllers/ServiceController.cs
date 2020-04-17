@@ -1,4 +1,6 @@
 ﻿using AppServices.Web.Data;
+using AppServices.Web.Data.Entities;
+using AppServices.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -9,10 +11,12 @@ namespace AppServices.Web.Controllers
     public class ServiceController : Controller
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public ServiceController(DataContext context)
+        public ServiceController(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task<IActionResult> Index()
@@ -23,5 +27,8 @@ namespace AppServices.Web.Controllers
                 .OrderBy(s => s.StartDate)
                 .ThenBy(s => s.Price));
         }
+
+        
+
     }
 }
