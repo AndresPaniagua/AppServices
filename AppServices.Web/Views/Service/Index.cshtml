@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AppServices.Web.Data.Entities.ServiceEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<section id="team" class="pb-5">
+    <div class="container" style="background-color: #ffffff; border-radius: 91px 10px 91px 10px;">
+        <h5 class="section-title h1">OUR SERVICES</h5>
+        <div class="row">
+
+            @foreach (var item in Model.OrderBy(s => s.StartDate).ThenBy(s => s.Price))
+            {
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                        <div class="mainflip">
+                            <div class="frontside">
+                                <div class="card">
+                                    <div class="card-body text-center">
+
+                                        @if (!string.IsNullOrEmpty(item.PhotoPath))
+                                        {
+                                            <p>
+                                                <img src="@Url.Content(item.PhotoPath)" class="img-fluid" alt="card image" />
+                                            </p>
+                                        }
+
+
+                                        <h4 class="card-title">
+                                            @Html.DisplayFor(modelItem => item.ServicesName)
+                                        </h4>
+
+                                        <p class="card-text">
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </p>
+
+                                        <a data-targeturl="@Url.Action("Details", "Sales", new { id = item.Id })" class="btn btn-primary btn-sm modal-link"><i class="fa fa-plus"></i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
