@@ -33,9 +33,10 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Service" asp-action="Index">Service</a></li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                       <li><a asp-area="" asp-controller="ServiceType" asp-action="Index">Service Type</a></li>
+                        <li><a asp-area="" asp-controller="ServiceType" asp-action="Index">Service Type</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -45,7 +46,8 @@
                         <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>}
                     else
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>}
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
                 </ul>
             </div>
         </div>
