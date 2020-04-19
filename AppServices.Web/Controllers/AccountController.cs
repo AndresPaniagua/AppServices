@@ -84,21 +84,21 @@ namespace AppServices.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+
                 UserEntity user = await _userHelper.AddUserAsync(model, UserType.User);
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "This email is already used.");
                 }
 
-                var myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
-                var tokenLink = Url.Action("ConfirmEmail", "Account", new
+                string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                string tokenLink = Url.Action("ConfirmEmail", "Account", new
                 {
                     userid = user.Id,
                     token = myToken
                 }, protocol: HttpContext.Request.Scheme);
 
-                var response = _mailHelper.SendMail(model.Username, "Email confirmation", $"<h1>Email Confirmation</h1>" +
+                Common.Models.Response response = _mailHelper.SendMail(model.Username, "Email confirmation", $"<h1>Email Confirmation</h1>" +
                     $"To allow the user, " +
                     $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
                 if (response.IsSuccess)
@@ -163,7 +163,7 @@ namespace AppServices.Web.Controllers
             {
                 UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
 
-                var result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                IdentityResult result = await _userHelper.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("ChangeUser");
@@ -238,6 +238,66 @@ namespace AppServices.Web.Controllers
 
             return View();
         }
+
+        public IActionResult RecoverPasswords()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RecoverPasswords(RecoverPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "The email doesn't correspont to a registered user.");
+                    return View(model);
+                }
+
+                string myToken = await _userHelper.GeneratePasswordResetTokenAsync(user);
+                string link = Url.Action(
+                    "ResetPassword",
+                    "Account",
+                    new { token = myToken }, protocol: HttpContext.Request.Scheme);
+                _mailHelper.SendMail(model.Email, "AppServices Password Reset", $"<h1>AppServices Password Reset</h1>" +
+                    $"To reset the password click in this link:</br></br>" +
+                    $"<a href = \"{link}\">Reset Password</a>");
+                ViewBag.Message = "The instructions to recover your password has been sent to email.";
+                return View();
+
+            }
+
+            return View(model);
+        }
+
+        public IActionResult ResetPassword(string token)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            UserEntity user = await _userHelper.GetUserAsync(model.UserName);
+            if (user != null)
+            {
+                IdentityResult result = await _userHelper.ResetPasswordAsync(user, model.Token, model.Password);
+                if (result.Succeeded)
+                {
+                    ViewBag.Message = "Password Reset Successful.";
+                    return View();
+                }
+
+                ViewBag.Message = "Error while resetting the password.";
+                return View(model);
+            }
+
+            ViewBag.Message = "User not found.";
+            return View(model);
+        }
+
 
     }
 }
