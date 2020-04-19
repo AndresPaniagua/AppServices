@@ -1,7 +1,6 @@
 ﻿using AppServices.Common.Enums;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -107,7 +106,8 @@ namespace AppServices.Web.Data
         {
             ServiceEntity service = _context.Services.FirstOrDefault(s => s.ServicesName == "Plomeria");
 
-            if (service == null) {
+            if (service == null)
+            {
                 //Id, ServicesName, Phone, startdate, finishDate, Description, price, photoPath, ServiceType, User
                 DateTime startDate = DateTime.Today.AddDays(6).ToUniversalTime();
                 DateTime finishDate = DateTime.Today.AddMonths(10).ToUniversalTime();
@@ -124,9 +124,9 @@ namespace AppServices.Web.Data
                     ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Plumbing"),
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
                 });
-            
 
-            await _context.SaveChangesAsync();
+
+                await _context.SaveChangesAsync();
             }
         }
 

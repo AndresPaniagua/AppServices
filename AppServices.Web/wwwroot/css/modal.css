@@ -38,13 +38,13 @@
 .modal-dialog {
     width: 60%;
     margin: 10% auto; /*30px auto*/
-    color: #ffffff;
+    color: #000000;
 }
 
 .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    background: #343a40;
+    background: #ffffff;
 }
 
 .th {

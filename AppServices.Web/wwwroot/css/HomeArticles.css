@@ -28,7 +28,7 @@ section {
     }
 
 #team .card {
-    border-radius: 127px 10px 127px 10px; /*5%*/
+    border-radius: 40px 10px 40px 10px; /*5%*/
     box-shadow: 10px 13px 37px -12px rgba(0,0,0,0.75);
     background: #ffffff;
 }
@@ -103,7 +103,7 @@ section {
         }
 
         .frontside .card .card-body img {
-            width: 160px;
+            width: 60%;
             height: 140px;
             margin-top: 5px;
         }

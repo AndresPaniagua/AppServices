@@ -77,7 +77,6 @@ namespace AppServices.Web.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AddUserViewModel model)
@@ -89,6 +88,7 @@ namespace AppServices.Web.Controllers
                 if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "This email is already used.");
+                    return View(model);
                 }
 
                 string myToken = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
@@ -111,7 +111,6 @@ namespace AppServices.Web.Controllers
             }
             return View(model);
         }
-
 
         public async Task<IActionResult> ChangeUser()
         {
@@ -297,7 +296,6 @@ namespace AppServices.Web.Controllers
             ViewBag.Message = "User not found.";
             return View(model);
         }
-
 
     }
 }
