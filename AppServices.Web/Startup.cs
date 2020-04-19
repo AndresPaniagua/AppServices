@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace AppServices.Web
 {
@@ -39,13 +41,30 @@ namespace AppServices.Web
 
             services.AddIdentity<UserEntity, IdentityRole>(cfg =>
             {
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true;
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
                 cfg.Password.RequireLowercase = false;
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<DataContext>();
+            })
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<DataContext>();
+
+            services.AddAuthentication()
+             .AddCookie()
+              .AddJwtBearer(cfg =>
+             {
+                 cfg.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidIssuer = Configuration["Tokens:Issuer"],
+                     ValidAudience = Configuration["Tokens:Audience"],
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                 };
+             });
+
 
             services.AddDbContext<DataContext>(cfg =>
             {
