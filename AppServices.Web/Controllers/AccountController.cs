@@ -1,5 +1,4 @@
 ﻿using AppServices.Common.Enums;
-using AppServices.Common.Models;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
 using AppServices.Web.Models;
@@ -88,7 +87,7 @@ namespace AppServices.Web.Controllers
                     Username = model.Username
                 };
 
-                var result2 = await _userHelper.LoginAsync(loginViewModel);
+                Microsoft.AspNetCore.Identity.SignInResult result2 = await _userHelper.LoginAsync(loginViewModel);
 
                 if (result2.Succeeded)
                 {
@@ -98,6 +97,43 @@ namespace AppServices.Web.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> ChangeUser()
+        {
+            UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            EditUserViewModel model = new EditUserViewModel
+            {
+                Address = user.Address,
+                Document = user.Document,
+                FullName = user.FullName,
+                PhoneNumber = user.PhoneNumber,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeUser(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(User.Identity.Name);
+
+                user.Document = model.Document;
+                user.FullName = model.FullName;
+                user.Address = model.Address;
+                user.PhoneNumber = model.PhoneNumber;
+
+                await _userHelper.UpdateUserAsync(user);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
 
     }
 }
