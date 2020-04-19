@@ -1,4 +1,7 @@
-﻿using AppServices.Web.Helpers;
+﻿using AppServices.Common.Enums;
+using AppServices.Common.Models;
+using AppServices.Web.Data.Entities;
+using AppServices.Web.Helpers;
 using AppServices.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -15,6 +18,11 @@ namespace AppServices.Web.Controllers
             _userHelper = userHelper;
         }
 
+        public IActionResult NotAuthorized()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -22,11 +30,6 @@ namespace AppServices.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
-        }
-
-        public IActionResult NotAuthorized()
-        {
             return View();
         }
 
@@ -58,6 +61,43 @@ namespace AppServices.Web.Controllers
             await _userHelper.LogoutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                UserEntity user = await _userHelper.AddUserAsync(model, UserType.User);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                }
+
+                LoginViewModel loginViewModel = new LoginViewModel
+                {
+                    Password = model.Password,
+                    RememberMe = false,
+                    Username = model.Username
+                };
+
+                var result2 = await _userHelper.LoginAsync(loginViewModel);
+
+                if (result2.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(model);
+        }
+
 
     }
 }

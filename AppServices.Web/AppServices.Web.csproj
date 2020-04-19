@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="wwwroot\images\Users\" />
   </ItemGroup>
 
   <ItemGroup>
