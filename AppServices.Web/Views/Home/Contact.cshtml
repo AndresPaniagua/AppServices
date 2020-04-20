@@ -1,24 +1,88 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
+<style>
 
-<div class="card">
-    <div class="card-title">
-        <h2>@ViewData["Title"]</h2>
-        <h3>@ViewData["Message"]</h3>
-    </div>
+    img {
+        max-width: 100%;
+    }
 
-    <div class="card-body">
-        <address>
-            AppServices.app<br />
-            Medellín, CO <br />
-            <abbr title="Phone">P:</abbr>
-            (+57)312 578 5456
-        </address>
+    .container2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
-        <address>
-            <strong>Support:</strong> <a href="mailto:appservices.contact@gmail.com">appservices.contact@gmail.com</a><br />
-        </address>
+    .card2 {
+        position: relative;
+        background: #333;
+        width: 400px;
+        height: 530px;
+        border-radius: 6px;
+        padding: 2rem;
+        color: #aaa;
+        box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .card2__image-container2 {
+        margin: -2rem -2rem 1rem -2rem;
+    }
+
+    .card2__line {
+        opacity: 0;
+        animation: LineFadeIn 0.8s 0.8s forwards ease-in;
+    }
+
+    .card2__image {
+        opacity: 0;
+        animation: ImageFadeIn 0.8s 1.4s forwards;
+    }
+
+    .card2__title {
+        color: white;
+        margin-top: 0;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+    }
+
+    .card2__content {
+        position: inherit;
+        margin-top: -6%;
+    }
+
+    .card2__svg {
+        position: absolute;
+        left: 0;
+        top: 115px;
+    }
+</style>
+
+<div class="container2">
+    <div class="card2">
+        <div class="card2__image-container2">
+            <img src="~/images/Contact.png" alt="Contact">
+        </div>
+
+        <svg class="card2__svg" viewBox="0 0 800 500">
+
+            <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333" />
+            <path class="card222__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent" />
+        </svg>
+
+        <div class="card2__content">
+            <h1 style="color: azure;">@ViewData["Title"]</h1>
+            <p style="color: azure;">
+                <address>
+                    AppServices.app<br />
+                    Medellín, CO <br />
+                    <abbr title="Phone">P:</abbr>
+                    (+57)312 578 5456<br />
+                    <strong>Support:</strong> <a href="mailto:appservices.contact@gmail.com">appservices.contact@gmail.com</a><br />
+                </address>
+            </p>
+        </div>
     </div>
 </div>
 

@@ -4,8 +4,8 @@
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #108d6f;
-    border-color: #108d6f;
+    background-color: #148eff;
+    border-color: #148eff;
     box-shadow: none;
     outline: none;
 }
@@ -13,7 +13,7 @@
 .btn-primary {
     color: #fff;
     background-color: #ff0000;
-    border-color: #007b5e;
+    border-color: #ff0000;
 }
 
 section {

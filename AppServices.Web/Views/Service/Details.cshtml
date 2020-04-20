@@ -39,13 +39,14 @@
                                     <label>COST: </label> @Html.DisplayFor(model => model.Price) <br>
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <label>EMAIL: </label> @Html.DisplayFor(model => model.User.Email)
+                                        <label>EMAIL: </label> @Html.DisplayFor(model => model.User.Email) <br>
+                                        <label>ADDRESS: </label> @Html.DisplayFor(model => model.User.Address) <br>
                                     }
 
                                 </blockquote>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a asp-action="Reservation" asp-route-id="@Model.Id" class="btn btn-primary">Reservation</a>
+                                    <a asp-action="ToReservation" asp-route-id="@Model.Id" class="btn btn-primary">Reservation</a>
                                 }
                                 else
                                 {

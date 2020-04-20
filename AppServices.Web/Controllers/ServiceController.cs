@@ -52,5 +52,10 @@ namespace AppServices.Web.Controllers
         {
             return RedirectToAction("Login", "Account");
         }
+
+        public IActionResult ToReservation(int? id)
+        {
+            return RedirectToAction("Create", "Reservations", new { id = id });
+        }
     }
 }
