@@ -1,0 +1,104 @@
+﻿@model IEnumerable<AppServices.Web.Data.Entities.ReservationEntity>
+
+@{
+    ViewData["Title"] = "Reservations";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+<h2>
+    Reservations
+</h2>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Reservations</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Service.PhotoPath)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Service.ServicesName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Service.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Service.ServiceType.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Service.Price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReservationDate)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Service.PhotoPath))
+                                {
+                                    <img src="@Url.Content(item.Service.PhotoPath)" alt="Image" style="width:150px;height:150px;max-width: 100%; height: auto;" />
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Service.ServicesName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Service.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Service.ServiceType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Service.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReservationDate)
+                            </td>
+                            <td>
+                               <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="_DeleteDialog" />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#MyTable').DataTable();
+
+            // Delete item
+            var item_to_delete;
+
+            $('.deleteItem').click((e) => {
+                item_to_delete = e.currentTarget.dataset.id;
+            });
+
+            $("#btnYesDelete").click(function () {
+                window.location.href = '/Reservations/Delete/' + item_to_delete;
+            });
+        });
+    </script>
+}

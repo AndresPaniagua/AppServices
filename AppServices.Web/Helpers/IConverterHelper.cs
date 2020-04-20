@@ -1,5 +1,7 @@
-﻿using AppServices.Web.Data.Entities;
+﻿using AppServices.Common.Models;
+using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppServices.Web.Helpers
@@ -9,5 +11,13 @@ namespace AppServices.Web.Helpers
         Task<ServiceEntity> ToServiceEntityAsync(ServiceViewModel service, bool isNew);
 
         ServiceViewModel ToServiceViewModel(ServiceEntity service);
+
+        List<ServiceResponse> ToServiceResponse(List<ServiceEntity> service);
+
+        ServiceResponse ToServiceResponse(ServiceEntity service);
+
+        ServiceTypeResponse ToServiceTypeResponse(ServiceTypeEntity service);
+
+        UserResponse ToUserResponse(UserEntity user);
     }
 }

@@ -40,6 +40,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="UserService" asp-action="Index">My Services</a></li>
+                        <li><a asp-area="" asp-controller="Reservations" asp-action="Index">My Reservations</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

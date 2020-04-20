@@ -1,6 +1,8 @@
-﻿using AppServices.Web.Data;
+﻿using AppServices.Common.Models;
+using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AppServices.Web.Helpers
@@ -17,7 +19,7 @@ namespace AppServices.Web.Helpers
             _combos = combos;
         }
 
-        public async Task<ServiceEntity> ToServiceEntityAsync (ServiceViewModel service, bool isNew)
+        public async Task<ServiceEntity> ToServiceEntityAsync(ServiceViewModel service, bool isNew)
         {
             ServiceEntity serviceEntity = new ServiceEntity
             {
@@ -49,6 +51,68 @@ namespace AppServices.Web.Helpers
                 ServicesType = _combos.GetComboTypes(),
                 User = service.User,
                 ServiceTypeId = service.ServiceType.Id
+            };
+        }
+
+        public List<ServiceResponse> ToServiceResponse(List<ServiceEntity> serviceEntities)
+        {
+            List<ServiceResponse> list = new List<ServiceResponse>();
+            foreach (ServiceEntity serviceEntity in serviceEntities)
+            {
+                list.Add(ToServiceResponse(serviceEntity));
+            }
+
+            return list;
+        }
+
+        public ServiceResponse ToServiceResponse(ServiceEntity serviceEntity)
+        {
+            return new ServiceResponse
+            {
+                Id = serviceEntity.Id,
+                ServicesName = serviceEntity.ServicesName,
+                Phone = serviceEntity.Phone,
+                Description = serviceEntity.Description,
+                Price = serviceEntity.Price,
+                FinishDate = serviceEntity.FinishDate,
+                StartDate = serviceEntity.StartDate,
+                PhotoPath = serviceEntity.PhotoPath,
+                ServiceType = ToServiceTypeResponse(serviceEntity.ServiceType),
+                User = ToUserResponse(serviceEntity.User)
+            };
+
+        }
+
+        public ServiceTypeResponse ToServiceTypeResponse(ServiceTypeEntity service)
+        {
+            if (service == null)
+            {
+                return null;
+            }
+
+            return new ServiceTypeResponse
+            {
+                Id = service.Id,
+                Name = service.Name
+            };
+        }
+
+        public UserResponse ToUserResponse(UserEntity user)
+        {
+            if (user == null)
+            {
+                return null;
+            }
+
+            return new UserResponse
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Document = user.Document,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                UserType = user.UserType,
+                Address = user.Address
             };
         }
     }

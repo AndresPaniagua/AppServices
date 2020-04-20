@@ -17,6 +17,16 @@ namespace AppServices.Web.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            return View(_context.Reservations
+                .Include(s => s.Service)
+                .ThenInclude(s => s.ServiceType)
+                .Include(s => s.User)
+                .OrderBy(s => s.ReservationDate)
+                .ThenBy(s => s.Service.Price));
+        }
+
         public async Task<IActionResult> Create(int? id)
         {
             if (id == null)
@@ -58,6 +68,25 @@ namespace AppServices.Web.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Service");
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ReservationEntity reservation = await _context.Reservations
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }            
+
+            _context.Reservations.Remove(reservation);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
