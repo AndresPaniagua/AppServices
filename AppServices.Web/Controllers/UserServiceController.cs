@@ -64,7 +64,7 @@ namespace AppServices.Web.Controllers
                 model.User = user;
                 model.PhotoPath = path;
 
-                ServiceEntity service = await _converter.ToServiceEntityAsync(model, true); 
+                ServiceEntity service = await _converter.ToServiceEntityAsync(model, true);
 
                 _context.Add(service);
                 await _context.SaveChangesAsync();

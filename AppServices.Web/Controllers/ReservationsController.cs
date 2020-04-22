@@ -82,7 +82,7 @@ namespace AppServices.Web.Controllers
             if (reservation == null)
             {
                 return NotFound();
-            }            
+            }
 
             _context.Reservations.Remove(reservation);
             await _context.SaveChangesAsync();

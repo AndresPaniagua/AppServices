@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +25,7 @@ namespace AppServices.Web.Controllers.API
             _context = context;
             _userHelper = userHelper;
             _converterHelper = converterHelper;
-        }        
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetServicesAsync()
