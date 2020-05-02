@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="AppServices.Prism.Views.RegisterPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ScrollView>
+        <StackLayout>
+            <Grid
+                RowSpacing="0"
+                ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <BoxView 
+                    Grid.Row="0"
+                    Opacity="0.5"/>
+
+                <Image
+                    Grid.Row="0"
+                    Source="logo.png"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    HeightRequest="100"
+                    WidthRequest="100"/>
+
+
+                <StackLayout                
+                    Grid.Row="2"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    Spacing="15">
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Document:"/>
+                        <Entry 
+                            Text="{Binding Document}"
+                            Keyboard="Chat"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Fullname:"/>
+                        <Entry 
+                            Text="{Binding Fullname}"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Address:"/>
+                        <Entry 
+                            Text="{Binding Address}"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Phone:"/>
+                        <Entry 
+                            Text="{Binding Phone}"
+                            Keyboard="Numeric"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Email:"/>
+                        <Entry 
+                            Text="{Binding Email}"
+                            Keyboard="Email"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Password:"/>
+                        <Entry 
+                            Text="{Binding Password}"
+                            IsPassword="True"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="ConfirmPassword:"/>
+                        <Entry 
+                            Text="{Binding ConfirmPassword}"
+                            IsPassword="True"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Grid>
+
+
+            <Button
+                Margin="0, 20, 0, 0"
+                Text="Register"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="200"
+                BackgroundColor="Red"
+                TextColor="White"
+                Command="{Binding RegisterCommand}"/>
+
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>
+    

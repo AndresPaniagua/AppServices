@@ -1,11 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AppServices.Web.Data.Entities
+namespace AppServices.Common.Models
 {
-    public class ServiceEntity
+    public class ServiceRequest
     {
-        public int Id { get; set; }
+        public int IdService { get; set; }
+
+        public int IdType { get; set; }
+
+        public Guid IdUser { get; set; }
 
         [MaxLength(30, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         public string ServicesName { get; set; }
@@ -35,15 +39,8 @@ namespace AppServices.Web.Data.Entities
         public decimal Price { get; set; }
 
         [Display(Name = "Photo")]
-        public string PhotoPath { get; set; }
+        public byte[] PhotoArray { get; set; }
 
-        [Display(Name = "Photo")]
-        public string PhotoFullPath => string.IsNullOrEmpty(PhotoPath)
-            ? "https://primerentrega.azurewebsites.net//images/noimage.png"
-            : $"https://primerentrega.azurewebsites.net{PhotoPath.Substring(1)}";
-
-        public ServiceTypeEntity ServiceType { get; set; }
-
-        public UserEntity User { get; set; }
+        public string CultureInfo { get; set; }
     }
 }
