@@ -39,8 +39,8 @@ namespace AppServices.Web.Data.Entities
 
         [Display(Name = "Photo")]
         public string PhotoFullPath => string.IsNullOrEmpty(PhotoPath)
-            ? "https://primerentrega.azurewebsites.net//images/noimage.png"
-            : $"https://primerentrega.azurewebsites.net{PhotoPath.Substring(1)}";
+            ? "https://appservicesweb.azurewebsites.net//images/noimage.png"
+            : $"https://appservicesweb.azurewebsites.net{PhotoPath.Substring(1)}";
 
         public ServiceTypeEntity ServiceType { get; set; }
 

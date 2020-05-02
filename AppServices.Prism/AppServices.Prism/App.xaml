@@ -5,7 +5,8 @@
              x:Class="AppServices.Prism.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <!-- Parameters -->
+        <x:String x:Key="UrlAPI">https://appservicesweb.azurewebsites.net/</x:String>
 
-	</Application.Resources>
+    </Application.Resources>
 </prism:PrismApplication>

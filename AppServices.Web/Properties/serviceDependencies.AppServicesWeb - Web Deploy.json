@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "resourceId": "/subscriptions/7e2a0aa0-026c-4d62-a034-2af3a52633ba/resourceGroups/Distribuida/providers/Microsoft.KeyVault/vaults/AppServicesWebvault",
+      "type": "secrets.keyVault",
+      "connectionId": "ASPNETCORE_HOSTINGSTARTUP__KEYVAULT__CONFIGURATIONVAULT"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/7e2a0aa0-026c-4d62-a034-2af3a52633ba/resourcegroups/Distribuida/providers/Microsoft.Sql/servers/soccerwebandresbetancurdbserver/databases/AppServices.Web_db",
+      "type": "mssql.azure",
+      "connectionId": "AppServiceConnection"
+    }
+  }
+}
