@@ -5,8 +5,7 @@ using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
-using System;
-using Xamarin.Essentials;
+
 
 namespace AppServices.Prism.ViewModels
 {
@@ -125,15 +124,18 @@ namespace AppServices.Prism.ViewModels
 
             await _navigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/CreateServicePage");
             Password = string.Empty;
+            Email = string.Empty;
         }
-        private async void RecoverPasswordAsync()
-        {
-            await _navigationService.NavigateAsync(nameof(RecoverPasswordPage));
-        }
+       
 
         private async void RegisterAsync()
         {
             await _navigationService.NavigateAsync(nameof(RegisterPage));
+        }
+
+        private async void RecoverPasswordAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RecoverPasswordPage));
         }
 
     }

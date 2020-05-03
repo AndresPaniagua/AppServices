@@ -28,6 +28,6 @@ namespace AppServices.Common.Models
         public string PasswordConfirm { get; set; }
 
         [Required]
-        public string CultureInfo { get; set; }
+        public string Cultureinfo { get; set; }
     }
 }

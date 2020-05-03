@@ -16,5 +16,10 @@ namespace AppServices.Common.Services
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
 
+        Task<Response> PutAsync<T>(string urlBase, string servicePrefix, string controller, T model, string tokenType, string accessToken);
+
+        Task<bool> CheckConnectionAsync(string url);
+
+        Task<Response> RegisterUserAsync(string urlBase, string servicePrefix, string controller, UserRequest userRequest);
     }
 }

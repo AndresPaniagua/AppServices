@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.RegisterPage">
 
     <NavigationPage.TitleView>
@@ -54,7 +55,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Document:"/>
                         <Entry 
-                            Text="{Binding Document}"
+                            Text="{Binding User.Document}"
                             Keyboard="Chat"
                             WidthRequest="300"/>
                     </StackLayout>
@@ -63,7 +64,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Fullname:"/>
                         <Entry 
-                            Text="{Binding Fullname}"
+                            Text="{Binding User.FullName}"
                             WidthRequest="300"/>
                     </StackLayout>
 
@@ -71,7 +72,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Address:"/>
                         <Entry 
-                            Text="{Binding Address}"
+                            Text="{Binding User.Address}"
                             WidthRequest="300"/>
                     </StackLayout>
 
@@ -79,7 +80,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Phone:"/>
                         <Entry 
-                            Text="{Binding Phone}"
+                            Text="{Binding User.Phone}"
                             Keyboard="Numeric"
                             WidthRequest="300"/>
                     </StackLayout>
@@ -88,7 +89,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Email:"/>
                         <Entry 
-                            Text="{Binding Email}"
+                            Text="{Binding User.Email}"
                             Keyboard="Email"
                             WidthRequest="300"/>
                     </StackLayout>
@@ -97,7 +98,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="Password:"/>
                         <Entry 
-                            Text="{Binding Password}"
+                            Text="{Binding User.Password}"
                             IsPassword="True"
                             WidthRequest="300"/>
                     </StackLayout>
@@ -106,7 +107,7 @@
                         <Label Margin="0, 0, 0, -5"
                             Text="ConfirmPassword:"/>
                         <Entry 
-                            Text="{Binding ConfirmPassword}"
+                            Text="{Binding User.PasswordConfirm}"
                             IsPassword="True"
                             WidthRequest="300"/>
                     </StackLayout>
@@ -114,7 +115,16 @@
                 </StackLayout>
 
             </Grid>
-
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="120"
+                	                   ViewBoxHeight="120" />
 
             <Button
                 Margin="0, 20, 0, 0"
@@ -125,7 +135,8 @@
                 WidthRequest="200"
                 BackgroundColor="Red"
                 TextColor="White"
-                Command="{Binding RegisterCommand}"/>
+                Command="{Binding RegisterCommand}"
+                IsEnabled="{Binding IsEnabled}"/>
 
         </StackLayout>
     </ScrollView>
