@@ -12,5 +12,9 @@ namespace AppServices.Common.Services
 
         Task<Response> RegisterServiceAsync(string urlBase, string servicePrefix, string controller, ServiceRequest service);
 
+        Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, EmailRequest request);
+
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
+
     }
 }

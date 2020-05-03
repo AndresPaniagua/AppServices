@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="AppServices.Prism.Views.LoginPage">
 
@@ -80,9 +81,18 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                                       Visual="Material"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="120"
+                	                   ViewBoxHeight="120" />
         </Grid>
-
 
         <Button
             Text="LOGIN"
@@ -91,7 +101,8 @@
             HorizontalOptions="Center"
             BackgroundColor="Red"
             TextColor="White"
-            Command="{Binding LoginCommand}"/>
+            Command="{Binding LoginCommand}"
+            IsEnabled="{Binding IsEnabled}"/>
 
         <Button
             Text="New Account"
@@ -100,8 +111,10 @@
             HorizontalOptions="Center"
             BackgroundColor="Red"
             TextColor="White"
-            Command="{Binding RegisterCommand}"/>
+            Command="{Binding RegisterCommand}"
+            IsEnabled="{Binding IsEnabled}"/>
     </StackLayout>
     
+
 </ContentPage>
     

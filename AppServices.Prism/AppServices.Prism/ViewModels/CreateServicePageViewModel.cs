@@ -34,6 +34,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _filesHelper = filesHelper;
+            Title = "CreateService";
             Image = "Silueta.png";
             Service = new ServiceRequest();
             LoadServiceType();

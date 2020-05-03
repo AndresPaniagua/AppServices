@@ -10,12 +10,19 @@
     <MasterDetailPage.Master>
         <ContentPage  Title="Menu">
             <StackLayout Padding="20">
-                <RelativeLayout>                    
+                <RelativeLayout>
                     <Image x:Name="Logo" HorizontalOptions="Center"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
                            HeightRequest="150"
-                           Source="Logo"/>                                       
+                           Source="Logo"/>
+                    <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Text="{Binding User.FullName}"
+                           TextColor="Black"/>
+                    
                 </RelativeLayout>
-
+                           
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"
                 	      HasUnevenRows="True"

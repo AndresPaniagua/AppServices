@@ -29,9 +29,9 @@ namespace AppServices.Prism.ViewModels
                 Settings.Token = null;
             }
 
-            if (PageName == "LoginPage")
+            if (IsLoginRequired && !Settings.IsLogin)
             {
-                await _navigationService.NavigateAsync($"/AppServicesMasterDetailPage/NavigationPage/{PageName}");
+                await _navigationService.NavigateAsync($"/AppServicesMasterDetailPage/NavigationPage/LoginPage");
                 //await _navigationService.NavigateAsync($"{PageName}");
             }
             else

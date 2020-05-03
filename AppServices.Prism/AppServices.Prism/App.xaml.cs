@@ -5,6 +5,7 @@ using AppServices.Prism.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppServices.Common.Services;
+using Syncfusion.Licensing;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace AppServices.Prism
@@ -17,6 +18,8 @@ namespace AppServices.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjM0NDgzQDMxMzgyZTMxMmUzME5HWDhDY1h2OTJGUjZaOEN5Q0VIVlVKV1h1b1NFYW5hZFdIMlhtQzVuQlE9");
+
             InitializeComponent();
 
             await NavigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/LoginPage");

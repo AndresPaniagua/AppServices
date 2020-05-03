@@ -19,6 +19,7 @@ namespace AppServices.Web.Controllers.API
     {
         private readonly IUserHelper _userHelper;
         private readonly IMailHelper _mailHelper;
+
         private readonly IConverterHelper _converterHelper;
 
         public AccountController(
@@ -56,7 +57,6 @@ namespace AppServices.Web.Controllers.API
                     Message = Resource.UserAlreadyExists
                 });
             }
-
 
             user = new UserEntity
             {
