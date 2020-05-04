@@ -5,7 +5,7 @@ using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
-
+using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
 {
@@ -78,14 +78,14 @@ namespace AppServices.Prism.ViewModels
 
             string url = App.Current.Resources["UrlAPI"].ToString();
 
-            //if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-            //{
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
             //    IsRunning = true;
-            //    IsEnabled = false;
-            //    await App.Current.MainPage.DisplayAlert("Error", "ConnectionError", "Accept");
-            //    //Languages.Error, Languages.ConnectionError, Languages.Accept);
-            //    return;
-            //}
+                IsEnabled = false;
+                await App.Current.MainPage.DisplayAlert("Error", "ConnectionError", "Accept");
+                //Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
             //MUCHACHOS ESTO NO ME DEJA AVANZAR.. ME SALE QUE DEBO TENER UNOS PERMISOS, PERO YA LOGUEA 
             TokenRequest request = new TokenRequest
             {
@@ -93,6 +93,7 @@ namespace AppServices.Prism.ViewModels
                 Username = Email
             };
 
+           
             Response response = await _apiService.GetTokenAsync(url, "Account", "/CreateToken", request);
 
             if (!response.IsSuccess)

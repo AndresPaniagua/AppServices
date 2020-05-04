@@ -29,6 +29,7 @@ namespace AppServices.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IFilesHelper, FilesHelper>();
             containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
@@ -36,6 +37,7 @@ namespace AppServices.Prism
             containerRegistry.RegisterForNavigation<RecoverPasswordPage, RecoverPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<CreateServicePage, CreateServicePageViewModel>();
             containerRegistry.RegisterForNavigation<AppServicesMasterDetailPage, AppServicesMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreateServicePage, CreateServicePageViewModel>();
         }
     }
 }

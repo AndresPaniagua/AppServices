@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
@@ -37,7 +38,7 @@ namespace AppServices.Prism.ViewModels
             Title = "CreateService";
             Image = "Silueta.png";
             Service = new ServiceRequest();
-            LoadServiceType();
+            //LoadServiceType();
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
@@ -170,21 +171,21 @@ namespace AppServices.Prism.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
                 return false;
-            }            
+            }
 
             if (string.IsNullOrEmpty(Service.Phone))
             {
                 await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
                 return false;
             }
-                       
+
 
             if (string.IsNullOrEmpty(Service.Description))
             {
                 await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
                 return false;
-            }        
-                       
+            }
+
 
             if (ServiceType == null)
             {
@@ -209,7 +210,7 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            
+
 
             Response response = await _apiService.GetListAsync<ServiceTypeResponse>(url, "/api", "/ServiceType");
             //IsRunning = false;

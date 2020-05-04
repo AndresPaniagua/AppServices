@@ -13,7 +13,6 @@
                FontSize="Large"
                TextColor="White"/>
     </NavigationPage.TitleView>
-
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0,20,0,0"/>
@@ -131,6 +130,8 @@
 
         </StackLayout>
     </ScrollView>
+
+
 
 </ContentPage>
     
