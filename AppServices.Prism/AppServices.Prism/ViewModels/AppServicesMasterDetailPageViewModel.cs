@@ -55,25 +55,25 @@ namespace AppServices.Prism.ViewModels
             {
                 new Menu
                 {
-                    Icon = "plane",
+                    Icon = "newservice",
                     PageName = "CreateServicePage",
                     Title = "Create Service"
                 },
                 new Menu
                 {
-                    Icon = "addtravel",
+                    Icon = "services",
                     PageName = "CreateServicePage",
                     Title = "Services"
                 },
                 new Menu
                 {
-                    Icon = "otro",
+                    Icon = "myservice",
                     PageName = "CreateServicePage",
-                    Title = "My services"
+                    Title = "My services" 
                 },
                 new Menu
                 {
-                    Icon = "exit",
+                    Icon = "login",
                     PageName = "LoginPage",
                     Title = Settings.IsLogin ? "Logout" : "Login"
                 }
