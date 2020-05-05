@@ -45,7 +45,7 @@ namespace AppServices.Web.Controllers.API
                 });
             }
 
-            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            CultureInfo cultureInfo = new CultureInfo(request.Cultureinfo);
             Resource.Culture = cultureInfo;
 
             UserEntity user = await _userHelper.GetUserAsync(request.Email);
@@ -140,7 +140,7 @@ namespace AppServices.Web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            CultureInfo cultureInfo = new CultureInfo(request.Cultureinfo);
             Resource.Culture = cultureInfo;
 
             UserEntity userEntity = await _userHelper.GetUserAsync(request.Email);
@@ -153,7 +153,7 @@ namespace AppServices.Web.Controllers.API
             userEntity.FullName = request.FullName;
             userEntity.Address = request.Address;
             userEntity.PhoneNumber = request.Phone;
-            userEntity.Document = request.Phone;
+            userEntity.Document = request.Document;
 
             IdentityResult respose = await _userHelper.UpdateUserAsync(userEntity);
             if (!respose.Succeeded)

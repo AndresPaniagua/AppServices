@@ -3,84 +3,91 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-             x:Class="AppServices.Prism.Views.ModifyUserPage"
-              Title="{Binding Title}">
-    
-    <AbsoluteLayout>
-        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
-                     AbsoluteLayout.LayoutFlags="All"
-                     Padding="5">
-            <ScrollView>
-                <StackLayout>
-                   
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
+               xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="AppServices.Prism.Views.ModifyUserPage">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
 
-                        <Label Grid.Row="0"
-                               Grid.Column="0"
-                               Text="Document"
-                               VerticalOptions="Center"/>
-                        <Entry Grid.Row="0"
-                               Grid.Column="1"
-                               Keyboard="Numeric"
-                               Placeholder="Document"
-                               Text="{Binding User.Document}"/>
+    <ScrollView>
+        <StackLayout>
+            <Grid
+                RowSpacing="0"
+                ColumnSpacing="0">
 
-                        <Label Grid.Row="1"
-                               Grid.Column="0"
-                               Text="FirstName"
-                               VerticalOptions="Center"/>
-                        <Entry Grid.Row="1"
-                               Grid.Column="1"
-                               Placeholder="FirstName"
-                               Text="{Binding User.FullName}"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <BoxView 
+                    Grid.Row="0"
+                    Opacity="0.5"/>
+
+                <Image
+                    Grid.Row="0"
+                    Source="logo.png"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    HeightRequest="100"
+                    WidthRequest="100"/>
 
 
-                        <Label Grid.Row="2"
-                               Grid.Column="0"
-                               Text="Address"
-                               VerticalOptions="Center"/>
-                        <Entry Grid.Row="2"
-                               Grid.Column="1"
-                               Placeholder="Address"
-                               Text="{Binding User.Address}"/>
+                <StackLayout                
+                    Grid.Row="2"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    Spacing="15">
 
-                        <Label Grid.Row="3"
-                               Grid.Column="0"
-                               Text="Phone"
-                               VerticalOptions="Center"/>
-                        <Entry Grid.Row="3" 
-                               Grid.Column="1"
-                               Keyboard="Telephone"
-                               Placeholder="Phone"
-                               Text="{Binding User.PhoneNumber}"/>
-                    </Grid>
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Document:"/>
+                        <Entry 
+                            Text="{Binding User.Document}"
+                            Keyboard="Chat"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Fullname:"/>
+                        <Entry 
+                            Text="{Binding User.FullName}"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Address:"/>
+                        <Entry 
+                            Text="{Binding User.Address}"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="Center" Spacing="0">
+                        <Label Margin="0, 0, 0, -5"
+                            Text="Phone:"/>
+                        <Entry 
+                            Text="{Binding User.PhoneNumber}"
+                            Keyboard="Numeric"
+                            WidthRequest="300"/>
+                    </StackLayout>
+
                 </StackLayout>
-            </ScrollView>
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="EndAndExpand">
-                <Button Command="{Binding SaveCommand}"
-                        IsEnabled="{Binding IsEnabled}"
-                        Text="Save"/>
-                <Button Command="{Binding ChangePasswordCommand}"
-                        IsEnabled="{Binding IsEnabled}"
-                        Text="ChangePassword"
-                        Style="{StaticResource DangerButton}"/>
-            </StackLayout>
-        </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+
+            </Grid>
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   HorizontalOptions="Center"
@@ -90,6 +97,32 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="120"
                 	                   ViewBoxHeight="120" />
-    </AbsoluteLayout>
+
+            <Button
+                Margin="0, 20, 0, 0"
+                Text="save"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="200"
+                BackgroundColor="Red"
+                TextColor="White"
+                Command="{Binding SaveCommand}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+            <Button
+                Margin="0, 20, 0, 0"
+                Text="change password"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="200"
+                BackgroundColor="Red"
+                TextColor="White"
+                Command="{Binding ChangePasswordCommand}"
+                IsEnabled="{Binding IsEnabled}"/>
+
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

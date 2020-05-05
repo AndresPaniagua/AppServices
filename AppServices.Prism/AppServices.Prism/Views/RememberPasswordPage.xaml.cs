@@ -2,9 +2,9 @@
 
 namespace AppServices.Prism.Views
 {
-    public partial class RecoverPasswordPage : ContentPage
+    public partial class RememberPasswordPage : ContentPage
     {
-        public RecoverPasswordPage()
+        public RememberPasswordPage()
         {
             InitializeComponent();
         }

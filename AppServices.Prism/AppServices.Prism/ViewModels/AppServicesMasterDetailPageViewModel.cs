@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -49,6 +50,11 @@ namespace AppServices.Prism.ViewModels
             return _instance;
         }
 
+        private async void ModifyUserAsync()
+        {
+            await _navigationService.NavigateAsync($"/AppServicesMasterDetailPage/NavigationPage/{nameof(ModifyUserPage)}");
+        }
+
         private void LoadMenus()
         {
             List<Menu> menus = new List<Menu>
@@ -57,7 +63,8 @@ namespace AppServices.Prism.ViewModels
                 {
                     Icon = "newservice",
                     PageName = "CreateServicePage",
-                    Title = "Create Service"
+                    Title = "Create Service",
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
@@ -70,6 +77,13 @@ namespace AppServices.Prism.ViewModels
                     Icon = "myservice",
                     PageName = "CreateServicePage",
                     Title = "My services" 
+                },
+                 new Menu
+                {
+                    Icon = "edit",
+                    PageName = "ModifyUserPage",
+                    Title = "Modify user",
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
@@ -97,7 +111,7 @@ namespace AppServices.Prism.ViewModels
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             EmailRequest emailRequest = new EmailRequest
             {
-                //CultureInfo = Languages.Culture,
+                CultureInfo = "en",
                 Email = user.Email
             };
 

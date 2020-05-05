@@ -3,11 +3,7 @@ using AppServices.Common.Models;
 using AppServices.Common.Services;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppServices.Prism.ViewModels
@@ -18,19 +14,16 @@ namespace AppServices.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
-      //  private DelegateCommand _changePasswordCommand;
-
-        public ChangePasswordPageViewModel(INavigationService navigationService, IApiService apiService)
-            : base(navigationService)
+        private DelegateCommand _changePasswordCommand;
+        public ChangePasswordPageViewModel(INavigationService navigationService,IApiService apiService):base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "ChangePassword";
             IsEnabled = true;
-           
+            Title = "Change Password";
         }
 
-       // public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
+        public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
         public string CurrentPassword { get; set; }
 
@@ -48,6 +41,46 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
+        }
+
+        private async void ChangePasswordAsync()
+        {
+            var isValid = await ValidateDataAsync();
+            if (!isValid)
+            {
+                return;
+            }
+
+            IsRunning = true;
+            IsEnabled = false;
+
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+
+            ChangePasswordRequest request = new ChangePasswordRequest
+            {
+                Email = user.Email,
+                NewPassword = NewPassword,
+                OldPassword = CurrentPassword,
+                CultureInfo = "en"
+            };
+
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            Response response = await _apiService.ChangePasswordAsync(url, "/api", "/Account/ChangePassword", request, "bearer", token.Token);
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Message", "Accept");
+                //Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+
+            await App.Current.MainPage.DisplayAlert("Ok", "Message", "Accept");
+            // Languages.Ok, response.Message, Languages.Accept);
+            await _navigationService.GoBackAsync();
         }
 
         private async Task<bool> ValidateDataAsync()

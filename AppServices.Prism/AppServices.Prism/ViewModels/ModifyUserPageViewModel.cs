@@ -4,37 +4,32 @@ using AppServices.Common.Services;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppServices.Prism.ViewModels
 {
+
     public class ModifyUserPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
         private UserResponse _user;
         private DelegateCommand _saveCommand;
         private DelegateCommand _changePasswordCommand;
-        private readonly INavigationService _navigationService;
 
-        public ModifyUserPageViewModel(INavigationService navigationService, IApiService apiService)
-            : base(navigationService)
+        public ModifyUserPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
+            Title = "Mofify user";
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Modify User";
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
-           
         }
-        public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand
-            (ChangePasswordAsync));
+
+        public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveAsync));
 
@@ -56,40 +51,6 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
-        private async Task<bool> ValidateDataAsync()
-        {
-            if (string.IsNullOrEmpty(User.Document))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "DocumentError", "Accept");
-                //Languages.Error, Languages.DocumentError, Languages.Accept);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(User.FullName))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "FirstNameError", "Accept");
-                // Languages.Error, Languages.FirstNameError, Languages.Accept);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(User.Address))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "AddressError", "Accept");
-                //Languages.Error, Languages.AddressError, Languages.Accept);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(User.PhoneNumber))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "PhoneError", "Accept");
-                // Languages.Error, Languages.PhoneError, Languages.Accept);
-                return false;
-            }
-
-            return true;
-        }
-
-
         private async void ChangePasswordAsync()
         {
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
@@ -103,7 +64,7 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            IsRunning = true;
+            IsRunning = true; 
             IsEnabled = false;
 
             UserRequest userRequest = new UserRequest
@@ -113,9 +74,10 @@ namespace AppServices.Prism.ViewModels
                 Email = User.Email,
                 FullName = User.FullName,
                 Password = "123456", // It doesn't matter what is sent here. It is only for the model to be valid
+                PasswordConfirm="123456",
                 Phone = User.PhoneNumber,
+                Cultureinfo = "es"
 
-               // CultureInfo
             };
 
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
@@ -172,5 +134,38 @@ namespace AppServices.Prism.ViewModels
             }
         }
 
+
+        private async Task<bool> ValidateDataAsync()
+        {
+            if (string.IsNullOrEmpty(User.Document))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "DocumentError", "Accept");
+                //Languages.Error, Languages.DocumentError, Languages.Accept);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(User.FullName))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "FirstNameError", "Accept");
+                // Languages.Error, Languages.FirstNameError, Languages.Accept);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(User.Address))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "AddressError", "Accept");
+                //Languages.Error, Languages.AddressError, Languages.Accept);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(User.PhoneNumber))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "PhoneError", "Accept");
+                // Languages.Error, Languages.PhoneError, Languages.Accept);
+                return false;
+            }
+
+            return true;
+        }
     }
 }
