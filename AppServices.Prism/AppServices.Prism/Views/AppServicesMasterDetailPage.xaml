@@ -13,12 +13,14 @@
                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
                            HeightRequest="150"
                            Source="Logo"/>
-                    <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
+                    <StackLayout>
+                        <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
                            FontAttributes="Bold"
                            FontSize="Large"
                            Text="{Binding User.FullName}"
                            TextColor="Black"/>
-                    
+                    </StackLayout>
+
                 </RelativeLayout>
                            
                 <ListView BackgroundColor="Transparent"

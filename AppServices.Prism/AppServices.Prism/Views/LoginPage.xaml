@@ -80,7 +80,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
-                <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+               
+            </Grid>
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   HorizontalOptions="Center"
@@ -91,8 +93,6 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="120"
                 	                   ViewBoxHeight="120" />
-            </Grid>
-
             <Button
             Text="LOGIN"
             FontAttributes="Bold"
