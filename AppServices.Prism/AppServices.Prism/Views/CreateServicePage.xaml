@@ -5,7 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.CreateServicePage">
-    
+
     <NavigationPage.TitleView>
         <Label Text="{Binding Title}" 
                VerticalOptions="Center" 
@@ -13,6 +13,7 @@
                FontSize="Large"
                TextColor="White"/>
     </NavigationPage.TitleView>
+
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0,20,0,0"/>
@@ -21,124 +22,122 @@
 
     <ScrollView>
         <AbsoluteLayout>
-        <StackLayout>
-            <Grid
-                RowSpacing="0"
-                ColumnSpacing="0">
+            <StackLayout>
+                <Grid RowSpacing="0" ColumnSpacing="0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <BoxView 
-                    Grid.Row="0"
-                    Opacity="0.5"/>
+                    <BoxView
+                        Grid.Row="0"
+                        Opacity="0.5"/>
 
-                <Image
-                    Grid.Row="0"
-                    Source="{Binding Image}"
+                    <Image
+                        Grid.Row="0"
+                        Source="{Binding Image}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="100"
+                        WidthRequest="100"
+                        Margin="0, 20, 0, 20">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ModifyImageCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+
+                    <StackLayout
+                        Grid.Row="2"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Center"
+                        Spacing="15">
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Service Name:"/>
+                            <Entry
+                                Text="{Binding Service.ServicesName}"
+                                Keyboard="Chat"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Start Date:"/>
+                            <DatePicker
+                                Date="{Binding Service.StartDate}"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Finish Date:"/>
+                            <DatePicker
+                                Date="{Binding Service.FinishDate}"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Phone:"/>
+                            <Entry
+                                Text="{Binding Service.Phone}"
+                                Keyboard="Numeric"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Description:"/>
+                            <Entry
+                                Text="{Binding Service.Description}"
+                                HeightRequest="115"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label  Margin="0, 0, 0, -5"
+                                    Text="Type: "
+                                    VerticalOptions="Center"/>
+                            <Picker ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding ServiceTypes}"
+                                    SelectedItem="{Binding ServiceType}"
+                                    Title="Select service type"
+                                    WidthRequest="300">
+                            </Picker>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
+                <Button
+                    Margin="0, 20, 0, 0"
+                    Text="Save"
+                    FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    HeightRequest="100"
-                    WidthRequest="100"
-                    Margin="0, 20, 0, 20">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ModifyImageCommand}"/>
-                    </Image.GestureRecognizers>
-                </Image>
+                    WidthRequest="200"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding RegisterCommand}"
+                    CornerRadius="20"/>
 
+            </StackLayout>
 
-                <StackLayout                
-                    Grid.Row="2"
-                    VerticalOptions="Fill"
-                    HorizontalOptions="Center"
-                    Spacing="15">
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
-                            Text="Service Name:"/>
-                        <Entry 
-                            Text="{Binding Service.ServicesName}"
-                            Keyboard="Chat"
-                            WidthRequest="300"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
-                            Text="Start Date:"/>
-                        <DatePicker 
-                            Date="{Binding Service.StartDate}"
-                            WidthRequest="300"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
-                            Text="Finish Date:"/>
-                        <DatePicker 
-                            Date="{Binding Service.FinishDate}"
-                            WidthRequest="300"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
-                            Text="Phone:"/>
-                        <Entry 
-                            Text="{Binding Service.Phone}"
-                            Keyboard="Numeric"
-                            WidthRequest="300"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
-                            Text="Description:"/>
-                        <Entry 
-                            Text="{Binding Service.Description}"
-                            HeightRequest="115"
-                            WidthRequest="300"/>
-                    </StackLayout>
-
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label  Margin="0, 0, 0, -5"
-                                Text="Type: "
-                                VerticalOptions="Center"/>
-                        <Picker ItemDisplayBinding="{Binding Name}"
-                                ItemsSource="{Binding ServiceTypes}"
-                                SelectedItem="{Binding ServiceType}"
-                                Title="Select service type"
-                                WidthRequest="300">
-                        </Picker>
-                    </StackLayout>
-
-                </StackLayout>
-                
-            </Grid>
-            <Button
-                Margin="0, 20, 0, 0"
-                Text="Save"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                WidthRequest="200"
-                BackgroundColor="Red"
-                TextColor="White"
-                IsEnabled="{Binding IsEnabled}"
-                Command="{Binding RegisterCommand}"
-                CornerRadius="20"/>
-
-        </StackLayout>
-
-            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                   AbsoluteLayout.LayoutFlags="All"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="Blue"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="120"
-                	                   ViewBoxHeight="120" />
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino"
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                           AbsoluteLayout.LayoutFlags="All"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="Blue"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="Loading..."
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="120"
+                	                       ViewBoxHeight="120" />
         </AbsoluteLayout>
     </ScrollView>
 

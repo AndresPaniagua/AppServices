@@ -3,10 +3,7 @@ using AppServices.Common.Models;
 using AppServices.Common.Services;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
-using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -61,6 +58,12 @@ namespace AppServices.Prism.ViewModels
             {
                 new Menu
                 {
+                    Icon = "services",
+                    PageName = "ServicesPage",
+                    Title = "Services"
+                },
+                new Menu
+                {
                     Icon = "newservice",
                     PageName = "CreateServicePage",
                     Title = "Create Service",
@@ -68,15 +71,9 @@ namespace AppServices.Prism.ViewModels
                 },
                 new Menu
                 {
-                    Icon = "services",
-                    PageName = "CreateServicePage",
-                    Title = "Services"
-                },
-                new Menu
-                {
                     Icon = "myservice",
                     PageName = "CreateServicePage",
-                    Title = "My services" 
+                    Title = "My services"
                 },
                  new Menu
                 {

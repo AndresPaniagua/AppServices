@@ -7,114 +7,116 @@
              x:Class="AppServices.Prism.Views.LoginPage">
 
     <NavigationPage.TitleView>
-        <Label Text="{Binding Title}" 
-               VerticalOptions="Center" 
+        <Label Text="{Binding Title}"
+               VerticalOptions="Center"
                HorizontalOptions="Center"
                FontSize="Large"
                TextColor="White"/>
     </NavigationPage.TitleView>
+    
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="0,20,0,0"/>
         </OnPlatform>
     </ContentPage.Padding>
+    
     <ScrollView>
         <AbsoluteLayout>
-        <StackLayout>
-            <Grid
-        RowSpacing="0"
-        ColumnSpacing="0">
+            <StackLayout>
+                <Grid
+                    RowSpacing="0"
+                    ColumnSpacing="0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="3*" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
 
-                <BoxView 
-            Grid.Row="0"
-            Opacity="0.5"/>
+                    <BoxView
+                        Grid.Row="0"
+                        Opacity="0.5"/>
 
-                <Image
-            Grid.Row="0"
-            Source="logo.png"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            HeightRequest="200"
-            WidthRequest="200" />
+                    <Image
+                        Grid.Row="0"
+                        Source="logo.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="200"
+                        WidthRequest="200" />
 
-                <Label 
-            Grid.Row="1"
-            Text="LOGIN"
-            FontSize="Large"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Text="LOGIN"
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center" />
 
-                <StackLayout                
-                Grid.Row="2"
-                VerticalOptions="Fill"
-                HorizontalOptions="Center"
-                Spacing="15">
+                    <StackLayout
+                        Grid.Row="2"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Center"
+                        Spacing="15">
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label 
-                        Text="Email:" />
-                        <Entry 
-                        Text="{Binding Email}" 
-                        Keyboard="Email"
-                        WidthRequest="300" />
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label
+                                Text="Email:" />
+                            <Entry
+                                Text="{Binding Email}" 
+                                Keyboard="Email"
+                                WidthRequest="300" />
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label
+                                Text="Password:" />
+                            <Entry
+                                Text="{Binding Password}"
+                                WidthRequest="300"
+                                IsPassword="True" />
+                        </StackLayout>
+
+                        <Label Text="Forgot your Password?"
+                               TextColor="Blue">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label 
-                        Text="Password:" />
-                        <Entry 
-                        Text="{Binding Password}"
-                        WidthRequest="300"
-                        IsPassword="True" />
-                    </StackLayout>
+                </Grid>
 
-                    <Label Text="Forgot your Password?"
-                       TextColor="Blue">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </StackLayout>
-               
-            </Grid>
-          
-            <Button
-            Text="LOGIN"
-            FontAttributes="Bold"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            BackgroundColor="Red"
-            TextColor="White"
-            Command="{Binding LoginCommand}"
-            IsEnabled="{Binding IsEnabled}"/>
+                <Button
+                    Text="LOGIN"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
 
-            <Button
-            Text="New Account"
-            FontAttributes="Bold"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            BackgroundColor="Red"
-            TextColor="White"
-            Command="{Binding RegisterCommand}"
-            IsEnabled="{Binding IsEnabled}"/>
-        </StackLayout>
-            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                   AbsoluteLayout.LayoutFlags="All"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="Blue"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
-                                       Visual="Material"
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="120"
-                	                   ViewBoxHeight="120" />
+                <Button
+                    Text="New Account"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Command="{Binding RegisterCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino"
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                       AbsoluteLayout.LayoutFlags="All"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="Blue"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="Loading..."
+                                           Visual="Material"
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="120"
+                	                       ViewBoxHeight="120"/>
         </AbsoluteLayout>
     </ScrollView>
 

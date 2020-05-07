@@ -64,7 +64,7 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            IsRunning = true; 
+            IsRunning = true;
             IsEnabled = false;
 
             UserRequest userRequest = new UserRequest
@@ -74,7 +74,7 @@ namespace AppServices.Prism.ViewModels
                 Email = User.Email,
                 FullName = User.FullName,
                 Password = "123456", // It doesn't matter what is sent here. It is only for the model to be valid
-                PasswordConfirm="123456",
+                PasswordConfirm = "123456",
                 Phone = User.PhoneNumber,
                 Cultureinfo = "es"
 
@@ -133,7 +133,6 @@ namespace AppServices.Prism.ViewModels
                 User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             }
         }
-
 
         private async Task<bool> ValidateDataAsync()
         {

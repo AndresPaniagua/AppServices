@@ -2,11 +2,8 @@
 using AppServices.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace AppServices.Prism.ViewModels 
+namespace AppServices.Prism.ViewModels
 {
     public class MenuItemViewModel : Menu
     {
@@ -32,7 +29,6 @@ namespace AppServices.Prism.ViewModels
             if (IsLoginRequired && !Settings.IsLogin)
             {
                 await _navigationService.NavigateAsync($"/AppServicesMasterDetailPage/NavigationPage/LoginPage");
-                //await _navigationService.NavigateAsync($"{PageName}");
             }
             else
             {

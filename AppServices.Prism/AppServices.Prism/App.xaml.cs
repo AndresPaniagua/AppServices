@@ -23,7 +23,7 @@ namespace AppServices.Prism
 
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/ServicesPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -41,6 +41,7 @@ namespace AppServices.Prism
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<ServicesPage, ServicesPageViewModel>();
         }
     }
 }

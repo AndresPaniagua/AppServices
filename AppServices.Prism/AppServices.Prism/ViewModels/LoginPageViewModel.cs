@@ -4,11 +4,7 @@ using AppServices.Common.Services;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -24,7 +20,7 @@ namespace AppServices.Prism.ViewModels
         private bool _isEnabled;
         private string _password;
 
-        public LoginPageViewModel(INavigationService navigationService,IApiService apiService):base(navigationService)
+        public LoginPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
@@ -130,7 +126,6 @@ namespace AppServices.Prism.ViewModels
             Password = string.Empty;
             Email = string.Empty;
         }
-
 
         private async void RegisterAsync()
         {

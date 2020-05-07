@@ -1,7 +1,6 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
-using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
@@ -107,7 +106,7 @@ namespace AppServices.Prism.ViewModels
 
             //Service.CultureInfo = Languages.Culture;
 
-            var response = await _apiService.RegisterServiceAsync(url, "/api", "/Account", Service);
+            Response response = await _apiService.RegisterServiceAsync(url, "/api", "/Account", Service);
             //IsRunning = false;
             IsEnabled = true;
 
@@ -225,8 +224,6 @@ namespace AppServices.Prism.ViewModels
             List<ServiceTypeResponse> list = (List<ServiceTypeResponse>)response.Result;
             ServiceTypes = new ObservableCollection<ServiceTypeResponse>(list.OrderBy(t => t.Name));
         }
-
-
 
     }
 }

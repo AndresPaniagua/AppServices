@@ -15,7 +15,7 @@ namespace AppServices.Prism.ViewModels
         private bool _isRunning;
         private bool _isEnabled;
         private DelegateCommand _changePasswordCommand;
-        public ChangePasswordPageViewModel(INavigationService navigationService,IApiService apiService):base(navigationService)
+        public ChangePasswordPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
@@ -45,7 +45,7 @@ namespace AppServices.Prism.ViewModels
 
         private async void ChangePasswordAsync()
         {
-            var isValid = await ValidateDataAsync();
+            bool isValid = await ValidateDataAsync();
             if (!isValid)
             {
                 return;

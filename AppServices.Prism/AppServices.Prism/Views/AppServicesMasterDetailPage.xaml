@@ -7,22 +7,23 @@
 
     <MasterDetailPage.Master>
         <ContentPage  Title="Menu">
-            <StackLayout Padding="20">
-                <RelativeLayout>
+            <StackLayout Padding="10">
+                <StackLayout>
                     <Image x:Name="Logo" HorizontalOptions="Center"
                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
                            HeightRequest="150"
                            Source="Logo"/>
                     <StackLayout>
                         <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
-                           FontAttributes="Bold"
-                           FontSize="Large"
-                           Text="{Binding User.FullName}"
-                           TextColor="Black"/>
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               FontSize="Large"
+                               Text="{Binding User.FullName}"
+                               TextColor="Black"/>
                     </StackLayout>
 
-                </RelativeLayout>
-                           
+                </StackLayout>
+
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"
                 	      HasUnevenRows="True"
@@ -55,5 +56,5 @@
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
-    
+
 </MasterDetailPage>
