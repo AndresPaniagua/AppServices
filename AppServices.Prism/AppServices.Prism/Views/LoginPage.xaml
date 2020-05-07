@@ -19,6 +19,7 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ScrollView>
+        <AbsoluteLayout>
         <StackLayout>
             <Grid
         RowSpacing="0"
@@ -82,17 +83,7 @@
                 </StackLayout>
                
             </Grid>
-            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                   AbsoluteLayout.LayoutFlags="All"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="Blue"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
-                                       Visual="Material"
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="120"
-                	                   ViewBoxHeight="120" />
+          
             <Button
             Text="LOGIN"
             FontAttributes="Bold"
@@ -113,7 +104,18 @@
             Command="{Binding RegisterCommand}"
             IsEnabled="{Binding IsEnabled}"/>
         </StackLayout>
-
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                                       Visual="Material"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="120"
+                	                   ViewBoxHeight="120" />
+        </AbsoluteLayout>
     </ScrollView>
 
 </ContentPage>

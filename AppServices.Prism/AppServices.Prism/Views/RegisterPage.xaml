@@ -21,22 +21,23 @@
     </ContentPage.Padding>
 
     <ScrollView>
+        <AbsoluteLayout>
         <StackLayout>
-            <Grid
+                <Grid
                 RowSpacing="0"
                 ColumnSpacing="0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <BoxView 
+                    <BoxView 
                     Grid.Row="0"
                     Opacity="0.5"/>
 
-                <Image
+                    <Image
                     Grid.Row="0"
                     Source="logo.png"
                     VerticalOptions="Center"
@@ -45,88 +46,78 @@
                     WidthRequest="100"/>
 
 
-                <StackLayout                
+                    <StackLayout                
                     Grid.Row="2"
                     VerticalOptions="Fill"
                     HorizontalOptions="Center"
                     Spacing="15">
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Document:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.Document}"
                             Keyboard="Chat"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Fullname:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.FullName}"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Address:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.Address}"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Phone:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.Phone}"
                             Keyboard="Numeric"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Email:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.Email}"
                             Keyboard="Email"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="Password:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.Password}"
                             IsPassword="True"
                             WidthRequest="300"/>
-                    </StackLayout>
+                        </StackLayout>
 
-                    <StackLayout HorizontalOptions="Center" Spacing="0">
-                        <Label Margin="0, 0, 0, -5"
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
                             Text="ConfirmPassword:"/>
-                        <Entry 
+                            <Entry 
                             Text="{Binding User.PasswordConfirm}"
                             IsPassword="True"
                             WidthRequest="300"/>
+                        </StackLayout>
+
                     </StackLayout>
 
-                </StackLayout>
+                </Grid>
 
-            </Grid>
-            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                   AbsoluteLayout.LayoutFlags="All"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="Blue"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="120"
-                	                   ViewBoxHeight="120" />
-
-            <Button
+                <Button
                 Margin="0, 20, 0, 0"
                 Text="Register"
                 FontAttributes="Bold"
@@ -139,6 +130,17 @@
                 IsEnabled="{Binding IsEnabled}"/>
 
         </StackLayout>
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="120"
+                	                   ViewBoxHeight="120" />
+        </AbsoluteLayout>
     </ScrollView>
 
 </ContentPage>

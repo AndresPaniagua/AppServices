@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.CreateServicePage">
     
     <NavigationPage.TitleView>
@@ -19,6 +20,7 @@
     </ContentPage.Padding>
 
     <ScrollView>
+        <AbsoluteLayout>
         <StackLayout>
             <Grid
                 RowSpacing="0"
@@ -126,6 +128,18 @@
                 CornerRadius="20"/>
 
         </StackLayout>
+
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="120"
+                	                   ViewBoxHeight="120" />
+        </AbsoluteLayout>
     </ScrollView>
 
 
