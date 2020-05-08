@@ -73,7 +73,8 @@ namespace AppServices.Prism.ViewModels
                 {
                     Icon = "myservice",
                     PageName = "CreateServicePage",
-                    Title = "My services"
+                    Title = "My services",
+                    IsLoginRequired = true
                 },
                  new Menu
                 {

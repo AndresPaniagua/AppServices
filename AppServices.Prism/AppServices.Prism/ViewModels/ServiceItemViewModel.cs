@@ -15,7 +15,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
         }
 
-        public DelegateCommand SelectTournamentCommand => _selectServiceCommand ?? (_selectServiceCommand = new DelegateCommand(SelectServiceAsync));
+        public DelegateCommand SelectServiceCommand => _selectServiceCommand ?? (_selectServiceCommand = new DelegateCommand(SelectServiceAsync));
 
         public static int Pos { get; set; }
 
@@ -36,9 +36,8 @@ namespace AppServices.Prism.ViewModels
                 { "service", this }
             };
 
-            await _navigationService.NavigateAsync(nameof(ModifyUserPage), parameters);
+            await _navigationService.NavigateAsync(nameof(ServiceDetailsPage), parameters);
         }
-
 
     }
 }

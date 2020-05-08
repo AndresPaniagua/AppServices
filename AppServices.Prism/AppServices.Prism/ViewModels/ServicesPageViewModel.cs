@@ -1,6 +1,5 @@
 ﻿using AppServices.Common.Models;
 using AppServices.Common.Services;
-using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
