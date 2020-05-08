@@ -61,10 +61,22 @@
                                            FontAttributes="Bold"
                                         LineBreakMode="TailTruncation" />
 
-                                    <Label Text="{Binding Price}"
-                                           FontAttributes="Bold"
-                                           FontSize="Medium"
-                                           LineBreakMode="TailTruncation" />
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0"
+                                               WidthRequest="15"
+                                               Source="money2.png"/>
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Price}"
+                                               FontAttributes="Bold"
+                                               FontSize="Medium"
+                                               TextColor="Black"
+                                               VerticalOptions="Center"
+                                               LineBreakMode="TailTruncation" />
+                                    </Grid>
                                 </StackLayout>
                             </cards:SfCardView>
 

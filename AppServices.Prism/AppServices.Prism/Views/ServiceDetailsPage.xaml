@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="AppServices.Prism.Views.ServiceDetailsPage">
@@ -34,6 +35,7 @@
             <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -69,6 +71,18 @@
                     </Grid.RowDefinitions>
                     <Label Text="Description" FontSize="17" TextColor="#2C3E50"/>
                     <Label Grid.Row="1" Text="{Binding Service.Description}" FontSize="14" TextColor="#707070"/>
+                </Grid>
+            </Frame>
+            <Frame Grid.Row="3" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Where can I find him/her?" FontSize="17" TextColor="#2C3E50"/>
+                    <maps:Map Grid.Row="1"
+                              x:Name="MyMap"
+                              MapType="Street"/>
                 </Grid>
             </Frame>
         </Grid>

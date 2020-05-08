@@ -88,6 +88,7 @@
 
                 <Button
                     Text="LOGIN"
+                    CornerRadius="20"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
@@ -98,6 +99,7 @@
 
                 <Button
                     Text="New Account"
+                    CornerRadius="20"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"

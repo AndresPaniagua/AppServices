@@ -122,7 +122,7 @@ namespace AppServices.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            await _navigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/CreateServicePage");
+            await _navigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/ServicesPage");
             Password = string.Empty;
             Email = string.Empty;
         }

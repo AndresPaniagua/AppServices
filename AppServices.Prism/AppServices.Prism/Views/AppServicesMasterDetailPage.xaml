@@ -7,8 +7,8 @@
 
     <MasterDetailPage.Master>
         <ContentPage  Title="Menu">
-            <StackLayout Padding="10">
-                <StackLayout>
+            <StackLayout>
+                <StackLayout BackgroundColor="Black">
                     <Image x:Name="Logo" HorizontalOptions="Center"
                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
                            HeightRequest="150"
@@ -16,10 +16,11 @@
                     <StackLayout>
                         <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
                                FontAttributes="Bold"
+                               Margin="0, 0, 0, 10"
                                HorizontalOptions="Center"
                                FontSize="Large"
                                Text="{Binding User.FullName}"
-                               TextColor="Black"/>
+                               TextColor="White"/>
                     </StackLayout>
 
                 </StackLayout>
@@ -40,8 +41,8 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0"
-                                    	   HeightRequest="50"
-                                           Margin="5"
+                                    	   HeightRequest="25"
+                                           Margin="0, 12"
                                     	   Source="{Binding Icon}"                                           
                                     	   WidthRequest="50"/>
                                     <Label Grid.Column="1"

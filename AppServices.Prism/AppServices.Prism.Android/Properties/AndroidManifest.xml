@@ -2,5 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.Service.appService" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="Service App" android:icon="@mipmap/ic_launcher"></application>
+	<application android:label="Service App" android:icon="@mipmap/ic_launcher">
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyAtxvXVhbzV9OTwZh8UxVsW2A58WYf-Btc" />
+  </application>
 </manifest>

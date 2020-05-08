@@ -119,6 +119,7 @@
                     WidthRequest="200"
                     BackgroundColor="Red"
                     TextColor="White"
+                    CornerRadius="20"
                     Command="{Binding RegisterCommand}"
                     IsEnabled="{Binding IsEnabled}"/>
 
