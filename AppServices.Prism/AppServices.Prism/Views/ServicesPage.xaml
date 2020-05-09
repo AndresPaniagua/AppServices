@@ -27,6 +27,10 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
+            <SearchBar Margin="10,0"
+                       Placeholder="Enter a type"
+                       SearchCommand="{Binding SearchCommand}"
+                       Text="{Binding Search}"/>
             <CollectionView ItemsSource="{Binding Services}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"

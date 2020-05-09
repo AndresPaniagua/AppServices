@@ -1,7 +1,9 @@
 ﻿using AppServices.Common.Models;
 using AppServices.Common.Services;
+using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Essentials;
 
@@ -11,8 +13,11 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private List<ServiceItemViewModel> _services;
+        private DelegateCommand _searchCommand;
+        private ObservableCollection<ServiceItemViewModel> _services;
+        private List<ServiceItemViewModel> _myServices;
         private bool _isRunning;
+        private string _search;
 
         public ServicesPageViewModel(INavigationService navigationService,
             IApiService apiService)
@@ -24,16 +29,28 @@ namespace AppServices.Prism.ViewModels
             LoadServicesAsync();
         }
 
-        public List<ServiceItemViewModel> Services
+        public ObservableCollection<ServiceItemViewModel> Services
         {
             get => _services;
             set => SetProperty(ref _services, value);
         }
 
+        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowServices));
+
         public bool IsRunning
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public string Search
+        {
+            get => _search;
+            set
+            {
+                SetProperty(ref _search, value);
+                ShowServices();
+            }
         }
 
         private async void LoadServicesAsync()
@@ -60,7 +77,7 @@ namespace AppServices.Prism.ViewModels
             }
             ServiceItemViewModel.Pos = 1;
             List<ServiceResponse> services = (List<ServiceResponse>)response.Result;
-            Services = services.Select(a => new ServiceItemViewModel(_navigationService)
+            _myServices = services.Select(a => new ServiceItemViewModel(_navigationService)
             {
                 Id = a.Id,
                 ServicesName = a.ServicesName,
@@ -73,6 +90,21 @@ namespace AppServices.Prism.ViewModels
                 ServiceType = a.ServiceType,
                 User = a.User
             }).ToList();
+            ShowServices();
+        }
+
+        private void ShowServices()
+        {
+            if (string.IsNullOrEmpty(Search))
+            {
+                Services = new ObservableCollection<ServiceItemViewModel>(_myServices);
+            }
+            else
+            {
+                Services = new ObservableCollection<ServiceItemViewModel>(
+                    _myServices.Where(p => p.ServicesName.ToUpper().Contains(Search.ToUpper()) ||
+                                            p.ServicesName.ToUpper().Contains(Search.ToUpper())));
+            }
         }
 
     }
