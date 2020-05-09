@@ -42,7 +42,8 @@
                     <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="CenterAndExpand">
                         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="Silueta.png" WidthRequest="20" HeightRequest="25" VerticalOptions="Center"/>
-                            <Label Text="{Binding Service.User.FullName}" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                            <Label Text="Please, login to see information" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding NotLogin}"/>
+                            <Label Text="{Binding Service.User.FullName}" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsLogin}"/>
                         </StackLayout>
                         <Label Text="{Binding Service.ServicesName}" FontSize="12" TextColor="#2C3E50" HorizontalOptions="CenterAndExpand"/>
                         <Label Text="{Binding Service.ServiceType.Name}" TextColor="#34495E" FontSize="14" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
@@ -58,7 +59,8 @@
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="phone.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
-                            <Label Text="{Binding Service.Phone}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                            <Label Text="Please, login to see information" TextColor="#2C3E50" FontSize="10" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
+                            <Label Text="{Binding Service.Phone}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
                         </StackLayout>
                     </Grid>
                 </Grid>
@@ -80,9 +82,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Text="Where can I find him/her?" FontSize="17" TextColor="#2C3E50"/>
+                    <Label Grid.Row="1" Text="Please, login to see information" FontSize="17" TextColor="#2C3E50" IsVisible="{Binding NotLogin}"/>
                     <maps:Map x:Name="MyMap"
                               MapType="Street"
-                              Grid.Row="1"/>
+                              Grid.Row="1"
+                              IsVisible="{Binding IsLogin}"/>
 
                 </Grid>
             </Frame>

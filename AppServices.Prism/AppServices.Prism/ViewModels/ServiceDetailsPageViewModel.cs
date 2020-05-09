@@ -1,4 +1,5 @@
-﻿using AppServices.Common.Models;
+﻿using AppServices.Common.Helpers;
+using AppServices.Common.Models;
 using AppServices.Prism.Views;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ namespace AppServices.Prism.ViewModels
     public class ServiceDetailsPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private bool _isLogin;
         private ServiceResponse _service;
         private Position _position;
         private Map _map;
+        private bool _isLogin;
+        private bool _notLogin;
 
         public ServiceDetailsPageViewModel(INavigationService navigationService)
             : base(navigationService)
@@ -27,6 +29,12 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isLogin;
             set => SetProperty(ref _isLogin, value);
+        }
+
+        public bool NotLogin
+        {
+            get => _notLogin;
+            set => SetProperty(ref _notLogin, value);
         }
 
         public ServiceResponse Service
@@ -55,7 +63,17 @@ namespace AppServices.Prism.ViewModels
             {
                 Service = parameters.GetValue<ServiceResponse>("service");
                 Title = Service.ServicesName;
-                ServiceDetailsPage.GetInstance().DrawMap(Service);
+                if (Settings.IsLogin)
+                {
+                    IsLogin = true;
+                    NotLogin = false;
+                    ServiceDetailsPage.GetInstance().DrawMap(Service);
+                }
+                else
+                {
+                    IsLogin = false;
+                    NotLogin = true;
+                }
             }
 
         }

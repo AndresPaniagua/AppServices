@@ -1,4 +1,5 @@
 ﻿using AppServices.Common.Models;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -56,7 +57,13 @@ namespace AppServices.Prism.Views
 
         private void MoveMap(Position position)
         {
-            MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(.05)));
+            try
+            {
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(.05)));
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }

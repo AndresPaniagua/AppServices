@@ -28,7 +28,7 @@
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
             <SearchBar Margin="10,0"
-                       Placeholder="Enter a type"
+                       Placeholder="Enter a service name"
                        SearchCommand="{Binding SearchCommand}"
                        Text="{Binding Search}"/>
             <CollectionView ItemsSource="{Binding Services}">
@@ -55,7 +55,7 @@
                                     <ffimageloading:CachedImage Aspect="AspectFill"
                                                                 Source="{Binding PhotoFullPath}"
                                                                 CacheDuration= "50"
-                                                                Margin="0, 5"
+                                                                Margin="1, 5"
                                                                 WidthRequest="150"
                                                                 HeightRequest="150"
                                                                 RetryCount= "3"
@@ -63,7 +63,8 @@
 
                                     <Label Text="{Binding ServicesName}"
                                            FontAttributes="Bold"
-                                        LineBreakMode="TailTruncation" />
+                                           HorizontalOptions="Center"
+                                           LineBreakMode="TailTruncation" />
 
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -79,7 +80,7 @@
                                                FontSize="Medium"
                                                TextColor="Black"
                                                VerticalOptions="Center"
-                                               LineBreakMode="TailTruncation" />
+                                               LineBreakMode="TailTruncation"/>
                                     </Grid>
                                 </StackLayout>
                             </cards:SfCardView>
