@@ -19,7 +19,7 @@ namespace AppServices.Prism
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("MjM0NDgzQDMxMzgyZTMxMmUzME5HWDhDY1h2OTJGUjZaOEN5Q0VIVlVKV1h1b1NFYW5hZFdIMlhtQzVuQlE9");
+            SyncfusionLicenseProvider.RegisterLicense("MjM5NDcyQDMxMzgyZTMxMmUzMEdzSk5KT0Q1RUh0TGpHRVNRZi8wSmtYZ05WaE5WUDhLRVdOUlJ1eTN3UlU9");
 
             InitializeComponent();
 

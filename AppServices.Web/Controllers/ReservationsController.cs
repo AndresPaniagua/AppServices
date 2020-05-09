@@ -23,7 +23,7 @@ namespace AppServices.Web.Controllers
                 .Include(s => s.Service)
                 .ThenInclude(s => s.ServiceType)
                 .Include(s => s.User)
-                .OrderBy(s => s.ReservationDate)
+                .OrderBy(s => s.DiaryDate.Date)
                 .ThenBy(s => s.Service.Price));
         }
 
@@ -61,7 +61,7 @@ namespace AppServices.Web.Controllers
             {
                 User = _context.Users.Where(u => u.Email == User.Identity.Name).FirstOrDefault(),
                 Service = await _context.Services.FirstOrDefaultAsync(s => s.Id == model.ServiceId),
-                ReservationDate = model.ReservationDate
+                DiaryDate = model.DiaryDate
             };
 
             _context.Reservations.Add(reservation);

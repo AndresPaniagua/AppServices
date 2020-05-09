@@ -2,8 +2,6 @@
 using AppServices.Common.Models;
 using AppServices.Prism.Views;
 using Prism.Navigation;
-using System.Collections.Generic;
-using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace AppServices.Prism.ViewModels

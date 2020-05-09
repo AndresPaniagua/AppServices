@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AppServices.Common.Models
 {
@@ -31,5 +32,9 @@ namespace AppServices.Common.Models
         public ServiceTypeResponse ServiceType { get; set; }
 
         public UserResponse User { get; set; }
+
+        public List<DiaryDateResponse> DiaryDate { get; set; }
+
+        public StatusResponse Status { get; set; }
     }
 }

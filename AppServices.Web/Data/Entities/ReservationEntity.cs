@@ -6,7 +6,7 @@ namespace AppServices.Web.Data.Entities
     {
         public int Id { get; set; }
 
-        public DateTime ReservationDate { get; set; }
+        public DiaryDateEntity DiaryDate { get; set; }
 
         public UserEntity User { get; set; }
 

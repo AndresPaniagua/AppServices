@@ -37,7 +37,7 @@
                                 @Html.DisplayNameFor(model => model.Service.Price)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ReservationDate)
+                                @Html.DisplayNameFor(model => model.DiaryDate.Date)
                             </th>
                             <th></th>
                         </tr>
@@ -65,7 +65,7 @@
                                 @Html.DisplayFor(modelItem => item.Service.Price)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ReservationDate)
+                                @Html.DisplayFor(modelItem => item.DiaryDate.Date)
                             </td>
                             <td>
                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>

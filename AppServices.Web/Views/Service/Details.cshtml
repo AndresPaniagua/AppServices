@@ -44,11 +44,7 @@
                                     }
 
                                 </blockquote>
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-action="ToReservation" asp-route-id="@Model.Id" class="btn btn-primary">Reservation</a>
-                                }
-                                else
+                                @if (!User.Identity.IsAuthenticated)
                                 {
                                     <label>FOR MORE INFORMATION, LOGIN</label>
                                     <br />

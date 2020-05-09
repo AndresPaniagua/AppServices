@@ -60,7 +60,8 @@ namespace AppServices.Prism.Views
             try
             {
                 MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(.05)));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

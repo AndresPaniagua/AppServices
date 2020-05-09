@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AppServices.Web.Data.Entities
@@ -45,5 +46,9 @@ namespace AppServices.Web.Data.Entities
         public ServiceTypeEntity ServiceType { get; set; }
 
         public UserEntity User { get; set; }
+
+        public ICollection<DiaryDateEntity> DiaryDate { get; set; }
+
+        public StatusEntity Status { get; set; }
     }
 }

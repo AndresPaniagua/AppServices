@@ -26,13 +26,13 @@ namespace AppServices.Web.Data
             await CheckRolesAsync();
             await CheckServicesTypesAsync();
 
-            await CheckUserAsync("1010", "Juan Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.Admin);
-            await CheckUserAsync("2020", "Andres Paniagua", "andresfelipep.l14@gmail.com", "304 636 5116", "Calle Luna Calle Sol", UserType.Admin);
-            await CheckUserAsync("2030", "Andres Betancur", "verificacion32@gmail.com", "311 686 9854", "Calle Luna Calle Sol", UserType.Admin);
-            await CheckUserAsync("3030", "Andres Lema", "andrespaniagua250958@gmail.com", "304 636 5116", "Calle Luna Calle Sol", UserType.User);
-            await CheckUserAsync("4040", "Felipe Paniagua", "andrespaniagua250958@correo.itm.edu.co", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
-            await CheckUserAsync("5050", "Felipe Betancur", "andresbt10@hotmail.com", "345 784 6514", "Calle Luna Calle Sol", UserType.User);
-            await CheckUserAsync("5050", "Andres Betancur", "andresBetancur250047@correo.itm.edu.co", "385 784 6514", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("1010", "Juan Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.Admin);
+            await CheckUserAsync("2020", "Andres Paniagua", "andresfelipep.l14@gmail.com", "304 636 5116", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.Admin);
+            await CheckUserAsync("2030", "Andres Betancur", "verificacion32@gmail.com", "311 686 9854", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.Admin);
+            await CheckUserAsync("3030", "Andres Lema", "andrespaniagua250958@gmail.com", "304 636 5116", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.User);
+            await CheckUserAsync("4040", "Felipe Paniagua", "andrespaniagua250958@correo.itm.edu.co", "350 634 2747", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.User);
+            await CheckUserAsync("5050", "Felipe Betancur", "andresbt10@hotmail.com", "345 784 6514", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.User);
+            await CheckUserAsync("5050", "Andres Betancur", "andresBetancur250047@correo.itm.edu.co", "385 784 6514", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.User);
 
             await CheckServicesPlumbingAsync("andresbt10@hotmail.com");
             await CheckServicesComputingAsync("andrespaniagua250958@gmail.com");
@@ -79,7 +79,6 @@ namespace AppServices.Web.Data
             return user;
         }
 
-
         private async Task CheckServicesTypesAsync()
         {
             if (!_context.ServiceTypes.Any())
@@ -122,7 +121,11 @@ namespace AppServices.Web.Data
                     Price = 36542,
                     PhotoPath = $"~/images/Services/Plomeria.jpg",
                     ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Plumbing"),
-                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
+                    Status = new StatusEntity
+                    {
+                        Name = "Active"
+                    }
                 });
 
 
@@ -151,7 +154,11 @@ namespace AppServices.Web.Data
                     Price = 36542,
                     PhotoPath = $"~/images/Services/Computadores.jpg",
                     ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Computer maintenance"),
-                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault()
+                    User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
+                    Status = new StatusEntity
+                    {
+                        Name = "Active"
+                    }
                 });
 
                 await _context.SaveChangesAsync();
@@ -169,7 +176,10 @@ namespace AppServices.Web.Data
 
                 _context.Reservations.Add(new ReservationEntity
                 {
-                    ReservationDate = reservationDate,
+                    DiaryDate = new DiaryDateEntity
+                    {
+                        Date = reservationDate
+                    },
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
                     Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
                 });
@@ -188,7 +198,10 @@ namespace AppServices.Web.Data
 
                 _context.Reservations.Add(new ReservationEntity
                 {
-                    ReservationDate = reservationDate,
+                    DiaryDate = new DiaryDateEntity
+                    {
+                        Date = reservationDate
+                    },
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
                     Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
                 });

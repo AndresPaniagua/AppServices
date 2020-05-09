@@ -41,6 +41,8 @@ namespace AppServices.Web.Controllers.API
             List<ServiceEntity> services = await _context.Services
                .Include(t => t.User)
                .Include(s => s.ServiceType)
+               .Include(s => s.DiaryDate)
+               .ThenInclude(dd => dd.Hours)
                .ToListAsync();
 
             return Ok(_converterHelper.ToServiceResponse(services));

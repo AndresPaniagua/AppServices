@@ -17,5 +17,11 @@ namespace AppServices.Web.Data
         public DbSet<ServiceTypeEntity> ServiceTypes { get; set; }
 
         public DbSet<ReservationEntity> Reservations { get; set; }
+
+        public DbSet<StatusEntity> Statuses { get; set; }
+
+        public DbSet<DiaryDateEntity> DiaryDates { get; set; }
+
+        public DbSet<DiaryHoursEntity> DiaryHours { get; set; }
     }
 }

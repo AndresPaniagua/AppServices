@@ -25,7 +25,8 @@ namespace AppServices.Web.Controllers
                 .Include(s => s.User)
                 .Include(s => s.ServiceType)
                 .OrderBy(s => s.StartDate)
-                .ThenBy(s => s.Price));
+                .ThenBy(s => s.Price)
+                .Where(s => s.Status.Name == "Active"));
         }
 
         public async Task<IActionResult> Details(int? id)

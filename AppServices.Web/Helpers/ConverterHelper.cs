@@ -3,6 +3,7 @@ using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AppServices.Web.Helpers
@@ -78,11 +79,38 @@ namespace AppServices.Web.Helpers
                 StartDate = serviceEntity.StartDate,
                 PhotoPath = serviceEntity.PhotoPath,
                 ServiceType = ToServiceTypeResponse(serviceEntity.ServiceType),
-                User = ToUserResponse(serviceEntity.User)
+                User = ToUserResponse(serviceEntity.User),
+                DiaryDate = serviceEntity.DiaryDate?.Select(h => ToDiaryDateResponse(h)).ToList(),
+                Status = ToStatusResponse(serviceEntity.Status)
             };
-
         }
 
+        public StatusResponse ToStatusResponse(StatusEntity status)
+        {
+            if (status != null)
+            {
+                return new StatusResponse
+                {
+                    Id = status.Id,
+                    Name = status.Name
+                };
+            }
+            return null;
+        }
+
+        public DiaryDateResponse ToDiaryDateResponse(DiaryDateEntity diaryDate)
+        {
+            return new DiaryDateResponse
+            {
+                Id = diaryDate.Id,
+                Hours = diaryDate.Hours?.Select(h => new DiaryHoursResponse
+                {
+                    Id = h.Id,
+                    Hour = h.Hour
+                }).ToList()
+            };
+        }
+        
         public ServiceTypeResponse ToServiceTypeResponse(ServiceTypeEntity service)
         {
             if (service == null)
@@ -115,5 +143,6 @@ namespace AppServices.Web.Helpers
                 Address = user.Address
             };
         }
+    
     }
 }
