@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="AppServices.Prism.Views.MyServicesPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="5">
+            <CollectionView ItemsSource="{Binding MyServices}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout VerticalItemSpacing="5" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <syncEffectsView:SfEffectsView CornerRadius="0,25,0,25" TouchDownEffects="Highlight" BackgroundColor="#7bafe3" HighlightColor="#FF0000" Margin="0,5,0,5">
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <ffimageloading:CachedImage Aspect="AspectFill"
+                                                                Source="{Binding PhotoFullPath}"
+                                                                CacheDuration= "50"
+                                                                Margin="1, 5"
+                                                                WidthRequest="100"
+                                                                HeightRequest="100"
+                                                                RetryCount= "3"
+                                                                RetryDelay= "600">
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:CircleTransformation />
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label Text="{Binding ServicesName}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"/>
+
+                                    <Label Text="{Binding ServiceType.Name}"
+                                           FontSize="12"/>
+
+                                    <Label Text="{Binding Price}"
+                                           FontSize="12"/>
+
+                                </StackLayout>
+                                
+                            </Grid>
+                        </syncEffectsView:SfEffectsView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+        </StackLayout>
+
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                    AbsoluteLayout.LayoutFlags="All"
+                	                    BackgroundColor="Transparent"
+                	                    HorizontalOptions="Center"
+                	                    TextColor="Blue"
+                	                    IsVisible="{Binding IsRunning}"
+                	                    Title="Loading..."
+                	                    VerticalOptions="Center"
+                	                    ViewBoxWidth="80"
+                	                    ViewBoxHeight="80" />
+        
+    </AbsoluteLayout>
+    
+    
+
+</ContentPage>
