@@ -238,10 +238,49 @@ namespace AppServices.Common.Services
             }
         }
 
-        public async Task<Response> RegisterServiceAsync(string urlBase, string servicePrefix, string controller, ServiceRequest service)
+        public async Task<Response> RegisterServiceAsync(string urlBase, string servicePrefix, string controller, ServiceRequest service, string tokenType, string accessToken)
         {
-            return new Response();
+            try
+            {
+                string request = JsonConvert.SerializeObject(service);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase),
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                string answer = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                List<ServiceResponse> list = JsonConvert.DeserializeObject<List<ServiceResponse>>(answer);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
         }
+
 
         public async Task<Response> RegisterUserAsync(string urlBase, string servicePrefix, string controller, UserRequest userRequest)
         {

@@ -99,7 +99,6 @@ namespace AppServices.Web.Controllers.API
             {
                 serviceEntity = new ServiceEntity
                 {
-                    Id = request.IdService,
                     ServicesName = request.ServicesName,
                     Phone = request.Phone,
                     PhotoPath = picturePath,

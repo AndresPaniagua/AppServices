@@ -1,10 +1,12 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,13 +22,15 @@ namespace AppServices.Prism.ViewModels
         private readonly IApiService _apiService;
         private readonly IFilesHelper _filesHelper;
         private DelegateCommand _registerCommand;
-        private DelegateCommand _changeImageCommand;
+        private DelegateCommand _modifyImageCommand;
         private bool _isEnabled;
+        private bool _isRunning;
         private ImageSource _image;
         private MediaFile _file;
         private ServiceTypeResponse _serviceType;
         private ObservableCollection<ServiceTypeResponse> _serviceTypes;
         private ServiceRequest _service;
+        private DateTime _today;
 
         public CreateServicePageViewModel(INavigationService navigationService, IApiService apiService, IFilesHelper filesHelper)
             : base(navigationService)
@@ -37,13 +41,26 @@ namespace AppServices.Prism.ViewModels
             Title = "CreateService";
             Image = "Silueta.png";
             Service = new ServiceRequest();
-            //LoadServiceType();
+            IsEnabled = true;
+            Today = DateTime.Today;
+            LoadServiceType();
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
 
-        public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
+        public DelegateCommand ModifyImageCommand => _modifyImageCommand ?? (_modifyImageCommand = new DelegateCommand(ChangeImageAsync));
 
+        public DateTime Today
+        {
+            get => _today;
+            set => SetProperty(ref _today, value);
+        }
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
 
         public ServiceTypeResponse ServiceType
         {
@@ -83,13 +100,13 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            //IsRunning = true;
+            IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                //IsRunning = false;
+                IsRunning = false;
                 IsEnabled = true;
                 //await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
@@ -102,12 +119,15 @@ namespace AppServices.Prism.ViewModels
             }
 
             Service.PhotoArray = imageArray;
-            //Service.IdUser = "";            
 
-            //Service.CultureInfo = Languages.Culture;
+            Service.CultureInfo = "en";
+            Service.IdType = ServiceType.Id;
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            Service.IdUser = Guid.Parse(user.Id);
 
-            Response response = await _apiService.RegisterServiceAsync(url, "/api", "/Account", Service);
-            //IsRunning = false;
+            Response response = await _apiService.RegisterServiceAsync(url, "/api", "/Service", Service, "bearer", token.Token);
+            IsRunning = false;
             IsEnabled = true;
 
             if (!response.IsSuccess)
@@ -197,7 +217,7 @@ namespace AppServices.Prism.ViewModels
 
         private async void LoadServiceType()
         {
-            //IsRunning = true;
+            IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
             //bool connection = await _apiService.CheckConnectionAsync(url);
@@ -212,7 +232,7 @@ namespace AppServices.Prism.ViewModels
 
 
             Response response = await _apiService.GetListAsync<ServiceTypeResponse>(url, "/api", "/ServiceType");
-            //IsRunning = false;
+            IsRunning = false;
             IsEnabled = true;
 
             if (!response.IsSuccess)

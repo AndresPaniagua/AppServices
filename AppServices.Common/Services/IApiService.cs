@@ -7,7 +7,7 @@ namespace AppServices.Common.Services
     {
         Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller);
 
-        Task<Response> RegisterServiceAsync(string urlBase, string servicePrefix, string controller, ServiceRequest service);
+        Task<Response> RegisterServiceAsync(string urlBase, string servicePrefix, string controller, ServiceRequest service, string tokenType, string accessToken);
 
         Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, EmailRequest request);
 

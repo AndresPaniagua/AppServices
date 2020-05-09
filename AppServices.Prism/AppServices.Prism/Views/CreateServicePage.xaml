@@ -69,6 +69,7 @@
                                    Text="Start Date:"/>
                             <DatePicker
                                 Date="{Binding Service.StartDate}"
+                                MinimumDate="{Binding Today}"
                                 WidthRequest="300"/>
                         </StackLayout>
 
@@ -77,6 +78,7 @@
                                    Text="Finish Date:"/>
                             <DatePicker
                                 Date="{Binding Service.FinishDate}"
+                                MinimumDate="{Binding Today}"
                                 WidthRequest="300"/>
                         </StackLayout>
 
@@ -95,6 +97,15 @@
                             <Entry
                                 Text="{Binding Service.Description}"
                                 HeightRequest="115"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="Price:"/>
+                            <Entry
+                                Keyboard="Numeric"                                
+                                Text="{Binding Service.Price}"
                                 WidthRequest="300"/>
                         </StackLayout>
 
