@@ -73,16 +73,17 @@
                     <Label Grid.Row="1" Text="{Binding Service.Description}" FontSize="14" TextColor="#707070"/>
                 </Grid>
             </Frame>
-            <Frame Grid.Row="3" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Frame Grid.Row="3" HasShadow="True" HeightRequest="265" CornerRadius="10" Margin="20, 5" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid RowSpacing="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label Text="Where can I find him/her?" FontSize="17" TextColor="#2C3E50"/>
-                    <maps:Map Grid.Row="1"
-                              x:Name="MyMap"
-                              MapType="Street"/>
+                    <maps:Map x:Name="MyMap"
+                              MapType="Street"
+                              Grid.Row="1"/>
+
                 </Grid>
             </Frame>
         </Grid>
