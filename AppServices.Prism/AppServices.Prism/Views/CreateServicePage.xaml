@@ -4,6 +4,8 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="AppServices.Prism.Views.CreateServicePage">
 
     <NavigationPage.TitleView>
@@ -35,19 +37,23 @@
                         Grid.Row="0"
                         Opacity="0.5"/>
 
-                    <Image
-                        Grid.Row="0"
-                        Source="{Binding Image}"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        Margin="0, 20, 0, 20">
-                        <Image.GestureRecognizers>
+                    <ffimageloading:CachedImage Grid.Row="0"
+                                                Aspect="AspectFit"
+                                                Source="{Binding Image}"
+                                                CacheDuration= "50"
+                                                VerticalOptions="Center"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                Margin="0, 20, 0, 20"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:RoundedTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ModifyImageCommand}"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
 
                     <StackLayout
                         Grid.Row="2"

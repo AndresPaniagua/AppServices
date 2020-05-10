@@ -171,7 +171,10 @@ namespace AppServices.Prism.ViewModels
             }
             else
             {
-                _file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Small });
+                _file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                {
+                    PhotoSize = PhotoSize.Small
+                });
             }
 
             if (_file != null)
