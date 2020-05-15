@@ -25,5 +25,7 @@ namespace AppServices.Common.Services
     
         Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller, ServicesForUserRequest model, string tokenType, string accessToken);
 
+        Task<Response> ReservationAsync(string urlBase, string servicePrefix, string controller, ReservationRequest reservation, string tokenType, string accessToken);
+
     }
 }

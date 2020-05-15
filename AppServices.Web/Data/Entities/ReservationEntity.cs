@@ -11,5 +11,6 @@ namespace AppServices.Web.Data.Entities
         public UserEntity User { get; set; }
 
         public ServiceEntity Service { get; set; }
+
     }
 }

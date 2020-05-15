@@ -1,31 +1,48 @@
-﻿using AppServices.Common.Models;
+﻿using AppServices.Common.Helpers;
+using AppServices.Common.Models;
+using AppServices.Common.Services;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
 {
     public class ReservationPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IApiService _apiService;
         private ServiceResponse _service;
         private DelegateCommand _reservedCommand;
+        private ReservationRequest _reservation;
         private DateTime _today;
         private List<string> _hours;
         private bool _isRunning;
+        private bool _isEnabled;
         private string _hour;
+        private DateTime _date;
 
-        public ReservationPageViewModel(INavigationService navigationService)
+        public ReservationPageViewModel(INavigationService navigationService, IApiService apiService)
             : base(navigationService)
         {
             _navigationService = navigationService;
+            _apiService = apiService;
             Title = "Reservation";
             Today = DateTime.Now;
+            _reservation = new ReservationRequest();
             LoadHourList();
         }
 
         public DelegateCommand ReservedCommand => _reservedCommand ?? (_reservedCommand = new DelegateCommand(ReservedAsync));
+
+        public DateTime Date
+        {
+            get => _date;
+            set => SetProperty(ref _date, value);
+        }
 
         public ServiceResponse Service
         {
@@ -55,6 +72,12 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetProperty(ref _isEnabled, value);
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -87,10 +110,57 @@ namespace AppServices.Prism.ViewModels
             };
         }
 
-        private void ReservedAsync()
+        private async void ReservedAsync()
         {
-            /**/
+            bool isValid = await ValidateDataAsync();
+            if (!isValid)
+            {
+                return;
+            }
+
+            IsRunning = true;
+            IsEnabled = false;
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                //await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+
+            _reservation.CultureInfo = "en";
+            _reservation.IdService = Service.Id;
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            _reservation.IdUser = Guid.Parse(user.Id);
+            _reservation.Hour = Hour;
+            _reservation.Date = Date;
+
+            Response response = await _apiService.ReservationAsync(url, "/api", "/Reservations", _reservation, "bearer", token.Token);
+            IsRunning = false;
+            IsEnabled = true;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                return;
+            }
+
+            await App.Current.MainPage.DisplayAlert("Languages.Ok", response.Message, "Languages.Accept");
+            await _navigationService.GoBackAsync();
         }
 
+        private async Task<bool> ValidateDataAsync()
+        {
+            if (string.IsNullOrEmpty(Hour))
+            {
+                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                return false;
+            }                      
+
+            return true;
+        }
     }
 }

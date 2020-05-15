@@ -80,7 +80,7 @@ namespace AppServices.Web.Helpers
                 PhotoPath = serviceEntity.PhotoPath,
                 ServiceType = ToServiceTypeResponse(serviceEntity.ServiceType),
                 User = ToUserResponse(serviceEntity.User),
-                DiaryDate = serviceEntity.DiaryDate?.Select(h => ToDiaryDateResponse(h)).ToList(),
+                //DiaryDate = serviceEntity.DiaryDate?.Select(h => ToDiaryDateResponse(h)).ToList(),
                 Status = ToStatusResponse(serviceEntity.Status)
             };
         }

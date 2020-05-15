@@ -47,7 +47,9 @@ namespace AppServices.Web.Data.Entities
 
         public UserEntity User { get; set; }
 
-        public ICollection<DiaryDateEntity> DiaryDate { get; set; }
+        //public ICollection<DiaryDateEntity> DiaryDate { get; set; }
+
+        public ICollection<ReservationEntity> Reservations { get; set; }
 
         public StatusEntity Status { get; set; }
     }
