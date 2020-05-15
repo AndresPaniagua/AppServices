@@ -1,7 +1,9 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Prism.Views;
+using Prism.Commands;
 using Prism.Navigation;
+using System;
 using Xamarin.Forms.Maps;
 
 namespace AppServices.Prism.ViewModels
@@ -10,8 +12,9 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private ServiceResponse _service;
-        private Position _position;
         private Map _map;
+        private DelegateCommand _reservedCommand;
+        private Position _position;
         private bool _isLogin;
         private bool _notLogin;
 
@@ -22,6 +25,8 @@ namespace AppServices.Prism.ViewModels
             Title = "Details";
             Map = new Map();
         }
+        
+        public DelegateCommand ReservedCommand => _reservedCommand ?? (_reservedCommand = new DelegateCommand(ReservationAsync));
 
         public bool IsLogin
         {
@@ -75,5 +80,16 @@ namespace AppServices.Prism.ViewModels
             }
 
         }
+
+        private void ReservationAsync()
+        {
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "service", Service }
+            };
+
+            _navigationService.NavigateAsync(nameof(ReservationPage), parameters);
+        }
+
     }
 }

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="AppServices.Prism.Views.ReservationPage"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ScrollView>
+        <AbsoluteLayout>
+            <StackLayout Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Service name:" 
+                           Grid.Row="0" 
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <Label Text="{Binding Service.ServicesName}" 
+                           Grid.Row="0" 
+                           Grid.Column="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <Label Text="Price:" 
+                           Grid.Row="1" 
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <Label Text="{Binding Service.Price}" 
+                           Grid.Row="1" 
+                           Grid.Column="1"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <Label Text="Date:"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <DatePicker MinimumDate="{Binding Today}"
+                            Date="{Binding Date}"
+                            Grid.Row="3"
+                            Grid.Column="1"/>
+
+                    <Label Text="Hour:"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    <Picker SelectedItem="{Binding Hour}"
+                            ItemsSource="{Binding Hours}"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Title="Select Hour..."/>
+                </Grid>
+
+                <Button
+                    Margin="0, 20, 0, 0"
+                    Text="Reserved"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding ReservedCommand}"
+                    CornerRadius="20"/>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino"
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                           AbsoluteLayout.LayoutFlags="All"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="Blue"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="Loading..."
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="120"
+                	                       ViewBoxHeight="120" />
+        </AbsoluteLayout>
+        
+    </ScrollView>
+</ContentPage>

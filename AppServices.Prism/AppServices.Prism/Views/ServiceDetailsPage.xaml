@@ -52,12 +52,17 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="money.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
                             <Label Text="{Binding Service.Price}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Button Text="+" FontSize="20" BorderColor="Red" BackgroundColor="Red" WidthRequest="20" CornerRadius="20" Command="{Binding ReservedCommand}"/>
+                            <Label Text="Reserved" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="phone.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
                             <Label Text="Please, login to see information" TextColor="#2C3E50" FontSize="10" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
                             <Label Text="{Binding Service.Phone}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>

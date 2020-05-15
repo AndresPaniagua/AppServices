@@ -44,6 +44,7 @@ namespace AppServices.Prism
             containerRegistry.RegisterForNavigation<ServicesPage, ServicesPageViewModel>();
             containerRegistry.RegisterForNavigation<ServiceDetailsPage, ServiceDetailsPageViewModel>();
             containerRegistry.RegisterForNavigation<MyServicesPage, MyServicesPageViewModel>();
+            containerRegistry.RegisterForNavigation<ReservationPage, ReservationPageViewModel>();
         }
     }
 }
