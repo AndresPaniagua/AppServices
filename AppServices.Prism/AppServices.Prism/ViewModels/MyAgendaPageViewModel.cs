@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -25,7 +24,6 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = "My Agenda";
-            Reservations = new List<ReservationResponse>();
             LoadServicesAsync();
         }
 
@@ -73,7 +71,6 @@ namespace AppServices.Prism.ViewModels
                 servicesForUser,
                 "bearer",
                 token.Token);
-            IsRunning = false;
 
             if (!response.IsSuccess)
             {
@@ -82,9 +79,18 @@ namespace AppServices.Prism.ViewModels
             }
 
             Services = (List<ServiceResponse>)response.Result;
-            foreach (ServiceResponse service in Services)
-                Reservations.AddRange(service.Reservations);
+            LoadReservations();
+            IsRunning = false;
+        }
 
+        private async void LoadReservations()
+        {
+            List<ReservationResponse> aux = new List<ReservationResponse>();
+            foreach (ServiceResponse service in Services)
+            {
+                aux.AddRange(service.Reservations);
+            }
+            Reservations = aux;
         }
 
     }

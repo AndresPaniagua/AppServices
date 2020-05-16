@@ -54,10 +54,12 @@ namespace AppServices.Web.Controllers.API
         public async Task<IActionResult> GetServicesForUser([FromBody] ServicesForUserRequest request)
         {
             List<ServiceEntity> services = await _context.Services
-              .Include(t => t.User)
-              .Include(s => s.ServiceType)
-              .Include(r => r.Reservations)
-              .ThenInclude(s => s.DiaryDate)
+              .Include(s => s.User)
+              .Include(u => u.ServiceType)
+              .Include(st => st.Reservations)
+              .ThenInclude(r => r.User)
+              .Include(st => st.Reservations)
+              .ThenInclude(r => r.DiaryDate)
               .ThenInclude(dd => dd.Hours)
               .Where(u => u.User.Id == request.UserId.ToString())
               .ToListAsync();

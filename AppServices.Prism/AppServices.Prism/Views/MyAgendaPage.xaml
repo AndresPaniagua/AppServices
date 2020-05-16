@@ -24,10 +24,10 @@
         </OnPlatform>
     </ContentPage.Padding>
 
-    <AbsoluteLayout>
-        <StackLayout Padding="10">
+    <AbsoluteLayout Padding="10">
+        <!--<StackLayout Padding="10">-->
 
-            <CollectionView ItemsSource="{Binding Services}">
+            <CollectionView ItemsSource="{Binding Reservations}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -38,10 +38,9 @@
                             <Grid Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <ffimageloading:CachedImage Grid.Column="0"
+                                <!--<ffimageloading:CachedImage Grid.Column="0"
                                                             Aspect="AspectFit"
                                                             Source="{Binding PhotoFullPath}"
                                                             CacheDuration= "50"
@@ -54,33 +53,36 @@
                                     <ffimageloading:CachedImage.Transformations>
                                         <fftransformations:RoundedTransformation/>
                                     </ffimageloading:CachedImage.Transformations>
-                                </ffimageloading:CachedImage>
+                                </ffimageloading:CachedImage>-->
 
 
-                                <StackLayout Grid.Column="1"
+                                <StackLayout Grid.Column="0"
                                              HorizontalOptions="Center"
                                              VerticalOptions="Center"
                                              Margin="10">
 
-                                    <Label Text="{Binding ServicesName}"
+                                    <Label Text="{Binding User.FullName}"
                                            FontAttributes="Bold"
                                            FontSize="14"/>
 
-                                    <Label Text="{Binding ServiceType.Name}"
+                                    <Label Text="{Binding User.Address}"
                                            FontSize="12"/>
 
-                                    <Label Text="{Binding Price}"
+                                    <Label Text="{Binding User.PhoneNumber}"
+                                           FontSize="12"/>
+
+                                    <Label Text="{Binding User.Email}"
                                            FontSize="12"/>
 
                                     <StackLayout Orientation="Horizontal">
 
-                                        <Label Text="Date"
+                                        <Label Text="{Binding DiaryDate.Date}"
                                                FontSize="12"/>
 
                                         <Label Text=":"
                                                FontSize="12"/>
 
-                                        <Label Text="Hour"
+                                        <Label Text="{Binding DiaryDate.Hours[0].Hour}"
                                                FontSize="12"/>
                                         
                                     </StackLayout>
@@ -93,7 +95,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-        </StackLayout>
+        <!--</StackLayout>-->
 
         <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
