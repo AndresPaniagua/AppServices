@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -90,6 +91,7 @@ namespace AppServices.Prism.ViewModels
             {
                 aux.AddRange(service.Reservations);
             }
+            aux = aux.OrderByDescending(r => r.DiaryDate.Date).ToList();
             Reservations = aux;
         }
 

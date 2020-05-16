@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.MyAgendaPage">
@@ -25,77 +22,58 @@
     </ContentPage.Padding>
 
     <AbsoluteLayout Padding="10">
-        <!--<StackLayout Padding="10">-->
 
-            <CollectionView ItemsSource="{Binding Reservations}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
+        <CollectionView ItemsSource="{Binding Reservations}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <cards:SfCardView IndicatorColor="#1976D2" IndicatorThickness="12" IndicatorPosition="Left">
-                            <Grid Margin="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <cards:SfCardView IndicatorColor="#1976D2" IndicatorThickness="12" IndicatorPosition="Left">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <!--<ffimageloading:CachedImage Grid.Column="0"
-                                                            Aspect="AspectFit"
-                                                            Source="{Binding PhotoFullPath}"
-                                                            CacheDuration= "50"
-                                                            VerticalOptions="Center"
-                                                            HeightRequest="100"
-                                                            WidthRequest="100"
-                                                            Margin="0, 20, 0, 20"
-                                                            RetryCount= "3"
-                                                            RetryDelay= "600">
-                                    <ffimageloading:CachedImage.Transformations>
-                                        <fftransformations:RoundedTransformation/>
-                                    </ffimageloading:CachedImage.Transformations>
-                                </ffimageloading:CachedImage>-->
-
-
-                                <StackLayout Grid.Column="0"
+                            <StackLayout Grid.Column="0"
                                              HorizontalOptions="Center"
                                              VerticalOptions="Center"
                                              Margin="10">
 
-                                    <Label Text="{Binding User.FullName}"
+                                <Label Text="{Binding User.FullName}"
                                            FontAttributes="Bold"
                                            FontSize="14"/>
 
-                                    <Label Text="{Binding User.Address}"
+                                <Label Text="{Binding User.Address}"
                                            FontSize="12"/>
 
-                                    <Label Text="{Binding User.PhoneNumber}"
+                                <Label Text="{Binding User.PhoneNumber}"
                                            FontSize="12"/>
 
-                                    <Label Text="{Binding User.Email}"
+                                <Label Text="{Binding User.Email}"
                                            FontSize="12"/>
 
-                                    <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
 
-                                        <Label Text="{Binding DiaryDate.Date}"
+                                    <Label Text="{Binding DiaryDate.Date, StringFormat='{0:MM/dd/yyyy}'}"
                                                FontSize="12"/>
 
-                                        <Label Text=":"
+                                    <Label Text=":"
                                                FontSize="12"/>
 
-                                        <Label Text="{Binding DiaryDate.Hours[0].Hour}"
+                                    <Label Text="{Binding DiaryDate.Hours[0].Hour}"
                                                FontSize="12"/>
-                                        
-                                    </StackLayout>
 
                                 </StackLayout>
 
-                            </Grid>
-                        </cards:SfCardView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </StackLayout>
 
-        <!--</StackLayout>-->
+                        </Grid>
+                    </cards:SfCardView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
