@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AppServices.Common.Models
+﻿namespace AppServices.Common.Models
 {
     public class TokenRequest
     {

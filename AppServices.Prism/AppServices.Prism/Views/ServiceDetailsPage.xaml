@@ -48,7 +48,7 @@
                         <Label Text="{Binding Service.ServicesName}" FontSize="12" TextColor="#2C3E50" HorizontalOptions="CenterAndExpand"/>
                         <Label Text="{Binding Service.ServiceType.Name}" TextColor="#34495E" FontSize="14" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                     </StackLayout>
-                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="0, 25, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -59,8 +59,9 @@
                             <Label Text="{Binding Service.Price}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Button Text="+" FontSize="20" BorderColor="Red" BackgroundColor="Red" WidthRequest="20" CornerRadius="20" Command="{Binding ReservedCommand}"/>
-                            <Label Text="Reserved" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                            <Button Text="+" FontSize="20" FontAttributes="Bold" BorderColor="Red" BackgroundColor="Red" WidthRequest="30" CornerRadius="30" Command="{Binding ReservedCommand}"/>
+                            <Label Text="Reserved" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
+                            <Label Text="To Login" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="phone.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>

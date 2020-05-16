@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -25,7 +24,7 @@ namespace AppServices.Web.Controllers.API
         private readonly IImageHelper _imageHelper;
 
         public ServiceController(DataContext context,
-            IUserHelper userHelper, 
+            IUserHelper userHelper,
             IConverterHelper converterHelper,
             IImageHelper imageHelper)
         {
@@ -57,6 +56,9 @@ namespace AppServices.Web.Controllers.API
             List<ServiceEntity> services = await _context.Services
               .Include(t => t.User)
               .Include(s => s.ServiceType)
+              .Include(r => r.Reservations)
+              .ThenInclude(s => s.DiaryDate)
+              .ThenInclude(dd => dd.Hours)
               .Where(u => u.User.Id == request.UserId.ToString())
               .ToListAsync();
 
@@ -116,7 +118,9 @@ namespace AppServices.Web.Controllers.API
             else
             {
                 if (string.IsNullOrEmpty(picturePath))
+                {
                     picturePath = serviceEntity.PhotoPath;
+                }
 
                 serviceEntity.FinishDate = request.FinishDate;
                 serviceEntity.Description = request.Description;

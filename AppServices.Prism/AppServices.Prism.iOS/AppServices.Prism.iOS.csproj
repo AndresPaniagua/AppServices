@@ -273,5 +273,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\Edit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AppService_Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\My_Agenda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\My_Reservations.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

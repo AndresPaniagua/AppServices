@@ -24,10 +24,34 @@
 
     <ScrollView>
         <AbsoluteLayout>
-            <StackLayout Padding="10">
+            <StackLayout>
+
+                <!-- 1. Profile Picture-->
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="{Binding Service.PhotoFullPath}" VerticalOptions="Start" HeightRequest="400" Aspect="AspectFill" Margin="0,-45,0,0"/>
+                    <Label Grid.Row="0" VerticalOptions="End" Padding="20,20,20,50">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Service.User.FullName} &#10;" FontSize="25" FontAttributes="Bold" ForegroundColor="White"/>
+                                <Span Text="&#10;"/>
+                                <Span Text="{Binding Service.ServicesName}" FontSize="17" ForegroundColor="White"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <Frame CornerRadius="20"
+                       Margin="0,-50,0,0"
+                       BackgroundColor="#fbfaff"
+                       HasShadow="False"
+                       HeightRequest="19"/>
+
+                <Grid Margin="30,-20,30,10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -36,30 +60,23 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <!-- 3. Your balance -->
+                    <Label Grid.Row="0" 
+                           Grid.Column="0" 
+                           Text="Price" 
+                           TextColor="Black"/>
+                    <Label Grid.Row="1" 
+                           Grid.Column="0" 
+                           Text="{Binding Service.Price}"
+                           FontAttributes="Bold" 
+                           FontSize="30"/>
 
-                    <Label Text="Service name:" 
-                           Grid.Row="0" 
-                           Grid.Column="0"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
-                    <Label Text="{Binding Service.ServicesName}" 
-                           Grid.Row="0" 
-                           Grid.Column="1"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
 
-                    <Label Text="Price:" 
-                           Grid.Row="1" 
-                           Grid.Column="0"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
-                    <Label Text="{Binding Service.Price}" 
-                           Grid.Row="1" 
-                           Grid.Column="1"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
-
+                    <Label Grid.Row="2" Grid.Column="0" Text="Information" TextColor="Black" Margin="0,20,0,0"/>
+                    
+                    
                     <Label Text="Date:"
                            Grid.Row="3"
                            Grid.Column="0"
@@ -82,18 +99,18 @@
                             Title="Select Hour..."/>
                 </Grid>
 
-                <Button
-                    Margin="0, 20, 0, 0"
-                    Text="Reserved"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"
-                    BackgroundColor="Red"
-                    TextColor="White"
-                    IsEnabled="{Binding IsEnabled}"
-                    Command="{Binding ReservedCommand}"
-                    CornerRadius="20"/>
+                <Button Margin="0, 20, 0, 0"
+                        Text="Reserved"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        WidthRequest="200"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding ReservedCommand}"
+                        CornerRadius="20"/>
+
             </StackLayout>
             <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

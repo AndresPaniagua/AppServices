@@ -71,12 +71,26 @@ namespace AppServices.Prism.ViewModels
                 },
                 new Menu
                 {
+                    Icon = "My_Reservations",
+                    PageName = "MyReservationsPage",
+                    Title = "My Reservations",
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
                     Icon = "MyServices",
                     PageName = "MyServicesPage",
                     Title = "My services",
                     IsLoginRequired = true
                 },
-                 new Menu
+                new Menu
+                {
+                    Icon = "My_Agenda",
+                    PageName = "MyAgendaPage",
+                    Title = "My Agenda",
+                    IsLoginRequired = true
+                },
+                new Menu
                 {
                     Icon = "Edit",
                     PageName = "ModifyUserPage",

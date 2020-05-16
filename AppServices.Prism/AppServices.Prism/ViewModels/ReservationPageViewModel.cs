@@ -130,6 +130,9 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
+            if (Date == DateTime.Parse("01/01/0001"))
+                Date = DateTime.Now;
+
             _reservation.CultureInfo = "en";
             _reservation.IdService = Service.Id;
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);

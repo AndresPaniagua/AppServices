@@ -80,8 +80,18 @@ namespace AppServices.Web.Helpers
                 PhotoPath = serviceEntity.PhotoPath,
                 ServiceType = ToServiceTypeResponse(serviceEntity.ServiceType),
                 User = ToUserResponse(serviceEntity.User),
-                //DiaryDate = serviceEntity.DiaryDate?.Select(h => ToDiaryDateResponse(h)).ToList(),
+                Reservations = serviceEntity.Reservations?.Select(h => ToReservationResponse(h)).ToList(),
                 Status = ToStatusResponse(serviceEntity.Status)
+            };
+        }
+
+        public ReservationResponse ToReservationResponse(ReservationEntity reservation)
+        {
+            return new ReservationResponse
+            {
+                Id = reservation.Id,
+                DiaryDate = ToDiaryDateResponse(reservation.DiaryDate),
+                User = ToUserResponse(reservation.User)
             };
         }
 

@@ -33,7 +33,7 @@ namespace AppServices.Common.Models
 
         public UserResponse User { get; set; }
 
-        public List<DiaryDateResponse> DiaryDate { get; set; }
+        public List<ReservationResponse> Reservations { get; set; }
 
         public StatusResponse Status { get; set; }
     }
