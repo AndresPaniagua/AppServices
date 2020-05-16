@@ -31,7 +31,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = "Reservation";
-            Today = DateTime.Now;
+            Today = DateTime.Today;
             _reservation = new ReservationRequest();
             LoadHourList();
         }
@@ -131,7 +131,7 @@ namespace AppServices.Prism.ViewModels
             }
 
             if (Date == DateTime.Parse("01/01/0001"))
-                Date = DateTime.Now;
+                Date = DateTime.Today;
 
             _reservation.CultureInfo = "en";
             _reservation.IdService = Service.Id;

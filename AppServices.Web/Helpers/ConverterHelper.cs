@@ -113,6 +113,7 @@ namespace AppServices.Web.Helpers
             return new DiaryDateResponse
             {
                 Id = diaryDate.Id,
+                Date = diaryDate.Date,
                 Hours = diaryDate.Hours?.Select(h => new DiaryHoursResponse
                 {
                     Id = h.Id,
