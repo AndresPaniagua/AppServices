@@ -19,5 +19,9 @@ namespace AppServices.Web.Helpers
         ServiceTypeResponse ToServiceTypeResponse(ServiceTypeEntity service);
 
         UserResponse ToUserResponse(UserEntity user);
+
+        List<ReservationResponse> ToReservationResponse(List<ReservationEntity> reservations);
+
+        List<ReservationsForUserResponse> ToReservationsForUserResponse(List<ReservationEntity> reservations);
     }
 }

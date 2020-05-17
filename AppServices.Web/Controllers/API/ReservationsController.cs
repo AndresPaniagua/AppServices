@@ -110,5 +110,22 @@ namespace AppServices.Web.Controllers.API
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Route("GetReservationsForUser")]
+        public async Task<IActionResult> GetReservationsForUser([FromBody] ServicesForUserRequest request)
+        {
+            List<ReservationEntity> reservations = await _context.Reservations
+              .Include(u => u.User)
+              .Include(s => s.Service)
+              .Include(dd => dd.DiaryDate)
+              .ThenInclude(dh => dh.Hours)
+              .Where(u => u.User.Id.ToString() == request.UserId.ToString())
+              .ToListAsync();
+                      
+
+            return Ok(_converterHelper.ToReservationsForUserResponse(reservations));
+        }
     }
 }

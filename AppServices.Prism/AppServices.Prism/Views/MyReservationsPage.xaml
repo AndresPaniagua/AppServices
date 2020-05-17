@@ -3,6 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="AppServices.Prism.Views.MyReservationsPage">
-  
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <AbsoluteLayout Padding="10">
+
+        <CollectionView ItemsSource="{Binding Reservations}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <cards:SfCardView IndicatorColor="#1976D2" IndicatorThickness="12" IndicatorPosition="Left">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <ffimageloading:CachedImage Grid.Column="0" Aspect="AspectFill"
+                                                                Source="{Binding Service.PhotoFullPath}"
+                                                                CacheDuration= "50"
+                                                                Margin="1, 5"
+                                                                WidthRequest="100"
+                                                                HeightRequest="100"
+                                                                RetryCount= "3"
+                                                                RetryDelay= "600">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:RoundedTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+
+                                <StackLayout Grid.Column="1"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center"
+                                             Margin="10">
+
+                                <Label Text="{Binding Service.ServicesName}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"/>                                
+
+                                <Label Text="{Binding Service.Price}"
+                                           FontSize="12"/>
+
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Label Text="{Binding DiaryDate.Date, StringFormat='{0:MM/dd/yyyy}'}"
+                                               FontSize="12"/>
+
+                                    <Label Text=":"
+                                               FontSize="12"/>
+
+                                    <Label Text="{Binding DiaryDate.Hours[0].Hour}"
+                                               FontSize="12"/>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </Grid>
+                    </cards:SfCardView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino"
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                       AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="Transparent"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="Blue"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80"/>
+
+    </AbsoluteLayout>
+
 </ContentPage>

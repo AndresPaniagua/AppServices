@@ -85,6 +85,17 @@ namespace AppServices.Web.Helpers
             };
         }
 
+        public List<ReservationResponse> ToReservationResponse(List<ReservationEntity> reservationEntities)
+        {
+            List<ReservationResponse> list = new List<ReservationResponse>();
+            foreach (ReservationEntity reservationEntity in reservationEntities)
+            {
+                list.Add(ToReservationResponse(reservationEntity));
+            }
+
+            return list;
+        }
+
         public ReservationResponse ToReservationResponse(ReservationEntity reservation)
         {
             return new ReservationResponse
@@ -154,6 +165,46 @@ namespace AppServices.Web.Helpers
                 Address = user.Address
             };
         }
-    
+
+        public List<ReservationsForUserResponse> ToReservationsForUserResponse(List<ReservationEntity> reservationEntities)
+        {
+            List<ReservationsForUserResponse> list = new List<ReservationsForUserResponse>();
+            foreach (ReservationEntity reservationEntity in reservationEntities)
+            {
+                list.Add(ToReservationsForUserResponse(reservationEntity));
+            }
+
+            return list;
+        }
+
+        public ReservationsForUserResponse ToReservationsForUserResponse(ReservationEntity reservation)
+        {
+            return new ReservationsForUserResponse
+            {
+                Id = reservation.Id,
+                DiaryDate = ToDiaryDateResponse(reservation.DiaryDate),
+                User = ToUserResponse(reservation.User),
+                Service = ToServiceForUserResponse(reservation.Service)
+            };
+        }
+
+        public ServiceResponse ToServiceForUserResponse(ServiceEntity serviceEntity)
+        {
+            return new ServiceResponse
+            {
+                Id = serviceEntity.Id,
+                ServicesName = serviceEntity.ServicesName,
+                Phone = serviceEntity.Phone,
+                Description = serviceEntity.Description,
+                Price = serviceEntity.Price,
+                FinishDate = serviceEntity.FinishDate,
+                StartDate = serviceEntity.StartDate,
+                PhotoPath = serviceEntity.PhotoPath,
+                ServiceType = ToServiceTypeResponse(serviceEntity.ServiceType),
+                User = ToUserResponse(serviceEntity.User),
+                Status = ToStatusResponse(serviceEntity.Status)
+            };
+        }
+
     }
 }
