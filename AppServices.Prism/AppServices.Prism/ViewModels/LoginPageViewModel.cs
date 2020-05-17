@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -24,8 +25,8 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Log In";
             IsEnabled = true;
+            Title = Languages.Login;
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
@@ -56,19 +57,19 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Email))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "EmailError", "Accept");
-                // Languages.Error,
-                // Languages.EmailError,
-                // Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.EmailError,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(Password))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PasswordError", "Accept");
-                /*Languages.Error,
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
                     Languages.PasswordError,
-                    Languages.Accept);*/
+                    Languages.Accept);
                 return;
             }
 
@@ -79,13 +80,10 @@ namespace AppServices.Prism.ViewModels
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                //    IsRunning = true;
                 IsEnabled = false;
-                await App.Current.MainPage.DisplayAlert("Error", "ConnectionError", "Accept");
-                //Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
-            //MUCHACHOS ESTO NO ME DEJA AVANZAR.. ME SALE QUE DEBO TENER UNOS PERMISOS, PERO YA LOGUEA 
             TokenRequest request = new TokenRequest
             {
                 Password = Password,
@@ -99,8 +97,7 @@ namespace AppServices.Prism.ViewModels
             {
                 IsRunning = false;
                 IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert("Error", "LoginError", "Accept");
-                //Languages.Error, Languages.LoginError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.LoginError, Languages.Accept);
                 Password = string.Empty;
                 return;
             }

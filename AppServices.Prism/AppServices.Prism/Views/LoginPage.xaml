@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.LoginPage">
 
@@ -47,7 +48,7 @@
 
                     <Label
                         Grid.Row="1"
-                        Text="LOGIN"
+                        Text="{i18n:Translate Login}"
                         FontSize="Large"
                         HorizontalOptions="Center"
                         VerticalOptions="Center" />
@@ -60,7 +61,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label
-                                Text="Email:" />
+                                Text="{i18n:Translate Email}"/>
                             <Entry
                                 Text="{Binding Email}" 
                                 Keyboard="Email"
@@ -69,14 +70,14 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label
-                                Text="Password:" />
+                                Text="{i18n:Translate Password}"/>
                             <Entry
                                 Text="{Binding Password}"
                                 WidthRequest="300"
                                 IsPassword="True" />
                         </StackLayout>
 
-                        <Label Text="Forgot your Password?"
+                        <Label Text="{i18n:Translate ForgotPassword}"
                                TextColor="Blue">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
@@ -87,7 +88,7 @@
                 </Grid>
 
                 <Button
-                    Text="LOGIN"
+                    Text="{i18n:Translate Login}"
                     CornerRadius="20"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -98,7 +99,7 @@
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <Button
-                    Text="New Account"
+                    Text="{i18n:Translate NewAccount}"
                     CornerRadius="20"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -114,7 +115,7 @@
                 	                       HorizontalOptions="Center"
                 	                       TextColor="Blue"
                 	                       IsVisible="{Binding IsRunning}"
-                	                       Title="Loading..."
+                	                       Title="{i18n:Translate Loading}"
                                            Visual="Material"
                 	                       VerticalOptions="Center"
                 	                       ViewBoxWidth="120"

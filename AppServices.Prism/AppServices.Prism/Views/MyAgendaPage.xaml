@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.MyAgendaPage">
@@ -37,33 +38,33 @@
                             </Grid.ColumnDefinitions>
 
                             <StackLayout Grid.Column="0"
-                                             HorizontalOptions="Center"
-                                             VerticalOptions="Center"
-                                             Margin="10">
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Margin="10">
 
                                 <Label Text="{Binding User.FullName}"
-                                           FontAttributes="Bold"
-                                           FontSize="14"/>
+                                       FontAttributes="Bold"
+                                       FontSize="14"/>
 
                                 <Label Text="{Binding User.Address}"
-                                           FontSize="12"/>
+                                       FontSize="12"/>
 
                                 <Label Text="{Binding User.PhoneNumber}"
-                                           FontSize="12"/>
+                                       FontSize="12"/>
 
                                 <Label Text="{Binding User.Email}"
-                                           FontSize="12"/>
+                                       FontSize="12"/>
 
                                 <StackLayout Orientation="Horizontal">
 
                                     <Label Text="{Binding DiaryDate.Date, StringFormat='{0:MM/dd/yyyy}'}"
-                                               FontSize="12"/>
+                                           FontSize="12"/>
 
                                     <Label Text=":"
-                                               FontSize="12"/>
+                                           FontSize="12"/>
 
                                     <Label Text="{Binding DiaryDate.Hours[0].Hour}"
-                                               FontSize="12"/>
+                                           FontSize="12"/>
 
                                 </StackLayout>
 
@@ -82,7 +83,7 @@
                 	                   HorizontalOptions="Center"
                 	                   TextColor="Blue"
                 	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
+                	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80"/>

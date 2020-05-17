@@ -1,5 +1,6 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
+using AppServices.Prism.Helpers;
 using AppServices.Prism.Views;
 using Prism.Commands;
 using Prism.Navigation;
@@ -21,7 +22,7 @@ namespace AppServices.Prism.ViewModels
             : base(navigationService)
         {
             _navigationService = navigationService;
-            Title = "Details";
+            Title = Languages.Details;
             Map = new Map();
         }
 

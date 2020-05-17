@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Newtonsoft.Json;
 using Prism.Navigation;
 using System;
@@ -24,7 +25,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "My Agenda";
+            Title = Languages.MyAgenda;
             LoadServicesAsync();
         }
 
@@ -53,7 +54,7 @@ namespace AppServices.Prism.ViewModels
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.ConnectionError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -75,7 +76,7 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 

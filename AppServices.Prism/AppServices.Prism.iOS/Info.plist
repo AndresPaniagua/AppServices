@@ -62,5 +62,15 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs access to the photo gallery.</string>
 
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>de</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>nl</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+
 </dict>
 </plist>

@@ -70,7 +70,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Confirmation email was sent. Please confirm your account and log into the App..
+        ///   Looks up a localized string similar to A Confirmation email was sent. Please confirm your account and log into the App.
         /// </summary>
         public static string ConfirmEmailMessage {
             get {
@@ -79,7 +79,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To allow the user, please click on this link:.
+        ///   Looks up a localized string similar to To allow the user, please click on this link.
         /// </summary>
         public static string ConfirmEmailSubject {
             get {
@@ -88,34 +88,16 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The expense was added successfully.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
-        public static string ConfirmExpense {
+        public static string Error {
             get {
-                return ResourceManager.GetString("ConfirmExpense", resourceCulture);
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense Doesn&apos;t Exists.
-        /// </summary>
-        public static string ExpenseDoesntExists {
-            get {
-                return ResourceManager.GetString("ExpenseDoesntExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, the expense could not be recorded.
-        /// </summary>
-        public static string ExpenseError {
-            get {
-                return ResourceManager.GetString("ExpenseError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incorrect current password..
+        ///   Looks up a localized string similar to Incorrect current password.
         /// </summary>
         public static string IncorrectCurrentPassword {
             get {
@@ -124,7 +106,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password was changed successfully!.
+        ///   Looks up a localized string similar to The password was changed successfully.
         /// </summary>
         public static string PasswordChangedSuccess {
             get {
@@ -133,7 +115,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Recover Password.
+        ///   Looks up a localized string similar to Recover Password.
         /// </summary>
         public static string RecoverPassword {
             get {
@@ -142,7 +124,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An email with instructions to change the password was sent..
+        ///   Looks up a localized string similar to An email with instructions to change the password was sent.
         /// </summary>
         public static string RecoverPasswordMessage {
             get {
@@ -151,7 +133,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To reset the password click in this link:.
+        ///   Looks up a localized string similar to To reset the password click in this link.
         /// </summary>
         public static string RecoverPasswordSubject {
             get {
@@ -169,7 +151,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service doesn&apos;t exists..
+        ///   Looks up a localized string similar to Service doesn&apos;t exists.
         /// </summary>
         public static string ServiceDoesntExists {
             get {
@@ -178,16 +160,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Travel doesn&apos;t Exists.
-        /// </summary>
-        public static string TravelDoesntExists {
-            get {
-                return ResourceManager.GetString("TravelDoesntExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User already exists..
+        ///   Looks up a localized string similar to User already exists.
         /// </summary>
         public static string UserAlreadyExists {
             get {
@@ -196,7 +169,7 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User doesn&apos;t exists..
+        ///   Looks up a localized string similar to User doesn&apos;t exists.
         /// </summary>
         public static string UserDoesntExists {
             get {

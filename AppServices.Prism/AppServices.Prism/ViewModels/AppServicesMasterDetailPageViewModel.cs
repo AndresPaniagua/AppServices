@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Navigation;
@@ -60,48 +61,48 @@ namespace AppServices.Prism.ViewModels
                 {
                     Icon = "Services",
                     PageName = "ServicesPage",
-                    Title = "Services"
+                    Title = Languages.Services
                 },
                 new Menu
                 {
                     Icon = "NewService",
                     PageName = "CreateServicePage",
-                    Title = "Create Service",
+                    Title = Languages.CreateService,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "My_Reservations",
                     PageName = "MyReservationsPage",
-                    Title = "My Reservations",
+                    Title = Languages.MyReservations,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "MyServices",
                     PageName = "MyServicesPage",
-                    Title = "My services",
+                    Title = Languages.MyServices,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "My_Agenda",
                     PageName = "MyAgendaPage",
-                    Title = "My Agenda",
+                    Title = Languages.MyAgenda,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "Edit",
                     PageName = "ModifyUserPage",
-                    Title = "Modify user",
+                    Title = Languages.ModifyUser,
                     IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "Login",
                     PageName = "LoginPage",
-                    Title = Settings.IsLogin ? "Logout" : "Login"
+                    Title = Settings.IsLogin ? Languages.Logout : Languages.Login
                 }
             };
 

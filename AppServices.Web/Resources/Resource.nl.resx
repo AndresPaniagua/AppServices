@@ -117,43 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error" xml:space="preserve">
+    <value>Fout</value>
+  </data>
   <data name="UserAlreadyExists" xml:space="preserve">
-    <value>User already exists</value>
+    <value>De gebruiker bestaat al</value>
   </data>
   <data name="ConfirmEmail" xml:space="preserve">
-    <value>Confirm Email</value>
-  </data>
-  <data name="ConfirmEmailSubject" xml:space="preserve">
-    <value>To allow the user, please click on this link</value>
-  </data>
-  <data name="ConfirmEmailMessage" xml:space="preserve">
-    <value>A Confirmation email was sent. Please confirm your account and log into the App</value>
-  </data>
-  <data name="UserDoesntExists" xml:space="preserve">
-    <value>User doesn't exists</value>
-  </data>
-  <data name="RecoverPassword" xml:space="preserve">
-    <value>Recover Password</value>
-  </data>
-  <data name="RecoverPasswordSubject" xml:space="preserve">
-    <value>To reset the password click in this link</value>
-  </data>
-  <data name="RecoverPasswordMessage" xml:space="preserve">
-    <value>An email with instructions to change the password was sent</value>
-  </data>
-  <data name="IncorrectCurrentPassword" xml:space="preserve">
-    <value>Incorrect current password</value>
+    <value>E-mailadres bevestigen</value>
   </data>
   <data name="PasswordChangedSuccess" xml:space="preserve">
-    <value>The password was changed successfully</value>
+    <value>Het wachtwoord is gewijzigd</value>
   </data>
-  <data name="ReservationExists" xml:space="preserve">
-    <value>This date is already reserved</value>
+  <data name="IncorrectCurrentPassword" xml:space="preserve">
+    <value>Onjuist huidig wachtwoord</value>
   </data>
   <data name="ServiceDoesntExists" xml:space="preserve">
-    <value>Service doesn't exists</value>
+    <value>Service bestaat niet</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
+  <data name="ReservationExists" xml:space="preserve">
+    <value>Deze datum is al gereserveerd</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Er is een e-mail gestuurd met instructies om het wachtwoord te wijzigen</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Klik op deze link om het wachtwoord opnieuw in te stellen</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Wachtwoord herstellen</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>Gebruiker bestaat niet</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>Er is een bevestigingsmail verzonden. Bevestig uw account en log in op de app</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Klik op deze link om de gebruiker toe te staan</value>
   </data>
 </root>

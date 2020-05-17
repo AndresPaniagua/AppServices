@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using AppServices.Prism.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -22,11 +23,11 @@ namespace AppServices.Prism.ViewModels
 
         public ModifyUserPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = "Mofify user";
             _navigationService = navigationService;
             _apiService = apiService;
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            Title = Languages.ModifyUser;
         }
 
         public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
@@ -73,7 +74,7 @@ namespace AppServices.Prism.ViewModels
                 Document = User.Document,
                 Email = User.Email,
                 FullName = User.FullName,
-                Password = "123456", // It doesn't matter what is sent here. It is only for the model to be valid
+                Password = "123456",
                 PasswordConfirm = "123456",
                 Phone = User.PhoneNumber,
                 Cultureinfo = "es"
@@ -98,8 +99,7 @@ namespace AppServices.Prism.ViewModels
 
             Settings.User = JsonConvert.SerializeObject(User);
             AppServicesMasterDetailPageViewModel.GetInstance().ReloadUser();
-            await App.Current.MainPage.DisplayAlert("Ok", "UserUpdated", "Accept");
-            //Languages.Ok, Languages.UserUpdated, Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.UserUpdated, Languages.Accept);
         }
 
         public async void ReloadUser()
@@ -138,29 +138,25 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(User.Document))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "DocumentError", "Accept");
-                //Languages.Error, Languages.DocumentError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.DocumentError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.FullName))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "FirstNameError", "Accept");
-                // Languages.Error, Languages.FirstNameError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.FullNameError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.Address))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "AddressError", "Accept");
-                //Languages.Error, Languages.AddressError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.AddressError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.PhoneNumber))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PhoneError", "Accept");
-                // Languages.Error, Languages.PhoneError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PhoneError, Languages.Accept);
                 return false;
             }
 

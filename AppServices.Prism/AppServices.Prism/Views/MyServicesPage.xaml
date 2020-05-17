@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
@@ -51,7 +52,9 @@
                                         </ffimageloading:CachedImage.Transformations>
                                     </ffimageloading:CachedImage>
                                 </StackLayout>
-                                <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                                <StackLayout Grid.Column="1" 
+                                             VerticalOptions="Center" 
+                                             HorizontalOptions="Center">
                                     <Label Text="{Binding ServicesName}"
                                            FontAttributes="Bold"
                                            FontSize="14"/>
@@ -80,7 +83,7 @@
                 	                    HorizontalOptions="Center"
                 	                    TextColor="Blue"
                 	                    IsVisible="{Binding IsRunning}"
-                	                    Title="Loading..."
+                	                    Title="{i18n:Translate Loading}"
                 	                    VerticalOptions="Center"
                 	                    ViewBoxWidth="80"
                 	                    ViewBoxHeight="80" />

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
@@ -63,7 +64,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Service Name:"/>
+                                   Text="{i18n:Translate ServicenamePlaceholder}"/>
                             <Entry
                                 Text="{Binding Service.ServicesName}"
                                 Keyboard="Chat"
@@ -72,7 +73,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Start Date:"/>
+                                   Text="{i18n:Translate StartDate}"/>
                             <DatePicker
                                 Date="{Binding Service.StartDate}"
                                 MinimumDate="{Binding Today}"
@@ -81,7 +82,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Finish Date:"/>
+                                   Text="{i18n:Translate FinishDate}"/>
                             <DatePicker
                                 Date="{Binding Service.FinishDate}"
                                 MinimumDate="{Binding Today}"
@@ -90,7 +91,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Phone:"/>
+                                   Text="{i18n:Translate Phone}"/>
                             <Entry
                                 Text="{Binding Service.Phone}"
                                 Keyboard="Numeric"
@@ -99,7 +100,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Description:"/>
+                                   Text="{i18n:Translate Description}"/>
                             <Entry
                                 Text="{Binding Service.Description}"
                                 HeightRequest="115"
@@ -108,7 +109,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Price:"/>
+                                   Text="{i18n:Translate Price}"/>
                             <Entry
                                 Keyboard="Numeric"                                
                                 Text="{Binding Service.Price}"
@@ -117,7 +118,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label  Margin="0, 0, 0, -5"
-                                    Text="Type: "
+                                    Text="{i18n:Translate TypeService}"
                                     VerticalOptions="Center"/>
                             <Picker ItemDisplayBinding="{Binding Name}"
                                     ItemsSource="{Binding ServiceTypes}"
@@ -132,7 +133,7 @@
                 </Grid>
                 <Button
                     Margin="0, 20, 0, 0"
-                    Text="Save"
+                    Text="{i18n:Translate Save}"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
@@ -151,7 +152,7 @@
                 	                       HorizontalOptions="Center"
                 	                       TextColor="Blue"
                 	                       IsVisible="{Binding IsRunning}"
-                	                       Title="Loading..."
+                	                       Title="{i18n:Translate Loading}"
                 	                       VerticalOptions="Center"
                 	                       ViewBoxWidth="120"
                 	                       ViewBoxHeight="120" />

@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,9 +16,9 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
+        private readonly ReservationRequest _reservation;
         private ServiceResponse _service;
         private DelegateCommand _reservedCommand;
-        private ReservationRequest _reservation;
         private DateTime _today;
         private List<string> _hours;
         private bool _isRunning;
@@ -30,7 +31,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Reservation";
+            Title = Languages.Reservation;
             Today = DateTime.Today;
             _reservation = new ReservationRequest();
             LoadHourList();
@@ -126,12 +127,14 @@ namespace AppServices.Prism.ViewModels
             {
                 IsRunning = false;
                 IsEnabled = true;
-                //await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
             if (Date == DateTime.Parse("01/01/0001"))
+            {
                 Date = DateTime.Today;
+            }
 
             _reservation.CultureInfo = "en";
             _reservation.IdService = Service.Id;
@@ -147,11 +150,11 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Languages.Ok", response.Message, "Languages.Accept");
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
         }
 
@@ -159,9 +162,9 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Hour))
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.HourError, Languages.Accept);
                 return false;
-            }                      
+            }
 
             return true;
         }

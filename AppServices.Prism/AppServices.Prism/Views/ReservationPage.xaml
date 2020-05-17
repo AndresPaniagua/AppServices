@@ -4,9 +4,8 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="AppServices.Prism.Views.ReservationPage"
-             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms">
 
     <NavigationPage.TitleView>
         <Label Text="{Binding Title}" 
@@ -65,7 +64,7 @@
                     <!-- 3. Your balance -->
                     <Label Grid.Row="0" 
                            Grid.Column="0" 
-                           Text="Price" 
+                           Text="{i18n:Translate Price}"
                            TextColor="Black"/>
                     <Label Grid.Row="1" 
                            Grid.Column="0" 
@@ -74,10 +73,10 @@
                            FontSize="30"/>
 
 
-                    <Label Grid.Row="2" Grid.Column="0" Text="Information" TextColor="Black" Margin="0,20,0,0"/>
-                    
-                    
-                    <Label Text="Date:"
+                    <Label Grid.Row="2" Grid.Column="0" Text="{i18n:Translate Information}" TextColor="Black" Margin="0,20,0,0"/>
+
+
+                    <Label Text="{i18n:Translate Date}"
                            Grid.Row="3"
                            Grid.Column="0"
                            HorizontalOptions="Center"
@@ -87,7 +86,7 @@
                             Grid.Row="3"
                             Grid.Column="1"/>
 
-                    <Label Text="Hour:"
+                    <Label Text="{i18n:Translate Hour}"
                            Grid.Row="4"
                            Grid.Column="0"
                            HorizontalOptions="Center"
@@ -96,11 +95,11 @@
                             ItemsSource="{Binding Hours}"
                             Grid.Row="4"
                             Grid.Column="1"
-                            Title="Select Hour..."/>
+                            Title="{i18n:Translate SelectHour}"/>
                 </Grid>
 
                 <Button Margin="0, 20, 0, 0"
-                        Text="Reserved"
+                        Text="{i18n:Translate Reserved}"
                         FontAttributes="Bold"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
@@ -118,7 +117,7 @@
                 	                       HorizontalOptions="Center"
                 	                       TextColor="Blue"
                 	                       IsVisible="{Binding IsRunning}"
-                	                       Title="Loading..."
+                	                       Title="{i18n:Translate Loading}"
                 	                       VerticalOptions="Center"
                 	                       ViewBoxWidth="120"
                 	                       ViewBoxHeight="120" />

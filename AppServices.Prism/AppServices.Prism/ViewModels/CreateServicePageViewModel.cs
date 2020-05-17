@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -38,7 +39,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _filesHelper = filesHelper;
-            Title = "CreateService";
+            Title = Languages.CreateService;
             Image = "Silueta.png";
             Service = new ServiceRequest();
             IsEnabled = true;
@@ -108,7 +109,7 @@ namespace AppServices.Prism.ViewModels
             {
                 IsRunning = false;
                 IsEnabled = true;
-                //await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -132,11 +133,11 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Languages.Ok", response.Message, "Languages.Accept");
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
 
         }
@@ -146,19 +147,19 @@ namespace AppServices.Prism.ViewModels
             await CrossMedia.Current.Initialize();
 
             string source = await Application.Current.MainPage.DisplayActionSheet(
-                "Languages.PictureSource",
-                "Languages.Cancel",
+                Languages.PictureSource,
+                Languages.Cancel,
                 null,
-                "Languages.FromGallery",
-                "Languages.FromCamera");
+                Languages.FromGallery,
+                Languages.FromCamera);
 
-            if (source == "Languages.Cancel")
+            if (source == Languages.Cancel)
             {
                 _file = null;
                 return;
             }
 
-            if (source == "Languages.FromCamera")
+            if (source == Languages.FromCamera)
             {
                 _file = await CrossMedia.Current.TakePhotoAsync(
                     new StoreCameraMediaOptions
@@ -191,27 +192,27 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Service.ServicesName))
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ServicesNameError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(Service.Phone))
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PhoneError, Languages.Accept);
                 return false;
             }
 
 
             if (string.IsNullOrEmpty(Service.Description))
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.DescriptionError, Languages.Accept);
                 return false;
             }
 
 
             if (ServiceType == null)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.DocumentError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ServiceTypeError, Languages.Accept);
                 return false;
             }
 
@@ -223,12 +224,10 @@ namespace AppServices.Prism.ViewModels
             IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            //bool connection = await _apiService.CheckConnectionAsync(url);
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                //IsRunning = false;
                 IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.ConnectionError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -240,7 +239,7 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 

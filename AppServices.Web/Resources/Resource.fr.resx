@@ -117,43 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
   <data name="UserAlreadyExists" xml:space="preserve">
-    <value>User already exists</value>
+    <value>L'utilisateur existe déjà</value>
   </data>
   <data name="ConfirmEmail" xml:space="preserve">
-    <value>Confirm Email</value>
-  </data>
-  <data name="ConfirmEmailSubject" xml:space="preserve">
-    <value>To allow the user, please click on this link</value>
-  </data>
-  <data name="ConfirmEmailMessage" xml:space="preserve">
-    <value>A Confirmation email was sent. Please confirm your account and log into the App</value>
-  </data>
-  <data name="UserDoesntExists" xml:space="preserve">
-    <value>User doesn't exists</value>
-  </data>
-  <data name="RecoverPassword" xml:space="preserve">
-    <value>Recover Password</value>
-  </data>
-  <data name="RecoverPasswordSubject" xml:space="preserve">
-    <value>To reset the password click in this link</value>
-  </data>
-  <data name="RecoverPasswordMessage" xml:space="preserve">
-    <value>An email with instructions to change the password was sent</value>
+    <value>Confirmer l'adresse de messagerie</value>
   </data>
   <data name="IncorrectCurrentPassword" xml:space="preserve">
-    <value>Incorrect current password</value>
+    <value>Mot de passe actuel incorrect</value>
   </data>
   <data name="PasswordChangedSuccess" xml:space="preserve">
-    <value>The password was changed successfully</value>
-  </data>
-  <data name="ReservationExists" xml:space="preserve">
-    <value>This date is already reserved</value>
+    <value>Le mot de passe a été changé correctement</value>
   </data>
   <data name="ServiceDoesntExists" xml:space="preserve">
-    <value>Service doesn't exists</value>
+    <value>Le service n'existe pas</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
+  <data name="ReservationExists" xml:space="preserve">
+    <value>Cette date est déjà réservée</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Un e-mail contenant des instructions pour modifier le mot de passe a été envoyé</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Pour réinitialiser le mot de passe, cliquez sur ce lien</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Pour autoriser l'utilisateur, veuillez cliquer sur ce lien</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>Un e-mail de confirmation a été envoyé. Veuillez confirmer votre compte et vous connecter à l'application</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>L'utilisateur n'existe pas</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Récupérer mot de passe</value>
   </data>
 </root>

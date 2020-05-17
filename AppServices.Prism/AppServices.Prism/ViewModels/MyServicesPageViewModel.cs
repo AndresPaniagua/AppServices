@@ -1,13 +1,11 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Newtonsoft.Json;
-using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -24,7 +22,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "My services";
+            Title = Languages.MyServices;
             LoadMyServicesAsync();
         }
 
@@ -53,7 +51,7 @@ namespace AppServices.Prism.ViewModels
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.ConnectionError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -63,24 +61,24 @@ namespace AppServices.Prism.ViewModels
             {
                 UserId = Guid.Parse(user.Id),
                 CultureInfo = "en"
-            };          
+            };
 
             Response response = await _apiService.GetListAsync<ServiceResponse>(
                 url,
                 "/api",
                 "/Service/GetServicesForUser",
-                servicesForUser, 
-                "bearer", 
+                servicesForUser,
+                "bearer",
                 token.Token);
             IsRunning = false;
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
-            MyServices = (List<ServiceResponse>)response.Result;           
-            
+            MyServices = (List<ServiceResponse>)response.Result;
+
         }
 
     }

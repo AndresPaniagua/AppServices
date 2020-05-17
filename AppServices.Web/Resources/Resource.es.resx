@@ -117,43 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UserAlreadyExists" xml:space="preserve">
-    <value>User already exists</value>
-  </data>
-  <data name="ConfirmEmail" xml:space="preserve">
-    <value>Confirm Email</value>
-  </data>
-  <data name="ConfirmEmailSubject" xml:space="preserve">
-    <value>To allow the user, please click on this link</value>
-  </data>
-  <data name="ConfirmEmailMessage" xml:space="preserve">
-    <value>A Confirmation email was sent. Please confirm your account and log into the App</value>
-  </data>
-  <data name="UserDoesntExists" xml:space="preserve">
-    <value>User doesn't exists</value>
-  </data>
-  <data name="RecoverPassword" xml:space="preserve">
-    <value>Recover Password</value>
-  </data>
-  <data name="RecoverPasswordSubject" xml:space="preserve">
-    <value>To reset the password click in this link</value>
-  </data>
-  <data name="RecoverPasswordMessage" xml:space="preserve">
-    <value>An email with instructions to change the password was sent</value>
-  </data>
-  <data name="IncorrectCurrentPassword" xml:space="preserve">
-    <value>Incorrect current password</value>
-  </data>
-  <data name="PasswordChangedSuccess" xml:space="preserve">
-    <value>The password was changed successfully</value>
-  </data>
-  <data name="ReservationExists" xml:space="preserve">
-    <value>This date is already reserved</value>
-  </data>
-  <data name="ServiceDoesntExists" xml:space="preserve">
-    <value>Service doesn't exists</value>
-  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>El usuario ya existe</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+  </data>
+  <data name="IncorrectCurrentPassword" xml:space="preserve">
+    <value>Contraseña actual incorrecta</value>
+  </data>
+  <data name="PasswordChangedSuccess" xml:space="preserve">
+    <value>La nueva contraseña ha sido registrada</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Para permitir al usuario, haga clic en este enlace</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>Se envió un correo electrónico de confirmación. Confirme su cuenta e inicie sesión en la aplicación</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>El usuario no existe</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recuperar Clave</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Para restablecer la contraseña, haga clic en este enlace</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Se envió un correo electrónico con instrucciones para cambiar la contraseña</value>
+  </data>
+  <data name="ReservationExists" xml:space="preserve">
+    <value>Esta fecha ya está reservada</value>
+  </data>
+  <data name="ServiceDoesntExists" xml:space="preserve">
+    <value>El servicio no existe</value>
   </data>
 </root>

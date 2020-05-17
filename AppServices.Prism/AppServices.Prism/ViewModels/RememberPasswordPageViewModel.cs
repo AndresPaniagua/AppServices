@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _regexHelper = regexHelper;
-            Title = "Recover Password";
+            Title = Languages.RecoverPassword;
             IsEnabled = true;
         }
 
@@ -66,13 +67,11 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Message", "Accept");
-                //Languages.Error, response.Message, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Ok", "Message", "Accept");
-            //Languages.Ok, response.Message, Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
         }
 
@@ -80,8 +79,7 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(Email) || !_regexHelper.IsValidEmail(Email))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "EmailError", "Accept");
-                //Languages.Error, Languages.EmailError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailError, Languages.Accept);
                 return false;
             }
 

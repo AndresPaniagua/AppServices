@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
               xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="AppServices.Prism.Views.RegisterPage">
 
@@ -47,7 +48,8 @@
                                  Spacing="15">
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
-                            <Label Margin="0, 0, 0, -5" Text="Document:"/>
+                            <Label Margin="0, 0, 0, -5" 
+                                   Text="{i18n:Translate Document}"/>
                             <Entry
                                 Text="{Binding User.Document}"
                                 Keyboard="Chat"
@@ -56,7 +58,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Fullname:"/>
+                                   Text="{i18n:Translate Fullname}"/>
                             <Entry
                                 Text="{Binding User.FullName}"
                                 WidthRequest="300"/>
@@ -64,7 +66,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Address:"/>
+                                   Text="{i18n:Translate Address}"/>
                             <Entry
                                 Text="{Binding User.Address}"
                                 WidthRequest="300"/>
@@ -72,7 +74,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Phone:"/>
+                                   Text="{i18n:Translate Phone}"/>
                             <Entry
                                 Text="{Binding User.Phone}"
                                 Keyboard="Numeric"
@@ -81,7 +83,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Email:"/>
+                                   Text="{i18n:Translate Email}"/>
                             <Entry
                                 Text="{Binding User.Email}"
                                 Keyboard="Email"
@@ -90,7 +92,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="Password:"/>
+                                   Text="{i18n:Translate Password}"/>
                             <Entry
                                 Text="{Binding User.Password}"
                                 IsPassword="True"
@@ -99,7 +101,7 @@
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
-                                   Text="ConfirmPassword:"/>
+                                   Text="{i18n:Translate ConfirmPassword}"/>
                             <Entry
                                 Text="{Binding User.PasswordConfirm}"
                                 IsPassword="True"
@@ -112,7 +114,7 @@
 
                 <Button
                     Margin="0, 20, 0, 0"
-                    Text="Register"
+                    Text="{i18n:Translate Register}"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
@@ -130,7 +132,7 @@
                 	                       HorizontalOptions="Center"
                 	                       TextColor="Blue"
                 	                       IsVisible="{Binding IsRunning}"
-                	                       Title="Loading..."
+                	                       Title="{i18n:Translate Loading}"
                 	                       VerticalOptions="Center"
                 	                       ViewBoxWidth="120"
                 	                       ViewBoxHeight="120" />

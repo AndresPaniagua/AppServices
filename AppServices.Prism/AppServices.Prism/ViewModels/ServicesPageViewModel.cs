@@ -1,5 +1,6 @@
 ﻿using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Services";
+            Title = Languages.Services;
             LoadServicesAsync();
         }
 
@@ -60,7 +61,7 @@ namespace AppServices.Prism.ViewModels
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Languages.Error", "Languages.ConnectionError", "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -72,7 +73,7 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Languages.Error", response.Message, "Languages.Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             ServiceItemViewModel.Pos = 1;

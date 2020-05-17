@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
+using AppServices.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _regexHelper = regexHelper;
             _apiService = apiService;
-            Title = "Register";
+            Title = Languages.Register;
             IsEnabled = true;
             User = new UserRequest();
         }
@@ -65,8 +66,7 @@ namespace AppServices.Prism.ViewModels
             {
                 IsRunning = false;
                 IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert("Error", "ConnectionError", "Accept");
-                //Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -79,13 +79,11 @@ namespace AppServices.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
-                //Languages.Error, response.Message, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Ok", response.Message, "Accept");
-            //Languages.Ok, response.Message, Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
         }
 
@@ -93,57 +91,49 @@ namespace AppServices.Prism.ViewModels
         {
             if (string.IsNullOrEmpty(User.Document))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "DocumentError", "Accept");
-                //Languages.Error, Languages.DocumentError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.DocumentError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.FullName))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "FullNameError", "Accept");
-                //Languages.Error, Languages.FullNameError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.FullNameError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.Address))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "AddressError", "Accept");
-                //Languages.Error, Languages.AddressError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.AddressError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.Email) || !_regexHelper.IsValidEmail(User.Email))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "EmailError", "Accept");
-                //Languages.Error, Languages.EmailError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.Phone))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PhoneError", "Accept");
-                //Languages.Error, Languages.PhoneError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PhoneError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.Password) || User.Password?.Length < 6)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PasswordError", "Accept");
-                //Languages.Error, Languages.PasswordError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PasswordError, Languages.Accept);
                 return false;
             }
 
             if (string.IsNullOrEmpty(User.PasswordConfirm))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PasswordConfirmError1", "Accept");
-                //Languages.Error, Languages.PasswordConfirmError1, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PasswordConfirmError1, Languages.Accept);
                 return false;
             }
 
             if (User.Password != User.PasswordConfirm)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "PasswordConfirmError2", "Accept");
-                //Languages.Error, Languages.PasswordConfirmError2, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.PasswordConfirmError2, Languages.Accept);
                 return false;
             }
 

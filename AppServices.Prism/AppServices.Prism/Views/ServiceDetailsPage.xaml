@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -42,7 +43,7 @@
                     <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="CenterAndExpand">
                         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="Silueta.png" WidthRequest="20" HeightRequest="25" VerticalOptions="Center"/>
-                            <Label Text="Please, login to see information" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding NotLogin}"/>
+                            <Label Text="{i18n:Translate LoginSeeInfo}" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding NotLogin}"/>
                             <Label Text="{Binding Service.User.FullName}" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsLogin}"/>
                         </StackLayout>
                         <Label Text="{Binding Service.ServicesName}" FontSize="12" TextColor="#2C3E50" HorizontalOptions="CenterAndExpand"/>
@@ -60,12 +61,12 @@
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Button Text="+" FontSize="20" FontAttributes="Bold" BorderColor="Red" BackgroundColor="Red" WidthRequest="30" CornerRadius="30" Command="{Binding ReservedCommand}"/>
-                            <Label Text="Reserved" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
-                            <Label Text="To Login" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
+                            <Label Text="{i18n:Translate Reserve}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
+                            <Label Text="{i18n:Translate ToLogin}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                             <Image Source="phone.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
-                            <Label Text="Please, login to see information" TextColor="#2C3E50" FontSize="10" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
+                            <Label Text="{i18n:Translate LoginSeeInfo}" TextColor="#2C3E50" FontSize="10" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
                             <Label Text="{Binding Service.Phone}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
                         </StackLayout>
                     </Grid>
@@ -77,7 +78,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Description" FontSize="17" TextColor="#2C3E50"/>
+                    <Label Text="{i18n:Translate Description}" FontSize="17" TextColor="#2C3E50"/>
                     <Label Grid.Row="1" Text="{Binding Service.Description}" FontSize="14" TextColor="#707070"/>
                 </Grid>
             </Frame>
@@ -87,8 +88,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Where can I find him/her?" FontSize="17" TextColor="#2C3E50"/>
-                    <Label Grid.Row="1" Text="Please, login to see information" FontSize="17" TextColor="#2C3E50" IsVisible="{Binding NotLogin}"/>
+                    <Label Text="{i18n:Translate MapTitle}" FontSize="17" TextColor="#2C3E50"/>
+                    <Label Grid.Row="1" Text="{i18n:Translate LoginSeeInfo}" FontSize="17" TextColor="#2C3E50" IsVisible="{Binding NotLogin}"/>
                     <maps:Map x:Name="MyMap"
                               MapType="Street"
                               Grid.Row="1"

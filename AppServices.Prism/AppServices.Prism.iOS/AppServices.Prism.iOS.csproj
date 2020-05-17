@@ -91,6 +91,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -232,6 +233,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AppServices.Common\AppServices.Common.csproj">
+      <Project>{B868840F-C568-44C1-8428-FCEBAB51713F}</Project>
+      <Name>AppServices.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AppServices.Prism\AppServices.Prism.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>AppServices.Prism</Name>
