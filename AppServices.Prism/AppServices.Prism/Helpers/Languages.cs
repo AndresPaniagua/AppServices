@@ -14,6 +14,7 @@ namespace AppServices.Prism.Helpers
             Culture = ci.Name;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string LoginFacebook => Resource.LoginFacebook;
 
         public static string Culture { get; set; }
 

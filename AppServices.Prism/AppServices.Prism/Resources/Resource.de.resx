@@ -318,4 +318,7 @@
   <data name="SelectHour" xml:space="preserve">
     <value>Stunde auswählen...</value>
   </data>
+  <data name="LoginFacebook" xml:space="preserve">
+    <value>Mit Facebook anmelden</value>
+  </data>
 </root>
