@@ -65,8 +65,7 @@ namespace AppServices.Web.Data
                     PhoneNumber = phone,
                     Address = address,
                     Document = document,
-                    UserType = userType,
-                    LoginType=LoginType.AppService
+                    UserType = userType
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");

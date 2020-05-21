@@ -1,5 +1,4 @@
 ﻿using AppServices.Common.Enums;
-using AppServices.Common.Models;
 using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
@@ -140,32 +139,6 @@ namespace AppServices.Web.Helpers
         {
             return await _userManager.ResetPasswordAsync(user, token, password);
         }
-
-        public async Task<UserEntity> AddUserAsync(FacebookProfile model)
-        {
-            UserEntity userEntity = new UserEntity
-            {
-                Address = "...",
-                Document = "...",
-                Email = model.Email,
-                FullName = model.FirstName,
-                PhoneNumber = "...",
-                UserName = model.Email,
-                UserType = UserType.User,
-                LoginType = LoginType.Facebook
-            };
-
-            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Id);
-            if (result != IdentityResult.Success)
-            {
-                return null;
-            }
-
-            UserEntity newUser = await GetUserAsync(model.Email);
-            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
-            return newUser;
-        }
-
 
     }
 }

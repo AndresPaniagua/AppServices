@@ -1,5 +1,4 @@
 ﻿using AppServices.Common.Enums;
-using AppServices.Common.Models;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
 using Microsoft.AspNetCore.Identity;
@@ -27,8 +26,6 @@ namespace AppServices.Web.Helpers
         Task LogoutAsync();
 
         Task<UserEntity> AddUserAsync(AddUserViewModel model, UserType userType);
-
-        Task<UserEntity> AddUserAsync(FacebookProfile model);
 
         Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
 

@@ -162,8 +162,7 @@ namespace AppServices.Web.Helpers
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
                 UserType = user.UserType,
-                Address = user.Address,
-                LoginType = user.LoginType
+                Address = user.Address
             };
         }
 

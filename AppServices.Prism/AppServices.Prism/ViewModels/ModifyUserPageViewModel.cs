@@ -1,5 +1,4 @@
-﻿using AppServices.Common.Enums;
-using AppServices.Common.Helpers;
+﻿using AppServices.Common.Helpers;
 using AppServices.Common.Models;
 using AppServices.Common.Services;
 using AppServices.Prism.Helpers;
@@ -18,7 +17,6 @@ namespace AppServices.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
-        private bool _isAppServiceUser;
         private UserResponse _user;
         private DelegateCommand _saveCommand;
         private DelegateCommand _changePasswordCommand;
@@ -28,8 +26,6 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             IsEnabled = true;
-            IsAppServiceUser = User.LoginType == LoginType.AppService;
-
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             Title = Languages.ModifyUser;
         }
@@ -37,12 +33,6 @@ namespace AppServices.Prism.ViewModels
         public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveAsync));
-
-        public bool IsAppServiceUser
-        {
-            get => _isAppServiceUser;
-            set => SetProperty(ref _isAppServiceUser, value);
-        }
 
         public UserResponse User
         {
@@ -64,12 +54,6 @@ namespace AppServices.Prism.ViewModels
 
         private async void ChangePasswordAsync()
         {
-            if (!IsAppServiceUser)
-            {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoAppServiceUser, Languages.Accept);
-                return;
-            }
-
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 
