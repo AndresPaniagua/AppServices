@@ -7,8 +7,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AppServices.Web.Controllers.API
@@ -21,16 +27,66 @@ namespace AppServices.Web.Controllers.API
         private readonly IMailHelper _mailHelper;
 
         private readonly IConverterHelper _converterHelper;
+        private readonly IConfiguration _configuration;
 
         public AccountController(
             IUserHelper userHelper,
             IMailHelper mailHelper,
-            IConverterHelper converterHelper)
+            IConverterHelper converterHelper, IConfiguration configuration)
         {
             _userHelper = userHelper;
             _mailHelper = mailHelper;
             _converterHelper = converterHelper;
+            _configuration = configuration;
         }
+
+        [HttpPost]
+        [Route("LoginFacebook")]
+        public async Task<IActionResult> LoginFacebook([FromBody] FacebookProfile model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                if (user == null)
+                {
+                    await _userHelper.AddUserAsync(model);
+                }
+                else
+                {
+                    user.FullName = model.FirstName;
+                    await _userHelper.UpdateUserAsync(user);
+                }
+
+                object results = GetToken(model.Email);
+                return Created(string.Empty, results);
+            }
+
+            return BadRequest();
+        }
+
+        private object GetToken(string email)
+        {
+            Claim[] claims = new[]
+            {
+        new Claim(JwtRegisteredClaimNames.Sub, email),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
+
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
+            SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            JwtSecurityToken token = new JwtSecurityToken(
+                _configuration["Tokens:Issuer"],
+                _configuration["Tokens:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddDays(90),
+                signingCredentials: credentials);
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            };
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] UserRequest request)

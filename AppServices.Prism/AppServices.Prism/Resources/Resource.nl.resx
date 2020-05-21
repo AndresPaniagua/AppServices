@@ -321,4 +321,7 @@
   <data name="LoginFacebook" xml:space="preserve">
     <value>Aanmelden met Facebook</value>
   </data>
+  <data name="ChangePhotoNoAppServiceUser" xml:space="preserve">
+    <value>Gebruikers die door sociale netwerken zijn gemaakt, moeten de foto of het wachtwoord op het sociale netwerk wijzigen.!</value>
+  </data>
 </root>

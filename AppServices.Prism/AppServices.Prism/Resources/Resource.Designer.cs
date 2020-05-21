@@ -106,6 +106,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Users created by social networks, must change the photo or password on the social network..
+        /// </summary>
+        public static string ChangePhotoNoAppServiceUser {
+            get {
+                return ResourceManager.GetString("ChangePhotoNoAppServiceUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the confirm password.
         /// </summary>
         public static string ConfirmNewPasswordError {

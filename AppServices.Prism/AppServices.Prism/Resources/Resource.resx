@@ -321,4 +321,7 @@
   <data name="LoginFacebook" xml:space="preserve">
     <value>LogIn with Facebook</value>
   </data>
+  <data name="ChangePhotoNoAppServiceUser" xml:space="preserve">
+    <value>Users created by social networks, must change the photo or password on the social network.</value>
+  </data>
 </root>

@@ -16,6 +16,8 @@ namespace AppServices.Common.Models
 
         public string Address { get; set; }
 
+        public LoginType LoginType { get; set; }
+
         public UserType UserType { get; set; }
     }
 }

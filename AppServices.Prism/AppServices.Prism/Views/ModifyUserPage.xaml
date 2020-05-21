@@ -62,6 +62,7 @@
                                    Text="{i18n:Translate Fullname}"/>
                             <Entry
                                 Text="{Binding User.FullName}"
+                                IsEnabled="{Binding IsAppServiceUser}"
                                 WidthRequest="300"/>
                         </StackLayout>
 
