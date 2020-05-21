@@ -43,7 +43,7 @@
                         Source="logo.png"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
-                        HeightRequest="200"
+                        HeightRequest="201"
                         WidthRequest="200" />
 
                     <Label
