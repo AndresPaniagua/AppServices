@@ -152,5 +152,11 @@ namespace AppServices.Prism.Helpers
 
         public static string SelectHour => Resource.SelectHour;
 
+        public static string Unauthorized => Resource.Unauthorized;
+
+        public static string Canceled => Resource.Canceled;
+
+        public static string FacebookAuth => Resource.FacebookAuth;
+
     }
 }

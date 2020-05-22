@@ -5,6 +5,8 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="AppServices.Prism.Views.LoginPage">
 
     <NavigationPage.TitleView>
@@ -97,18 +99,7 @@
                     TextColor="White"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"/>
-                <Button 
-                    BackgroundColor="#4768AD" 
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    Command="{Binding LoginFacebookCommand}"
-                    HeightRequest="45"
-                    IsEnabled="{Binding IsEnabled}"
-                    ImageSource="ic_fb"
-                    Text="{i18n:Translate LoginFacebook}"
-                    TextColor="#FFFFFF"/>
+                
 
                 <Button
                     Text="{i18n:Translate NewAccount}"
@@ -120,6 +111,26 @@
                     TextColor="White"
                     Command="{Binding RegisterCommand}"
                     IsEnabled="{Binding IsEnabled}"/>
+
+                <ffimageloading:CachedImage Grid.Row="0"
+                                            Aspect="AspectFit"
+                                            Source="facebook"
+                                            CacheDuration= "50"
+                                            VerticalOptions="Center"
+                                            HeightRequest="50"
+                                            WidthRequest="80"
+                                            Margin="0, 20, 0, 20"
+                                            RetryCount= "3"
+                                            RetryDelay= "600"
+                                            IsEnabled="{Binding IsEnabled}">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:RoundedTransformation/>
+                    </ffimageloading:CachedImage.Transformations>
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LoginFacebookCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+
             </StackLayout>
             <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

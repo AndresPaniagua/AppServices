@@ -5,7 +5,6 @@ using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
 using UIKit;
 
-
 namespace AppServices.Prism.iOS
 {
     [Register("AppDelegate")]
@@ -21,6 +20,7 @@ namespace AppServices.Prism.iOS
             FacebookClientManager.Initialize(app, options);
             return base.FinishedLaunching(app, options);
         }
+
         public override void OnActivated(UIApplication uiApplication)
         {
             base.OnActivated(uiApplication);
@@ -38,8 +38,6 @@ namespace AppServices.Prism.iOS
         }
 
     }
-
-
 
     public class iOSInitializer : IPlatformInitializer
     {

@@ -321,4 +321,13 @@
   <data name="LoginFacebook" xml:space="preserve">
     <value>Iniciar sesión con Facebook</value>
   </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>No autorizado</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="FacebookAuth" xml:space="preserve">
+    <value>Autenticación con Facebook</value>
+  </data>
 </root>

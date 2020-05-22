@@ -97,6 +97,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Canceled.
+        /// </summary>
+        public static string Canceled {
+            get {
+                return ResourceManager.GetString("Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassword {
@@ -237,6 +246,15 @@ namespace AppServices.Prism.Resources {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facebook Authentication.
+        /// </summary>
+        public static string FacebookAuth {
+            get {
+                return ResourceManager.GetString("FacebookAuth", resourceCulture);
             }
         }
         
@@ -660,6 +678,15 @@ namespace AppServices.Prism.Resources {
         public static string TypeService {
             get {
                 return ResourceManager.GetString("TypeService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unauthorized.
+        /// </summary>
+        public static string Unauthorized {
+            get {
+                return ResourceManager.GetString("Unauthorized", resourceCulture);
             }
         }
         

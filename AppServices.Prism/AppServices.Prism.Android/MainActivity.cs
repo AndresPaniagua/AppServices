@@ -28,6 +28,7 @@ namespace AppServices.Prism.Droid
             FacebookClientManager.Initialize(this);
             CrossCurrentActivity.Current.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             new SfBusyIndicatorRenderer();
             Xamarin.FormsMaps.Init(this, bundle);
@@ -41,12 +42,10 @@ namespace AppServices.Prism.Droid
             FacebookClientManager.OnActivityResult(requestCode, resultCode, data);
         }
 
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
 
     }
 

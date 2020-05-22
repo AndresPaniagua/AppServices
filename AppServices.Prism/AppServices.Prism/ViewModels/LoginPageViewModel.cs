@@ -36,8 +36,11 @@ namespace AppServices.Prism.ViewModels
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
+
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(LoginAsync));
+
         public DelegateCommand LoginFacebookCommand => _loginFacebookCommand ?? (_loginFacebookCommand = new DelegateCommand(LoginFacebookAsync));
+
         public DelegateCommand ForgotPasswordCommand => _forgotPasswordCommand ?? (_forgotPasswordCommand = new DelegateCommand(RecoverPasswordAsync));
 
         public bool IsRunning
@@ -145,7 +148,6 @@ namespace AppServices.Prism.ViewModels
         {
             try
             {
-
                 if (_facebookService.IsLoggedIn)
                 {
                     _facebookService.Logout();
@@ -159,13 +161,13 @@ namespace AppServices.Prism.ViewModels
                             FacebookProfile facebookProfile = await Task.Run(() => JsonConvert.DeserializeObject<FacebookProfile>(e.Data));
                             break;
                         case FacebookActionStatus.Canceled:
-                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Canceled", "Ok");
+                            await App.Current.MainPage.DisplayAlert(Languages.FacebookAuth, Languages.Canceled, Languages.Ok);
                             break;
                         case FacebookActionStatus.Error:
-                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Error", "Ok");
+                            await App.Current.MainPage.DisplayAlert(Languages.FacebookAuth, Languages.Error, Languages.Ok);
                             break;
                         case FacebookActionStatus.Unauthorized:
-                            await App.Current.MainPage.DisplayAlert("Facebook Auth", "Unauthorized", "Ok");
+                            await App.Current.MainPage.DisplayAlert(Languages.FacebookAuth, Languages.Unauthorized, Languages.Ok);
                             break;
                     }
 
