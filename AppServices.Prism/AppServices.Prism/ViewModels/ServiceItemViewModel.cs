@@ -9,6 +9,7 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private DelegateCommand _selectServiceCommand;
+        private DelegateCommand _editServiceCommand;
 
         public ServiceItemViewModel(INavigationService navigationService)
         {
@@ -17,17 +18,7 @@ namespace AppServices.Prism.ViewModels
 
         public DelegateCommand SelectServiceCommand => _selectServiceCommand ?? (_selectServiceCommand = new DelegateCommand(SelectServiceAsync));
 
-        public static int Pos { get; set; }
-
-        public int Position
-        {
-            get
-            {
-                int o = Pos == 0 ? 1 : 0;
-                Pos = Pos == 0 ? 1 : 0;
-                return o;
-            }
-        }
+        public DelegateCommand EditServiceCommand => _editServiceCommand ?? (_editServiceCommand = new DelegateCommand(EditServiceAsync));
 
         private async void SelectServiceAsync()
         {
@@ -37,6 +28,16 @@ namespace AppServices.Prism.ViewModels
             };
 
             await _navigationService.NavigateAsync(nameof(ServiceDetailsPage), parameters);
+        }
+
+        private async void EditServiceAsync()
+        {
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "service", this }
+            };
+
+            await _navigationService.NavigateAsync(nameof(EditServicePage), parameters);
         }
 
     }

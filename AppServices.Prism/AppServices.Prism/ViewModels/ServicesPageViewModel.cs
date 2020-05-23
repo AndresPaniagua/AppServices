@@ -76,7 +76,6 @@ namespace AppServices.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
-            ServiceItemViewModel.Pos = 1;
             List<ServiceResponse> services = (List<ServiceResponse>)response.Result;
             _myServices = services.Select(a => new ServiceItemViewModel(_navigationService)
             {

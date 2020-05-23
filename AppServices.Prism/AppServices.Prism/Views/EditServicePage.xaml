@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="AppServices.Prism.Views.EditServicePage">
+
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               FontSize="Large"
+               TextColor="White"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ScrollView>
+        <AbsoluteLayout>
+            <StackLayout>
+                <Grid RowSpacing="0" ColumnSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <BoxView
+                        Grid.Row="0"
+                        Opacity="0.5"/>
+
+                    <ffimageloading:CachedImage Grid.Row="0"
+                                                Aspect="AspectFit"
+                                                Source="{Binding Image}"
+                                                CacheDuration= "50"
+                                                VerticalOptions="Center"
+                                                HeightRequest="100"
+                                                WidthRequest="100"
+                                                Margin="0, 20, 0, 20"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:RoundedTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ModifyImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+
+                    <StackLayout
+                        Grid.Row="2"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Center"
+                        Spacing="15">
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate ServicenamePlaceholder}"/>
+                            <Entry
+                                Text="{Binding Service.ServicesName}"
+                                Keyboard="Chat"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate StartDate}"/>
+                            <DatePicker
+                                Date="{Binding Service.StartDate}"
+                                MinimumDate="{Binding Today}"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate FinishDate}"/>
+                            <DatePicker
+                                Date="{Binding Service.FinishDate}"
+                                MinimumDate="{Binding Today}"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate Phone}"/>
+                            <Entry
+                                Text="{Binding Service.Phone}"
+                                Keyboard="Numeric"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate Description}"/>
+                            <Entry
+                                Text="{Binding Service.Description}"
+                                HeightRequest="115"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label Margin="0, 0, 0, -5"
+                                   Text="{i18n:Translate Price}"/>
+                            <Entry
+                                Keyboard="Numeric"                                
+                                Text="{Binding Service.Price}"
+                                WidthRequest="300"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="Center" Spacing="0">
+                            <Label  Margin="0, 0, 0, -5"
+                                    Text="{i18n:Translate TypeService}"
+                                    VerticalOptions="Center"/>
+                            <Picker ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding ServiceTypes}"
+                                    SelectedItem="{Binding ServiceType}"
+                                    Title="Select service type"
+                                    WidthRequest="300">
+                            </Picker>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
+                <Button
+                    Margin="0, 20, 0, 0"
+                    Text="{i18n:Translate Save}"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding SaveCommand}"
+                    CornerRadius="20"/>
+
+            </StackLayout>
+
+            <busyindicator:SfBusyIndicator AnimationType="Cupertino"
+                                           AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                           AbsoluteLayout.LayoutFlags="All"
+                	                       HorizontalOptions="Center"
+                	                       TextColor="Blue"
+                	                       IsVisible="{Binding IsRunning}"
+                	                       Title="{i18n:Translate Loading}"
+                	                       VerticalOptions="Center"
+                	                       ViewBoxWidth="120"
+                	                       ViewBoxHeight="120" />
+        </AbsoluteLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -297,5 +297,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\facebook.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EditService.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

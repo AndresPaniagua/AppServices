@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -16,9 +17,10 @@ namespace AppServices.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isEnabled;
         private bool _isRunning;
-        private List<ServiceResponse> _myServices;
+        private List<ServiceItemViewModel> _myServices;
 
-        public MyServicesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
+        public MyServicesPageViewModel(INavigationService navigationService, IApiService apiService)
+            : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
@@ -26,7 +28,7 @@ namespace AppServices.Prism.ViewModels
             LoadMyServicesAsync();
         }
 
-        public List<ServiceResponse> MyServices
+        public List<ServiceItemViewModel> MyServices
         {
             get => _myServices;
             set => SetProperty(ref _myServices, value);
@@ -70,15 +72,30 @@ namespace AppServices.Prism.ViewModels
                 servicesForUser,
                 "bearer",
                 token.Token);
-            IsRunning = false;
 
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+
+                IsRunning = false;
                 return;
             }
-            MyServices = (List<ServiceResponse>)response.Result;
 
+            List<ServiceResponse> services = (List<ServiceResponse>)response.Result;
+
+            MyServices = services.Select(a => new ServiceItemViewModel(_navigationService)
+            {
+                Id = a.Id,
+                ServicesName = a.ServicesName,
+                Description = a.Description,
+                Phone = a.Phone,
+                PhotoPath = a.PhotoPath,
+                FinishDate = a.FinishDate,
+                Price = a.Price,
+                ServiceType = a.ServiceType
+            }).ToList();
+
+            IsRunning = false;
         }
 
     }
