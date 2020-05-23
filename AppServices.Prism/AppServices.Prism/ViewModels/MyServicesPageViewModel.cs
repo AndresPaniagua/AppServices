@@ -15,15 +15,17 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
+        private static MyServicesPageViewModel _instance;
+        private List<ServiceItemViewModel> _myServices;
         private bool _isEnabled;
         private bool _isRunning;
-        private List<ServiceItemViewModel> _myServices;
 
         public MyServicesPageViewModel(INavigationService navigationService, IApiService apiService)
             : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            _instance = this;
             Title = Languages.MyServices;
             LoadMyServicesAsync();
         }
@@ -44,6 +46,11 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
+        }
+        
+        public static MyServicesPageViewModel GetInstance()
+        {
+            return _instance;
         }
 
         private async void LoadMyServicesAsync()
@@ -92,10 +99,55 @@ namespace AppServices.Prism.ViewModels
                 PhotoPath = a.PhotoPath,
                 FinishDate = a.FinishDate,
                 Price = a.Price,
+                Status = a.Status,
+                StartDate = a.StartDate,
                 ServiceType = a.ServiceType
             }).ToList();
 
             IsRunning = false;
+        }
+
+        public async void ReloadServices()
+        {
+            string url = App.Current.Resources["UrlAPI"].ToString();
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                return;
+            }
+
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            ServicesForUserRequest servicesForUser = new ServicesForUserRequest
+            {
+                UserId = Guid.Parse(user.Id),
+                CultureInfo = "en"
+            };
+
+            Response response = await _apiService.GetListAsync<ServiceResponse>(
+                url,
+                "/api",
+                "/Service/GetServicesForUser",
+                servicesForUser,
+                "bearer",
+                token.Token);
+
+            List<ServiceResponse> services = (List<ServiceResponse>)response.Result;
+
+            MyServices = services.Select(a => new ServiceItemViewModel(_navigationService)
+            {
+                Id = a.Id,
+                ServicesName = a.ServicesName,
+                Description = a.Description,
+                Phone = a.Phone,
+                PhotoPath = a.PhotoPath,
+                FinishDate = a.FinishDate,
+                Price = a.Price,
+                Status = a.Status,
+                StartDate = a.StartDate,
+                ServiceType = a.ServiceType
+            }).ToList();
+
         }
 
     }

@@ -392,7 +392,7 @@ namespace AppServices.Common.Services
                     };
                 }
 
-               
+
                 return new Response
                 {
                     IsSuccess = true,

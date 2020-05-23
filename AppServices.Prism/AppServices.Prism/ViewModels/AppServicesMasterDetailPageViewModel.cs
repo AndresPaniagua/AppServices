@@ -35,17 +35,17 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _user, value);
         }
 
+        public static AppServicesMasterDetailPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
         private void LoadUser()
         {
             if (Settings.IsLogin)
             {
                 User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             }
-        }
-
-        public static AppServicesMasterDetailPageViewModel GetInstance()
-        {
-            return _instance;
         }
 
         private async void ModifyUserAsync()
@@ -133,5 +133,6 @@ namespace AppServices.Prism.ViewModels
             Settings.User = JsonConvert.SerializeObject(userResponse);
             LoadUser();
         }
+
     }
 }

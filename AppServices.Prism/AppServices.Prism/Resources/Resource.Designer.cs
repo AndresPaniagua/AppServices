@@ -673,6 +673,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visible.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To Login.
         /// </summary>
         public static string ToLogin {
@@ -696,6 +705,15 @@ namespace AppServices.Prism.Resources {
         public static string Unauthorized {
             get {
                 return ResourceManager.GetString("Unauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service was update successfully.
+        /// </summary>
+        public static string UpdateService {
+            get {
+                return ResourceManager.GetString("UpdateService", resourceCulture);
             }
         }
         

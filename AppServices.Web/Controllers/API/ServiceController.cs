@@ -38,12 +38,13 @@ namespace AppServices.Web.Controllers.API
         public async Task<IActionResult> GetServicesAsync()
         {
             List<ServiceEntity> services = await _context.Services
-               .Include(t => t.User)
-               .Include(s => s.ServiceType)
-               .Include(r => r.Reservations)
-               .ThenInclude(s => s.DiaryDate)
-               .ThenInclude(dd => dd.Hours)
-               .ToListAsync();
+                .Include(s => s.Status)
+                .Include(t => t.User)
+                .Include(s => s.ServiceType)
+                .Include(r => r.Reservations)
+                .ThenInclude(s => s.DiaryDate)
+                .ThenInclude(dd => dd.Hours)
+                .ToListAsync();
 
             return Ok(_converterHelper.ToServiceResponse(services));
         }
@@ -54,15 +55,16 @@ namespace AppServices.Web.Controllers.API
         public async Task<IActionResult> GetServicesForUser([FromBody] ServicesForUserRequest request)
         {
             List<ServiceEntity> services = await _context.Services
-              .Include(s => s.User)
-              .Include(u => u.ServiceType)
-              .Include(st => st.Reservations)
-              .ThenInclude(r => r.User)
-              .Include(st => st.Reservations)
-              .ThenInclude(r => r.DiaryDate)
-              .ThenInclude(dd => dd.Hours)
-              .Where(u => u.User.Id == request.UserId.ToString())
-              .ToListAsync();
+                .Include(s => s.Status)
+                .Include(s => s.User)
+                .Include(u => u.ServiceType)
+                .Include(st => st.Reservations)
+                .ThenInclude(r => r.User)
+                .Include(st => st.Reservations)
+                .ThenInclude(r => r.DiaryDate)
+                .ThenInclude(dd => dd.Hours)
+                .Where(u => u.User.Id == request.UserId.ToString())
+                .ToListAsync();
 
             return Ok(_converterHelper.ToServiceResponse(services));
 
@@ -112,7 +114,11 @@ namespace AppServices.Web.Controllers.API
                     Description = request.Description,
                     Price = request.Price,
                     User = userEntity,
-                    ServiceType = serviceType
+                    ServiceType = serviceType,
+                    Status = new StatusEntity
+                    {
+                        Name = "Active"
+                    }
                 };
 
                 _context.Services.Add(serviceEntity);
@@ -124,11 +130,19 @@ namespace AppServices.Web.Controllers.API
                     picturePath = serviceEntity.PhotoPath;
                 }
 
+                StatusEntity statusTest = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == request.Status.Name);
+                if (statusTest == null)
+                    _context.Statuses.Add(new StatusEntity { Name = request.Status.Name });
+
+                serviceEntity.ServicesName = request.ServicesName;
                 serviceEntity.FinishDate = request.FinishDate;
+                serviceEntity.StartDate = request.StartDate;
                 serviceEntity.Description = request.Description;
                 serviceEntity.Price = request.Price;
                 serviceEntity.PhotoPath = picturePath;
                 serviceEntity.Phone = request.Phone;
+                serviceEntity.ServiceType = serviceType;
+                serviceEntity.Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == request.Status.Name);
                 _context.Services.Update(serviceEntity);
             }
 

@@ -333,4 +333,10 @@
   <data name="ChangePasswordNoAppServiceUser" xml:space="preserve">
     <value>Users created by social networks, must change the password on the social network</value>
   </data>
+  <data name="UpdateService" xml:space="preserve">
+    <value>Service was update successfully</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Visible</value>
+  </data>
 </root>

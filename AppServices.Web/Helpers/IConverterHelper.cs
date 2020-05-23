@@ -23,5 +23,8 @@ namespace AppServices.Web.Helpers
         List<ReservationResponse> ToReservationResponse(List<ReservationEntity> reservations);
 
         List<ReservationsForUserResponse> ToReservationsForUserResponse(List<ReservationEntity> reservations);
+
+        StatusEntity ToStatusEntity(StatusResponse status);
+
     }
 }

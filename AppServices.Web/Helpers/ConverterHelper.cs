@@ -207,5 +207,18 @@ namespace AppServices.Web.Helpers
             };
         }
 
+        public StatusEntity ToStatusEntity(StatusResponse status)
+        {
+            if (status != null)
+            {
+                return new StatusEntity
+                {
+                    Id = status.Id,
+                    Name = status.Name
+                };
+            }
+            return null;
+        }
+
     }
 }

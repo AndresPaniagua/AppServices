@@ -38,6 +38,8 @@ namespace AppServices.Common.Models
 
         public decimal Price { get; set; }
 
+        public StatusResponse Status { get; set; }
+
         [Display(Name = "Photo")]
         public byte[] PhotoArray { get; set; }
 

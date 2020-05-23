@@ -26,6 +26,20 @@
     <ScrollView>
         <AbsoluteLayout>
             <StackLayout>
+                
+                <StackLayout Orientation="Horizontal" 
+                             HorizontalOptions="End" 
+                             Margin="10">
+                    
+                    <Label Text="{i18n:Translate Status}"
+                           FontSize="Large"
+                           FontAttributes="Bold"/>
+                    <CheckBox Color="Red"
+                              IsChecked="{Binding IsCheck}"/>
+                    
+                </StackLayout>
+                
+                
                 <Grid RowSpacing="0" ColumnSpacing="0">
 
                     <Grid.RowDefinitions>

@@ -160,5 +160,9 @@ namespace AppServices.Prism.Helpers
 
         public static string ChangePasswordNoAppServiceUser => Resource.ChangePasswordNoAppServiceUser;
 
+        public static string UpdateService => Resource.UpdateService;
+
+        public static string Status => Resource.Status;
+
     }
 }

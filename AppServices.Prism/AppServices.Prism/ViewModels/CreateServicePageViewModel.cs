@@ -231,8 +231,6 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-
-
             Response response = await _apiService.GetListAsync<ServiceTypeResponse>(url, "/api", "/ServiceType");
             IsRunning = false;
             IsEnabled = true;
