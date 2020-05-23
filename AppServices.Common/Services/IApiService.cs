@@ -27,5 +27,6 @@ namespace AppServices.Common.Services
 
         Task<Response> ReservationAsync(string urlBase, string servicePrefix, string controller, ReservationRequest reservation, string tokenType, string accessToken);
 
+        Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, FacebookProfile request);
     }
 }

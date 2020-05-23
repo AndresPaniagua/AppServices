@@ -3,7 +3,7 @@
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">App Services</string>
 
-  <string name="facebook_app_name">App service</string>
+  <string name="facebook_app_name">App Service</string>
   <string name="facebook_app_id">1116264212084112</string>
   <string name="fb_login_protocol_scheme">fb1116264212084112</string>
 

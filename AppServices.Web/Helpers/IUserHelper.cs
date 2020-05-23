@@ -1,4 +1,5 @@
 ﻿using AppServices.Common.Enums;
+using AppServices.Common.Models;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Models;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,8 @@ namespace AppServices.Web.Helpers
         Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
+
+        Task<UserEntity> AddUserAsync(FacebookProfile model);
 
     }
 }

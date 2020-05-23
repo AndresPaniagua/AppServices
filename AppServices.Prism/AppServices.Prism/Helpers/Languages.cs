@@ -158,5 +158,7 @@ namespace AppServices.Prism.Helpers
 
         public static string FacebookAuth => Resource.FacebookAuth;
 
+        public static string ChangePasswordNoAppServiceUser => Resource.ChangePasswordNoAppServiceUser;
+
     }
 }

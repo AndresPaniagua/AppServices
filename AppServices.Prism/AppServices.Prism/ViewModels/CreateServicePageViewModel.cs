@@ -137,9 +137,9 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
-            await _navigationService.GoBackAsync();
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.CreateService, Languages.Accept);
 
+            await _navigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/ServicesPage");
         }
 
         private async void ChangeImageAsync()

@@ -330,4 +330,7 @@
   <data name="FacebookAuth" xml:space="preserve">
     <value>Authentification Facebook</value>
   </data>
+  <data name="ChangePasswordNoAppServiceUser" xml:space="preserve">
+    <value>Les utilisateurs créés par les réseaux sociaux, doivent changer le mot de passe sur le réseau social</value>
+  </data>
 </root>
