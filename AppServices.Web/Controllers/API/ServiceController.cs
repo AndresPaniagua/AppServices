@@ -61,6 +61,8 @@ namespace AppServices.Web.Controllers.API
                 .Include(st => st.Reservations)
                 .ThenInclude(r => r.User)
                 .Include(st => st.Reservations)
+                .ThenInclude(r => r.Status)
+                .Include(st => st.Reservations)
                 .ThenInclude(r => r.DiaryDate)
                 .ThenInclude(dd => dd.Hours)
                 .Where(u => u.User.Id == request.UserId.ToString())

@@ -156,4 +156,10 @@
   <data name="ConfirmEmailSubject" xml:space="preserve">
     <value>Klik op deze link om de gebruiker toe te staan</value>
   </data>
+  <data name="ReservationDoesnExists" xml:space="preserve">
+    <value>Deze reservering bestaat niet</value>
+  </data>
+  <data name="ReservationStatus" xml:space="preserve">
+    <value>De reservering is geaccepteerd</value>
+  </data>
 </root>

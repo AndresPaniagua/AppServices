@@ -7,5 +7,7 @@
         public DiaryDateResponse DiaryDate { get; set; }
 
         public UserResponse User { get; set; }
+
+        public StatusResponse Status { get; set; }
     }
 }

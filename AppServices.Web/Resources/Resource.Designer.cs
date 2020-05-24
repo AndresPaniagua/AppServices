@@ -142,11 +142,29 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This reservation doesn&apos;t exists.
+        /// </summary>
+        public static string ReservationDoesnExists {
+            get {
+                return ResourceManager.GetString("ReservationDoesnExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This date is already reserved.
         /// </summary>
         public static string ReservationExists {
             get {
                 return ResourceManager.GetString("ReservationExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reservation was accepted.
+        /// </summary>
+        public static string ReservationStatus {
+            get {
+                return ResourceManager.GetString("ReservationStatus", resourceCulture);
             }
         }
         

@@ -99,7 +99,7 @@ namespace AppServices.Prism.ViewModels
             {
                 aux.AddRange(service.Reservations);
             }
-            aux = aux.OrderByDescending(r => r.DiaryDate.Date).ToList();
+            aux = aux.OrderByDescending(r => r.DiaryDate.Date).Where(r => r.Status.Name == "Active").ToList();
             Reservations = aux;
 
             IsEmpty = Reservations.Count <= 0;

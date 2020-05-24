@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Enums;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace AppServices.Web.Data
         {
             await _context.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
+            await CheckStatusAsync();
             await CheckServicesTypesAsync();
 
             await CheckUserAsync("1010", "Juan Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Cl. 85 #95-46, Medellín, Antioquía, Colombia", UserType.Admin);
@@ -44,6 +46,15 @@ namespace AppServices.Web.Data
         {
             await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
             await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
+
+        private async Task CheckStatusAsync()
+        {
+            await _context.Statuses.AddAsync(new StatusEntity { Name = "Active" });
+            await _context.Statuses.AddAsync(new StatusEntity { Name = "Inactive" });
+            await _context.Statuses.AddAsync(new StatusEntity { Name = "Waiting" });
+
+            await _context.SaveChangesAsync();
         }
 
         private async Task<UserEntity> CheckUserAsync(
@@ -123,12 +134,8 @@ namespace AppServices.Web.Data
                     PhotoPath = $"~/images/Services/Plomeria.jpg",
                     ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Plumbing"),
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                    Status = new StatusEntity
-                    {
-                        Name = "Active"
-                    }
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Active")
                 });
-
 
                 await _context.SaveChangesAsync();
             }
@@ -156,10 +163,7 @@ namespace AppServices.Web.Data
                     PhotoPath = $"~/images/Services/Computadores.jpg",
                     ServiceType = _context.ServiceTypes.FirstOrDefault(s => s.Name == "Computer maintenance"),
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                    Status = new StatusEntity
-                    {
-                        Name = "Active"
-                    }
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Active")
                 });
 
                 await _context.SaveChangesAsync();
@@ -182,7 +186,8 @@ namespace AppServices.Web.Data
                         Date = reservationDate
                     },
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
+                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault(),
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Active")
                 });
 
                 await _context.SaveChangesAsync();
@@ -204,7 +209,8 @@ namespace AppServices.Web.Data
                         Date = reservationDate
                     },
                     User = _context.Users.Where(u => u.Email == email).FirstOrDefault(),
-                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault()
+                    Service = _context.Services.Where(s => s.User.Email == emailService).FirstOrDefault(),
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Waiting")
                 });
 
                 await _context.SaveChangesAsync();

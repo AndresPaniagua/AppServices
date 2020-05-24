@@ -10,5 +10,6 @@
 
         public ServiceEntity Service { get; set; }
 
+        public StatusEntity Status { get; set; }
     }
 }

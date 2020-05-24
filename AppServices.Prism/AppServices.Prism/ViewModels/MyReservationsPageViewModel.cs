@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -87,7 +88,8 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            Reservations = (List<ReservationsForUserResponse>)response.Result;
+            List<ReservationsForUserResponse> aux = (List<ReservationsForUserResponse>)response.Result;
+            Reservations = aux.Where(r => r.Status.Name == "Active").ToList();
             IsRunning = false;
             IsEmpty = Reservations.Count <= 0;
         }

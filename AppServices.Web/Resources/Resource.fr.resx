@@ -156,4 +156,10 @@
   <data name="RecoverPassword" xml:space="preserve">
     <value>Récupérer mot de passe</value>
   </data>
+  <data name="ReservationDoesnExists" xml:space="preserve">
+    <value>Cette réservation n'existe pas</value>
+  </data>
+  <data name="ReservationStatus" xml:space="preserve">
+    <value>La réservation a été acceptée</value>
+  </data>
 </root>

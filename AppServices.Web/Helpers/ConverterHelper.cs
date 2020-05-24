@@ -102,7 +102,8 @@ namespace AppServices.Web.Helpers
             {
                 Id = reservation.Id,
                 DiaryDate = ToDiaryDateResponse(reservation.DiaryDate),
-                User = ToUserResponse(reservation.User)
+                User = ToUserResponse(reservation.User),
+                Status = ToStatusResponse(reservation.Status)
             };
         }
 
@@ -185,7 +186,8 @@ namespace AppServices.Web.Helpers
                 Id = reservation.Id,
                 DiaryDate = ToDiaryDateResponse(reservation.DiaryDate),
                 User = ToUserResponse(reservation.User),
-                Service = ToServiceForUserResponse(reservation.Service)
+                Service = ToServiceForUserResponse(reservation.Service),
+                Status = ToStatusResponse(reservation.Status)
             };
         }
 

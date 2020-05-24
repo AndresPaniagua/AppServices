@@ -82,7 +82,8 @@ namespace AppServices.Web.Controllers.API
                 {
                     DiaryDate = result.DiaryDate,
                     User = userEntity,
-                    Service = service
+                    Service = service,
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Waiting")
                 });
             }
             else
@@ -102,7 +103,8 @@ namespace AppServices.Web.Controllers.API
                         }
                     },
                     User = userEntity,
-                    Service = service
+                    Service = service,
+                    Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Waiting")
                 });
 
             }
@@ -121,10 +123,36 @@ namespace AppServices.Web.Controllers.API
               .Include(s => s.Service)
               .Include(dd => dd.DiaryDate)
               .ThenInclude(dh => dh.Hours)
+              .Include(r => r.Status)
               .Where(u => u.User.Id.ToString() == request.UserId.ToString())
               .ToListAsync();
 
             return Ok(_converterHelper.ToReservationsForUserResponse(reservations));
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Route("AceptedReservation")]
+        public async Task<IActionResult> AceptedReservation([FromBody] ReservationModel request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+            ReservationEntity result = await _context.Reservations.FirstOrDefaultAsync(r => r.Id == request.IdReservation);
+
+            if (result != null)
+            {
+                result.Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Active");
+                await _context.SaveChangesAsync();
+                return Ok(Resource.ReservationStatus);
+            }
+            return BadRequest(Resource.ReservationDoesnExists);
+        }
+
     }
 }

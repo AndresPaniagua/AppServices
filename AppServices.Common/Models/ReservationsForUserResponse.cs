@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AppServices.Common.Models
+﻿namespace AppServices.Common.Models
 {
     public class ReservationsForUserResponse
     {
@@ -13,6 +9,8 @@ namespace AppServices.Common.Models
         public ServiceResponse Service { get; set; }
 
         public DiaryDateResponse DiaryDate { get; set; }
+
+        public StatusResponse Status { get; set; }
 
     }
 }
