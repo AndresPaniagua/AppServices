@@ -170,5 +170,9 @@ namespace AppServices.Prism.Helpers
 
         public static string RegisterSuccess => Resource.RegisterSuccess;
 
+        public static string ServiceTypePlaceHolder => Resource.ServiceTypePlaceHolder;
+
+        public static string Filter => Resource.Filter;
+
     }
 }

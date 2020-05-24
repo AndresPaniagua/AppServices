@@ -277,6 +277,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish Date.
         /// </summary>
         public static string FinishDate {
@@ -687,6 +696,15 @@ namespace AppServices.Prism.Resources {
         public static string ServiceTypeError {
             get {
                 return ResourceManager.GetString("ServiceTypeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select service type.
+        /// </summary>
+        public static string ServiceTypePlaceHolder {
+            get {
+                return ResourceManager.GetString("ServiceTypePlaceHolder", resourceCulture);
             }
         }
         

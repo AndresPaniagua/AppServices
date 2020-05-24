@@ -60,8 +60,8 @@
                                              Margin="10">
 
                                 <Label Text="{Binding Service.ServicesName}"
-                                           FontAttributes="Bold"
-                                           FontSize="14"/>                                
+                                       FontAttributes="Bold"
+                                       FontSize="14"/>                                
 
                                 <Label Text="{Binding Service.Price}"
                                        FontSize="12"/>

@@ -348,4 +348,10 @@
   <data name="RegisterSuccess" xml:space="preserve">
     <value>Ses travaux se sont achevés sur un succès</value>
   </data>
+  <data name="ServiceTypePlaceHolder" xml:space="preserve">
+    <value>Sélectionner letype de service</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtrer</value>
+  </data>
 </root>

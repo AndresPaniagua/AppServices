@@ -2,21 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="AppServices.Prism.Views.ServicesPage">
 
     <NavigationPage.TitleView>
-        <Label Text="{Binding Title}" 
-               VerticalOptions="Center" 
-               HorizontalOptions="Center"
-               FontSize="Large"
-               TextColor="White"/>
+        <Frame BackgroundColor="#1976D2"
+               Opacity="0.8"
+               HasShadow="True"
+               IsClippedToBounds="True">
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="5"/>
+                    <On Platform="Android" Value="5"/>
+                </OnPlatform>
+            </Frame.Margin>
+            <Frame.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0"/>
+                    <On Platform="Android" Value="0"/>
+                </OnPlatform>
+            </Frame.Padding>
+            <Frame.Content>
+                <SearchBar TextColor="White"
+                           PlaceholderColor="White"
+                           Placeholder="{i18n:Translate ServicenamePlaceholder}"
+                           SearchCommand="{Binding SearchCommand}"
+                           Text="{Binding Search}"
+                           IsEnabled="{Binding IsNotEnable}"/>
+            </Frame.Content>
+        </Frame>
     </NavigationPage.TitleView>
 
     <ContentPage.Padding>
@@ -29,11 +47,48 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <SearchBar Margin="10,0"
-                       Placeholder="{i18n:Translate ServicenamePlaceholder}"
-                       SearchCommand="{Binding SearchCommand}"
-                       Text="{Binding Search}"
-                       IsEnabled="{Binding IsNotEnable}"/>
+
+            <cards:SfCardView Margin="5" 
+                              HeightRequest="150"
+                              IsVisible="{Binding IsNotEnable}">
+                <StackLayout>
+
+                    <CollectionView  ItemsSource="{Binding TypeServices}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox Grid.Column="0"
+                                              x:Name="checkBox"
+                                              IsChecked="{Binding IsCheck}"
+                                              VerticalOptions="Center"
+                                              Margin="0, 0, -2, 0"/>
+                                    <Label Grid.Column="1"
+                                           Margin="-2, 0, 5, 0"
+                                           VerticalOptions="Center"
+                                           Text="{Binding Name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            HeightRequest="35"
+                            Margin="0, 0, 0, 5"
+                            BackgroundColor="Red"
+                            TextColor="White"
+                            FontSize="Small"
+                            Text="{i18n:Translate Filter}"
+                            Command="{Binding FilterCommand}"/>
+                </StackLayout>
+            </cards:SfCardView>
+            
             <CollectionView ItemsSource="{Binding Services}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -102,7 +157,6 @@
                            AbsoluteLayout.LayoutFlags="All"
                            Padding="20"
                            WaveColor="#B8D4F2"
-                           Color="#F4E2EE"
                            WaveDirection="LeftToRight">
 
             <shimmer:SfShimmer.CustomView>
@@ -249,24 +303,11 @@
                         </StackLayout>
                     </cards:SfCardView>
 
-                    
+
                 </Grid>
             </shimmer:SfShimmer.CustomView>
         </shimmer:SfShimmer>
 
-
-
-        <!--<busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                    AbsoluteLayout.LayoutFlags="All"
-                	                    BackgroundColor="Transparent"
-                	                    HorizontalOptions="Center"
-                	                    TextColor="Blue"
-                	                    IsVisible="{Binding IsRunning}"
-                	                    Title="{i18n:Translate Loading}"
-                	                    VerticalOptions="Center"
-                	                    ViewBoxWidth="80"
-                	                    ViewBoxHeight="80" />-->
 
     </AbsoluteLayout>
 

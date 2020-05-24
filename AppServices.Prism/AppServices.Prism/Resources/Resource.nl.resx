@@ -348,4 +348,10 @@
   <data name="RegisterSuccess" xml:space="preserve">
     <value>Het register is succesvol afgerond</value>
   </data>
+  <data name="ServiceTypePlaceHolder" xml:space="preserve">
+    <value>Selecteer dienst</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filteren</value>
+  </data>
 </root>

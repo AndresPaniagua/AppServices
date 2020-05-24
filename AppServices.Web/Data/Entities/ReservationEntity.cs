@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AppServices.Web.Data.Entities
+﻿namespace AppServices.Web.Data.Entities
 {
     public class ReservationEntity
     {

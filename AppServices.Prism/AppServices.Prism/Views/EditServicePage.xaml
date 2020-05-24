@@ -61,7 +61,8 @@
                                                 WidthRequest="100"
                                                 Margin="0, 20, 0, 20"
                                                 RetryCount= "3"
-                                                RetryDelay= "600">
+                                                RetryDelay= "600"
+                                                IsEnabled="{Binding IsCheck}">
                         <ffimageloading:CachedImage.Transformations>
                             <fftransformations:RoundedTransformation/>
                         </ffimageloading:CachedImage.Transformations>
@@ -82,7 +83,8 @@
                             <Entry
                                 Text="{Binding Service.ServicesName}"
                                 Keyboard="Chat"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -91,7 +93,8 @@
                             <DatePicker
                                 Date="{Binding Service.StartDate}"
                                 MinimumDate="{Binding Today}"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -100,7 +103,8 @@
                             <DatePicker
                                 Date="{Binding Service.FinishDate}"
                                 MinimumDate="{Binding Today}"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -109,7 +113,8 @@
                             <Entry
                                 Text="{Binding Service.Phone}"
                                 Keyboard="Numeric"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -118,7 +123,8 @@
                             <Entry
                                 Text="{Binding Service.Description}"
                                 HeightRequest="115"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -127,7 +133,8 @@
                             <Entry
                                 Keyboard="Numeric"                                
                                 Text="{Binding Service.Price}"
-                                WidthRequest="300"/>
+                                WidthRequest="300"
+                                IsEnabled="{Binding IsCheck}"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">
@@ -137,8 +144,9 @@
                             <Picker ItemDisplayBinding="{Binding Name}"
                                     ItemsSource="{Binding ServiceTypes}"
                                     SelectedItem="{Binding ServiceType}"
-                                    Title="Select service type"
-                                    WidthRequest="300">
+                                    Title="{i18n:Translate ServiceTypePlaceHolder}"
+                                    WidthRequest="300"
+                                    IsEnabled="{Binding IsCheck}">
                             </Picker>
                         </StackLayout>
 

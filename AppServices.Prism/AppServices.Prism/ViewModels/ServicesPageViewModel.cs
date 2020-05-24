@@ -3,6 +3,7 @@ using AppServices.Common.Services;
 using AppServices.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace AppServices.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private DelegateCommand _searchCommand;
+        private DelegateCommand _filterCommand;
         private ObservableCollection<ServiceItemViewModel> _services;
+        private ObservableCollection<ServiceTypeModel> _typeServices;
         private List<ServiceItemViewModel> _myServices;
         private bool _isRunning;
         private string _search;
@@ -28,8 +31,13 @@ namespace AppServices.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = Languages.Services;
+            LoadTypesAsync();
             LoadServicesAsync();
         }
+
+        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowServices));
+
+        public DelegateCommand FilterCommand => _filterCommand ?? (_filterCommand = new DelegateCommand(FilterServices));
 
         public ObservableCollection<ServiceItemViewModel> Services
         {
@@ -37,7 +45,11 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _services, value);
         }
 
-        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowServices));
+        public ObservableCollection<ServiceTypeModel> TypeServices
+        {
+            get => _typeServices;
+            set => SetProperty(ref _typeServices, value);
+        }
 
         public bool IsRunning
         {
@@ -77,8 +89,6 @@ namespace AppServices.Prism.ViewModels
                 url,
                 "/api",
                 "/Service");
-            IsRunning = false;
-            IsNotEnable = true;
 
             if (!response.IsSuccess)
             {
@@ -99,8 +109,38 @@ namespace AppServices.Prism.ViewModels
                 Status = a.Status,
                 ServiceType = a.ServiceType,
                 User = a.User
-            }).Where(s => s?.Status?.Name == "Active").ToList();
+            }).Where(s => s?.Status?.Name == "Active").OrderBy(s => s.ServiceType.Name).ToList();
+
+            IsRunning = false;
+            IsNotEnable = true;
+
             ShowServices();
+        }
+
+        private async void LoadTypesAsync()
+        {
+            IsRunning = true;
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+
+            Response response = await _apiService.GetListAsync<ServiceTypeModel>(url, "/api", "/ServiceType");
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+
+            List<ServiceTypeModel> list = (List<ServiceTypeModel>)response.Result;
+            foreach (var item in list)
+            {
+                item.IsCheck = true;
+            }
+            TypeServices = new ObservableCollection<ServiceTypeModel>(list.OrderBy(t => t.Name));
         }
 
         private void ShowServices()
@@ -115,6 +155,24 @@ namespace AppServices.Prism.ViewModels
                     _myServices.Where(p => p.ServicesName.ToUpper().Contains(Search.ToUpper()) ||
                                             p.ServicesName.ToUpper().Contains(Search.ToUpper())));
             }
+        }
+
+        private void FilterServices()
+        {
+            IsRunning = true;
+            IsNotEnable = false;
+            List<ServiceItemViewModel> aux = new List<ServiceItemViewModel>();
+            foreach (var type in TypeServices)
+            {
+                if (type.IsCheck)
+                {
+                    aux = aux.Concat(_myServices.Where(p => p.ServiceType.Name.ToUpper().Contains(type.Name.ToUpper()) || 
+                                                        p.ServiceType.Name.ToUpper().Contains(type.Name.ToUpper()))).ToList();
+                }
+            }
+            Services = new ObservableCollection<ServiceItemViewModel>(aux);
+            IsRunning = false;
+            IsNotEnable = true;
         }
 
     }
