@@ -136,7 +136,7 @@ namespace AppServices.Prism.ViewModels
                 Date = DateTime.Today;
             }
 
-            _reservation.CultureInfo = "en";
+            _reservation.CultureInfo = Languages.Culture;
             _reservation.IdService = Service.Id;
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);

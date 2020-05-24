@@ -92,7 +92,7 @@ namespace AppServices.Prism.ViewModels
                 Password = "123456",
                 PasswordConfirm = "123456",
                 Phone = User.PhoneNumber,
-                Cultureinfo = "es"
+                Cultureinfo = Languages.Culture
 
             };
 
@@ -130,7 +130,7 @@ namespace AppServices.Prism.ViewModels
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             EmailRequest emailRequest = new EmailRequest
             {
-                CultureInfo = "en",
+                CultureInfo = Languages.Culture,
                 Email = user.Email
             };
 
@@ -177,5 +177,6 @@ namespace AppServices.Prism.ViewModels
 
             return true;
         }
+    
     }
 }

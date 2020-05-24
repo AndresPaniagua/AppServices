@@ -64,7 +64,7 @@ namespace AppServices.Prism.ViewModels
                 Email = user.Email,
                 NewPassword = NewPassword,
                 OldPassword = CurrentPassword,
-                CultureInfo = "en"
+                CultureInfo = Languages.Culture
             };
 
             string url = App.Current.Resources["UrlAPI"].ToString();

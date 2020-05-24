@@ -71,7 +71,7 @@ namespace AppServices.Prism.ViewModels
             }
 
 
-            User.Cultureinfo = "es";
+            User.Cultureinfo = Languages.Culture;
 
             Response response = await _apiService.RegisterUserAsync(url, "/api", "/Account", User);
             IsRunning = false;

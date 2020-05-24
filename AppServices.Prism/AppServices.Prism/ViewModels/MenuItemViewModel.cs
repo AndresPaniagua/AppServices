@@ -35,5 +35,6 @@ namespace AppServices.Prism.ViewModels
                 await _navigationService.NavigateAsync($"/AppServicesMasterDetailPage/NavigationPage/{PageName}");
             }
         }
+    
     }
 }

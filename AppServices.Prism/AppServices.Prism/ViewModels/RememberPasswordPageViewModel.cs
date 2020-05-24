@@ -57,7 +57,7 @@ namespace AppServices.Prism.ViewModels
             EmailRequest request = new EmailRequest
             {
                 Email = Email,
-                CultureInfo = "es"
+                CultureInfo = Languages.Culture
             };
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.RecoverPasswordAsync(url, "/api", "/Account/RecoverPassword", request);

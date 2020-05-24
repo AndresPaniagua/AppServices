@@ -132,7 +132,9 @@ namespace AppServices.Web.Controllers.API
 
                 StatusEntity statusTest = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == request.Status.Name);
                 if (statusTest == null)
+                {
                     _context.Statuses.Add(new StatusEntity { Name = request.Status.Name });
+                }
 
                 serviceEntity.ServicesName = request.ServicesName;
                 serviceEntity.FinishDate = request.FinishDate;

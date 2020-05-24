@@ -115,7 +115,7 @@ namespace AppServices.Prism.ViewModels
             TokenResponse token = (TokenResponse)response.Result;
             EmailRequest request2 = new EmailRequest
             {
-                CultureInfo = "es",
+                CultureInfo = Languages.Culture,
                 Email = Email
             };
 

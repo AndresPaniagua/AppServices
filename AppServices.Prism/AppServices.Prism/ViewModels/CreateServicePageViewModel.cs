@@ -121,7 +121,7 @@ namespace AppServices.Prism.ViewModels
 
             Service.PhotoArray = imageArray;
 
-            Service.CultureInfo = "en";
+            Service.CultureInfo = Languages.Culture;
             Service.IdType = ServiceType.Id;
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);

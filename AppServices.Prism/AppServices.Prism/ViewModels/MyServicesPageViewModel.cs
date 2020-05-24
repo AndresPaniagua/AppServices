@@ -76,7 +76,7 @@ namespace AppServices.Prism.ViewModels
             ServicesForUserRequest servicesForUser = new ServicesForUserRequest
             {
                 UserId = Guid.Parse(user.Id),
-                CultureInfo = "en"
+                CultureInfo = Languages.Culture
             };
 
             Response response = await _apiService.GetListAsync<ServiceResponse>(
@@ -129,7 +129,7 @@ namespace AppServices.Prism.ViewModels
             ServicesForUserRequest servicesForUser = new ServicesForUserRequest
             {
                 UserId = Guid.Parse(user.Id),
-                CultureInfo = "en"
+                CultureInfo = Languages.Culture
             };
 
             Response response = await _apiService.GetListAsync<ServiceResponse>(

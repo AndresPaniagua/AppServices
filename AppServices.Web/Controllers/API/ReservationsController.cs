@@ -123,7 +123,6 @@ namespace AppServices.Web.Controllers.API
               .ThenInclude(dh => dh.Hours)
               .Where(u => u.User.Id.ToString() == request.UserId.ToString())
               .ToListAsync();
-                      
 
             return Ok(_converterHelper.ToReservationsForUserResponse(reservations));
         }
