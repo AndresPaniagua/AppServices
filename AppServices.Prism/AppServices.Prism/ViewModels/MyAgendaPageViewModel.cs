@@ -18,6 +18,7 @@ namespace AppServices.Prism.ViewModels
         private List<ServiceResponse> _services;
         private List<ReservationResponse> _reservations;
         private bool _isRunning;
+        private bool _isEmpty;
 
         public MyAgendaPageViewModel(INavigationService navigationService,
             IApiService apiService)
@@ -45,6 +46,12 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public bool IsEmpty
+        {
+            get => _isEmpty;
+            set => SetProperty(ref _isEmpty, value);
         }
 
         private async void LoadServicesAsync()
@@ -94,6 +101,8 @@ namespace AppServices.Prism.ViewModels
             }
             aux = aux.OrderByDescending(r => r.DiaryDate.Date).ToList();
             Reservations = aux;
+
+            IsEmpty = Reservations.Count <= 0; 
         }
 
     }

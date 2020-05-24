@@ -300,5 +300,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\EditService.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EmptyPage1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EmptyPage2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EmptyPage3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

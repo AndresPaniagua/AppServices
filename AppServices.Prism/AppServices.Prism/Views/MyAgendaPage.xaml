@@ -6,7 +6,8 @@
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-             x:Class="AppServices.Prism.Views.MyAgendaPage">
+             x:Class="AppServices.Prism.Views.MyAgendaPage"
+             BackgroundColor="White">
 
     <NavigationPage.TitleView>
         <Label Text="{Binding Title}" 
@@ -75,6 +76,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" 
+              AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image Source="EmptyPage3"
+                   IsVisible="{Binding IsEmpty}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+        </Grid>
 
         <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

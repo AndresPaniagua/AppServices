@@ -8,7 +8,8 @@
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="AppServices.Prism.Views.MyReservationsPage">
+             x:Class="AppServices.Prism.Views.MyReservationsPage"
+             BackgroundColor="White">
 
     <NavigationPage.TitleView>
         <Label Text="{Binding Title}" 
@@ -85,6 +86,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" 
+              AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image Source="EmptyPage1"
+                   IsVisible="{Binding IsEmpty}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+        </Grid>
 
         <busyindicator:SfBusyIndicator AnimationType="Cupertino"
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

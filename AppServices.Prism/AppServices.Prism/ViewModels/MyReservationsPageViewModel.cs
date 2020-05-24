@@ -17,6 +17,7 @@ namespace AppServices.Prism.ViewModels
         private List<ReservationsForUserResponse> _reservations;
         private List<ServiceResponse> _services;
         private bool _isRunning;
+        private bool _isEmpty;
 
         public MyReservationsPageViewModel(INavigationService navigationService,
             IApiService apiService)
@@ -32,6 +33,12 @@ namespace AppServices.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public bool IsEmpty
+        {
+            get => _isEmpty;
+            set => SetProperty(ref _isEmpty, value);
         }
 
         public List<ServiceResponse> Services
@@ -82,6 +89,7 @@ namespace AppServices.Prism.ViewModels
 
             Reservations = (List<ReservationsForUserResponse>)response.Result;
             IsRunning = false;
+            IsEmpty = Reservations.Count <= 0;
         }
     }
 }

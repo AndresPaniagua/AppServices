@@ -19,6 +19,7 @@ namespace AppServices.Prism.ViewModels
         private List<ServiceItemViewModel> _myServices;
         private bool _isEnabled;
         private bool _isRunning;
+        private bool _isEmpty;
 
         public MyServicesPageViewModel(INavigationService navigationService, IApiService apiService)
             : base(navigationService)
@@ -47,7 +48,13 @@ namespace AppServices.Prism.ViewModels
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
         }
-        
+
+        public bool IsEmpty
+        {
+            get => _isEmpty;
+            set => SetProperty(ref _isEmpty, value);
+        }
+
         public static MyServicesPageViewModel GetInstance()
         {
             return _instance;
@@ -105,6 +112,7 @@ namespace AppServices.Prism.ViewModels
             }).ToList();
 
             IsRunning = false;
+            IsEmpty = MyServices.Count <= 0;
         }
 
         public async void ReloadServices()
