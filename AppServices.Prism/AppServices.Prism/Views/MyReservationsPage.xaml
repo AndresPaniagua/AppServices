@@ -9,15 +9,8 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="AppServices.Prism.Views.MyReservationsPage"
-             BackgroundColor="White">
-
-    <NavigationPage.TitleView>
-        <Label Text="{Binding Title}" 
-               VerticalOptions="Center" 
-               HorizontalOptions="Center"
-               FontSize="Large"
-               TextColor="White"/>
-    </NavigationPage.TitleView>
+             BackgroundColor="White"
+             Title="{Binding Title}">
 
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">

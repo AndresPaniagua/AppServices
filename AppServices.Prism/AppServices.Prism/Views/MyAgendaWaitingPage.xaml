@@ -6,7 +6,7 @@
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-             x:Class="AppServices.Prism.Views.MyAgendaPage"
+             x:Class="AppServices.Prism.Views.MyAgendaWaitingPage"
              BackgroundColor="White"
              Title="{Binding Title}">
 
@@ -25,46 +25,54 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <cards:SfCardView IndicatorColor="#1976D2" IndicatorThickness="12" IndicatorPosition="Left">
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                    <cards:SfCardView IndicatorColor="blue" IndicatorThickness="12" IndicatorPosition="Left">
+                        <StackLayout>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <StackLayout Grid.Column="0"
+                                <StackLayout Grid.Column="0"
                                          HorizontalOptions="Center"
                                          VerticalOptions="Center"
                                          Margin="10">
 
-                                <Label Text="{Binding User.FullName}"
+                                    <Label Text="{Binding User.FullName}"
                                        FontAttributes="Bold"
                                        FontSize="14"/>
 
-                                <Label Text="{Binding User.Address}"
+                                    <Label Text="{Binding User.Address}"
                                        FontSize="12"/>
 
-                                <Label Text="{Binding User.PhoneNumber}"
+                                    <Label Text="{Binding User.PhoneNumber}"
                                        FontSize="12"/>
 
-                                <Label Text="{Binding User.Email}"
+                                    <Label Text="{Binding User.Email}"
                                        FontSize="12"/>
 
-                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
 
-                                    <Label Text="{Binding DiaryDate.Date, StringFormat='{0:MM/dd/yyyy}'}"
+                                        <Label Text="{Binding DiaryDate.Date, StringFormat='{0:MM/dd/yyyy}'}"
                                            FontSize="12"/>
 
-                                    <Label Text=":"
+                                        <Label Text=":"
                                            FontSize="12"/>
 
-                                    <Label Text="{Binding DiaryDate.Hours[0].Hour}"
+                                        <Label Text="{Binding DiaryDate.Hours[0].Hour}"
                                            FontSize="12"/>
+
+                                    </StackLayout>
 
                                 </StackLayout>
 
-                            </StackLayout>
-
-                        </Grid>
+                            </Grid>
+                            <Button BackgroundColor="Blue"
+                                    Text="{i18n:Translate Accept}"
+                                    TextColor="White"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Margin="5"/>
+                        </StackLayout>
                     </cards:SfCardView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

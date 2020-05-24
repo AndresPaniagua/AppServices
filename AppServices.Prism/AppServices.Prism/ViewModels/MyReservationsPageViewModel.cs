@@ -26,7 +26,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = Languages.MyReservations;
+            Title = Languages.Acepted;
             LoadReservationsAsync();
         }
 

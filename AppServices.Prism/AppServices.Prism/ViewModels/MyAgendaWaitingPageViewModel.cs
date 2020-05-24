@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
 {
-    public class MyAgendaPageViewModel : ViewModelBase
+    public class MyAgendaWaitingPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
@@ -20,13 +20,13 @@ namespace AppServices.Prism.ViewModels
         private bool _isRunning;
         private bool _isEmpty;
 
-        public MyAgendaPageViewModel(INavigationService navigationService,
+        public MyAgendaWaitingPageViewModel(INavigationService navigationService,
             IApiService apiService)
             : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = Languages.Acepted;
+            Title = Languages.Waiting;
             LoadServicesAsync();
         }
 
@@ -99,7 +99,7 @@ namespace AppServices.Prism.ViewModels
             {
                 aux.AddRange(service.Reservations);
             }
-            aux = aux.OrderByDescending(r => r.DiaryDate.Date).Where(r => r.Status.Name == "Active").ToList();
+            aux = aux.OrderByDescending(r => r.DiaryDate.Date).Where(r => r.Status.Name != "Active").ToList();
             Reservations = aux;
 
             IsEmpty = Reservations.Count <= 0;

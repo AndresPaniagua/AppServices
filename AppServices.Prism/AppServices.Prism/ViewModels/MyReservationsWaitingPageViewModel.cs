@@ -11,35 +11,23 @@ using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
 {
-    public class MyAgendaPageViewModel : ViewModelBase
+    public class MyReservationsWaitingPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
+        private List<ReservationsForUserResponse> _reservations;
         private List<ServiceResponse> _services;
-        private List<ReservationResponse> _reservations;
         private bool _isRunning;
         private bool _isEmpty;
 
-        public MyAgendaPageViewModel(INavigationService navigationService,
+        public MyReservationsWaitingPageViewModel(INavigationService navigationService,
             IApiService apiService)
             : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = Languages.Acepted;
-            LoadServicesAsync();
-        }
-
-        public List<ServiceResponse> Services
-        {
-            get => _services;
-            set => SetProperty(ref _services, value);
-        }
-
-        public List<ReservationResponse> Reservations
-        {
-            get => _reservations;
-            set => SetProperty(ref _reservations, value);
+            Title = Languages.Waiting;
+            LoadReservationsAsync();
         }
 
         public bool IsRunning
@@ -54,7 +42,19 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _isEmpty, value);
         }
 
-        private async void LoadServicesAsync()
+        public List<ServiceResponse> Services
+        {
+            get => _services;
+            set => SetProperty(ref _services, value);
+        }
+
+        public List<ReservationsForUserResponse> Reservations
+        {
+            get => _reservations;
+            set => SetProperty(ref _reservations, value);
+        }
+
+        private async void LoadReservationsAsync()
         {
             IsRunning = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
@@ -67,16 +67,17 @@ namespace AppServices.Prism.ViewModels
 
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
             UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+
             ServicesForUserRequest servicesForUser = new ServicesForUserRequest
             {
                 UserId = Guid.Parse(user.Id),
                 CultureInfo = Languages.Culture
             };
 
-            Response response = await _apiService.GetListAsync<ServiceResponse>(
+            Response response = await _apiService.GetListAsync<ReservationsForUserResponse>(
                 url,
                 "/api",
-                "/Service/GetServicesForUser",
+                "/Reservations/GetReservationsForUser",
                 servicesForUser,
                 "bearer",
                 token.Token);
@@ -87,23 +88,11 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            Services = (List<ServiceResponse>)response.Result;
-            LoadReservations();
+            List<ReservationsForUserResponse> aux = (List<ReservationsForUserResponse>)response.Result;
+            Reservations = aux.Where(r => r.Status.Name != "Active").ToList();
             IsRunning = false;
-        }
-
-        private async void LoadReservations()
-        {
-            List<ReservationResponse> aux = new List<ReservationResponse>();
-            foreach (ServiceResponse service in Services)
-            {
-                aux.AddRange(service.Reservations);
-            }
-            aux = aux.OrderByDescending(r => r.DiaryDate.Date).Where(r => r.Status.Name == "Active").ToList();
-            Reservations = aux;
-
             IsEmpty = Reservations.Count <= 0;
         }
-
+    
     }
 }

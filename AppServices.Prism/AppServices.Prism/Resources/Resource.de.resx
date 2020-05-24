@@ -354,4 +354,10 @@
   <data name="Filter" xml:space="preserve">
     <value>Filtern</value>
   </data>
+  <data name="Acepted" xml:space="preserve">
+    <value>Akzeptiert</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Angehalten</value>
+  </data>
 </root>

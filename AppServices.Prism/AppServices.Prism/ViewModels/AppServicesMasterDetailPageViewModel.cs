@@ -73,7 +73,7 @@ namespace AppServices.Prism.ViewModels
                 new Menu
                 {
                     Icon = "My_Reservations",
-                    PageName = "MyReservationsPage",
+                    PageName = "MyReservationsTabbedPage",
                     Title = Languages.MyReservations,
                     IsLoginRequired = true
                 },
@@ -87,7 +87,7 @@ namespace AppServices.Prism.ViewModels
                 new Menu
                 {
                     Icon = "My_Agenda",
-                    PageName = "MyAgendaPage",
+                    PageName = "MyAgendaTabbedPage",
                     Title = Languages.MyAgenda,
                     IsLoginRequired = true
                 },

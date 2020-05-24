@@ -70,6 +70,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acepted.
+        /// </summary>
+        public static string Acepted {
+            get {
+                return ResourceManager.GetString("Acepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
@@ -768,6 +777,15 @@ namespace AppServices.Prism.Resources {
         public static string UserUpdated {
             get {
                 return ResourceManager.GetString("UserUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On Hold.
+        /// </summary>
+        public static string Waiting {
+            get {
+                return ResourceManager.GetString("Waiting", resourceCulture);
             }
         }
     }

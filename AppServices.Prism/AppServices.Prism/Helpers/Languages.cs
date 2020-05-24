@@ -174,5 +174,9 @@ namespace AppServices.Prism.Helpers
 
         public static string Filter => Resource.Filter;
 
+        public static string Acepted => Resource.Acepted;
+
+        public static string Waiting => Resource.Waiting;
+
     }
 }
