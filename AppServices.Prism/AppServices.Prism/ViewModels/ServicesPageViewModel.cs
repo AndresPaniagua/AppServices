@@ -19,6 +19,7 @@ namespace AppServices.Prism.ViewModels
         private List<ServiceItemViewModel> _myServices;
         private bool _isRunning;
         private string _search;
+        private bool _isNotEnable;
 
         public ServicesPageViewModel(INavigationService navigationService,
             IApiService apiService)
@@ -44,6 +45,12 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
+        public bool IsNotEnable
+        {
+            get => _isNotEnable;
+            set => SetProperty(ref _isNotEnable, value);
+        }
+
         public string Search
         {
             get => _search;
@@ -57,6 +64,7 @@ namespace AppServices.Prism.ViewModels
         private async void LoadServicesAsync()
         {
             IsRunning = true;
+            IsNotEnable = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
@@ -70,6 +78,7 @@ namespace AppServices.Prism.ViewModels
                 "/api",
                 "/Service");
             IsRunning = false;
+            IsNotEnable = true;
 
             if (!response.IsSuccess)
             {

@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -31,7 +32,8 @@
             <SearchBar Margin="10,0"
                        Placeholder="{i18n:Translate ServicenamePlaceholder}"
                        SearchCommand="{Binding SearchCommand}"
-                       Text="{Binding Search}"/>
+                       Text="{Binding Search}"
+                       IsEnabled="{Binding IsNotEnable}"/>
             <CollectionView ItemsSource="{Binding Services}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -92,7 +94,169 @@
             </CollectionView>
         </StackLayout>
 
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+
+        <shimmer:SfShimmer VerticalOptions="Fill"
+                           IsActive="{Binding IsRunning}"
+                           Margin="0, 60, 0, 0"
+                           AbsoluteLayout.LayoutBounds="0,0,1,1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           Padding="20"
+                           WaveColor="#B8D4F2"
+                           Color="#F4E2EE"
+                           WaveDirection="LeftToRight">
+
+            <shimmer:SfShimmer.CustomView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <cards:SfCardView Grid.Row="0"
+                                      Grid.Column="0">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+
+
+                    <cards:SfCardView Grid.Row="0"
+                                      Grid.Column="1">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+
+
+                    <cards:SfCardView Grid.Row="1"
+                                      Grid.Column="0">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+
+
+                    <cards:SfCardView Grid.Row="1"
+                                      Grid.Column="1">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+
+
+                    <cards:SfCardView Grid.Row="2"
+                                      Grid.Column="0">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+
+
+                    <cards:SfCardView Grid.Row="2"
+                                      Grid.Column="1">
+                        <StackLayout VerticalOptions="Center"
+                                             HorizontalOptions="Center" Margin="0">
+                            <Label Text="ServicesName"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       LineBreakMode="TailTruncation" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"/>
+                                <Label Grid.Column="1"
+                                           LineBreakMode="TailTruncation"/>
+                            </Grid>
+                        </StackLayout>
+                    </cards:SfCardView>
+
+                    
+                </Grid>
+            </shimmer:SfShimmer.CustomView>
+        </shimmer:SfShimmer>
+
+
+
+        <!--<busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                         AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                    AbsoluteLayout.LayoutFlags="All"
                 	                    BackgroundColor="Transparent"
@@ -102,7 +266,7 @@
                 	                    Title="{i18n:Translate Loading}"
                 	                    VerticalOptions="Center"
                 	                    ViewBoxWidth="80"
-                	                    ViewBoxHeight="80" />
+                	                    ViewBoxHeight="80" />-->
 
     </AbsoluteLayout>
 
