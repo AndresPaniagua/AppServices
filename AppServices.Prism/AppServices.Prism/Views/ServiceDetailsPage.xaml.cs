@@ -1,6 +1,7 @@
 ﻿using AppServices.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -28,20 +29,28 @@ namespace AppServices.Prism.Views
 
         public async void DrawMap(ServiceResponse service)
         {
-            Geocoder geoCoder = new Geocoder();
-            IEnumerable<Position> sources = await geoCoder.GetPositionsForAddressAsync(service.User.Address);
-            List<Position> positions = new List<Position>(sources);
-
-            if (positions.Count > 0)
+            try
             {
-                Position positionTot = positions[0];
+                Geocoder geoCoder = new Geocoder();
+                IEnumerable<Position> sources = await geoCoder.GetPositionsForAddressAsync(service.User.Address);
+                List<Position> positions = new List<Position>(sources);
 
-                if (positionTot.Latitude != 0 && positionTot.Longitude != 0)
+                if (positions.Count > 0)
                 {
-                    AddPin(positionTot, service.User.Address, "Service Place", PinType.Place);
-                    MoveMap(positionTot);
+                    Position positionTot = positions[0];
+
+                    if (positionTot.Latitude != 0 && positionTot.Longitude != 0)
+                    {
+                        AddPin(positionTot, service.User.Address, "Service Place", PinType.Place);
+                        MoveMap(positionTot);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            
         }
 
         public void AddPin(Position position, string address, string label, PinType pinType)

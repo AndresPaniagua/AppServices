@@ -124,6 +124,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password was changed successfully.
+        /// </summary>
+        public static string ChangePasswordSuccess {
+            get {
+                return ResourceManager.GetString("ChangePasswordSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the confirm password.
         /// </summary>
         public static string ConfirmNewPasswordError {
@@ -583,11 +592,29 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The register was completed successfully.
+        /// </summary>
+        public static string RegisterSuccess {
+            get {
+                return ResourceManager.GetString("RegisterSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reservation.
         /// </summary>
         public static string Reservation {
             get {
                 return ResourceManager.GetString("Reservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservation made successfully.
+        /// </summary>
+        public static string ReservationSuccess {
+            get {
+                return ResourceManager.GetString("ReservationSuccess", resourceCulture);
             }
         }
         

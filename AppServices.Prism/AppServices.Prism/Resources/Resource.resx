@@ -339,4 +339,13 @@
   <data name="Status" xml:space="preserve">
     <value>Visible</value>
   </data>
+  <data name="ReservationSuccess" xml:space="preserve">
+    <value>Reservation made successfully</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>The password was changed successfully</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>The register was completed successfully</value>
+  </data>
 </root>

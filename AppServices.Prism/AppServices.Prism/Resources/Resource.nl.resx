@@ -339,4 +339,13 @@
   <data name="Status" xml:space="preserve">
     <value>Zichtbaar</value>
   </data>
+  <data name="ReservationSuccess" xml:space="preserve">
+    <value>Reserveren is gelukt</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Wachtwoord gewijzigd</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>Het register is succesvol afgerond</value>
+  </data>
 </root>

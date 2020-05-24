@@ -79,7 +79,7 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.ChangePasswordSuccess, Languages.Accept);
             await _navigationService.GoBackAsync();
         }
 

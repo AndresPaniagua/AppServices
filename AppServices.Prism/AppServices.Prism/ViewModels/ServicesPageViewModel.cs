@@ -87,9 +87,10 @@ namespace AppServices.Prism.ViewModels
                 PhotoPath = a.PhotoPath,
                 FinishDate = a.FinishDate,
                 Price = a.Price,
+                Status = a.Status,
                 ServiceType = a.ServiceType,
                 User = a.User
-            }).ToList();
+            }).Where(s => s?.Status?.Name == "Active").ToList();
             ShowServices();
         }
 

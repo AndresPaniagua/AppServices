@@ -164,5 +164,11 @@ namespace AppServices.Prism.Helpers
 
         public static string Status => Resource.Status;
 
+        public static string ReservationSuccess => Resource.ReservationSuccess;
+        
+        public static string ChangePasswordSuccess => Resource.ChangePasswordSuccess;
+
+        public static string RegisterSuccess => Resource.RegisterSuccess;
+
     }
 }
