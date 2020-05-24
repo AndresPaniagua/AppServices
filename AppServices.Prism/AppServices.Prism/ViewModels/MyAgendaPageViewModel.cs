@@ -7,6 +7,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace AppServices.Prism.ViewModels
@@ -15,6 +16,7 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
+        private static MyAgendaPageViewModel _instance;
         private List<ServiceResponse> _services;
         private List<ReservationResponse> _reservations;
         private bool _isRunning;
@@ -26,6 +28,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            _instance = this;
             Title = Languages.Acepted;
             LoadServicesAsync();
         }
@@ -40,6 +43,11 @@ namespace AppServices.Prism.ViewModels
         {
             get => _reservations;
             set => SetProperty(ref _reservations, value);
+        }
+
+        public static MyAgendaPageViewModel GetInstance()
+        {
+            return _instance;
         }
 
         public bool IsRunning
@@ -103,6 +111,11 @@ namespace AppServices.Prism.ViewModels
             Reservations = aux;
 
             IsEmpty = Reservations.Count <= 0;
+        }
+
+        public async Task ReloadAgenda()
+        {
+            LoadServicesAsync();
         }
 
     }

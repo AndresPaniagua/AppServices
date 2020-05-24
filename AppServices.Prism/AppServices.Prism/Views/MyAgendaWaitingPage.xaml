@@ -67,11 +67,12 @@
 
                             </Grid>
                             <Button BackgroundColor="Blue"
-                                    Text="{i18n:Translate Accept}"
                                     TextColor="White"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    Margin="5"/>
+                                    Margin="5"
+                                    Text="{i18n:Translate Accept}"
+                                    Command="{Binding AcceptReserveCommand}"/>
                         </StackLayout>
                     </cards:SfCardView>
                 </DataTemplate>
