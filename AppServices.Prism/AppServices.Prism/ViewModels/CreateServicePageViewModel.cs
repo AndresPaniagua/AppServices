@@ -202,13 +202,11 @@ namespace AppServices.Prism.ViewModels
                 return false;
             }
 
-
             if (string.IsNullOrEmpty(Service.Description))
             {
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.DescriptionError, Languages.Accept);
                 return false;
             }
-
 
             if (ServiceType == null)
             {

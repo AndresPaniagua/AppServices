@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Soccer.Web.Helpers;
+using AppServices.Web.Helpers;
 using System.Text;
 
 namespace AppServices.Web

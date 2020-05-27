@@ -3,11 +3,11 @@ using AppServices.Common.Services;
 using AppServices.Prism.Helpers;
 using Prism.Commands;
 using Prism.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace AppServices.Prism.ViewModels
 {
@@ -15,6 +15,7 @@ namespace AppServices.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
+        private static ServicesPageViewModel _instance;
         private DelegateCommand _searchCommand;
         private DelegateCommand _filterCommand;
         private ObservableCollection<ServiceItemViewModel> _services;
@@ -23,6 +24,7 @@ namespace AppServices.Prism.ViewModels
         private bool _isRunning;
         private string _search;
         private bool _isNotEnable;
+        private bool _notFound;
 
         public ServicesPageViewModel(INavigationService navigationService,
             IApiService apiService)
@@ -30,6 +32,7 @@ namespace AppServices.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
+            _instance = this;
             Title = Languages.Services;
             LoadTypesAsync();
             LoadServicesAsync();
@@ -57,12 +60,6 @@ namespace AppServices.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        public bool IsNotEnable
-        {
-            get => _isNotEnable;
-            set => SetProperty(ref _isNotEnable, value);
-        }
-
         public string Search
         {
             get => _search;
@@ -71,6 +68,35 @@ namespace AppServices.Prism.ViewModels
                 SetProperty(ref _search, value);
                 ShowServices();
             }
+        }
+
+        public bool IsNotEnable
+        {
+            get => _isNotEnable;
+            set => SetProperty(ref _isNotEnable, value);
+        }
+
+        public bool NotFound
+        {
+            get => _notFound;
+            set => SetProperty(ref _notFound, value);
+        }
+
+        public static ServicesPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
+        public void AddMessage(string message)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (message.StartsWith("Someone wants"))
+                {
+                    message = $"{message.Substring(7)}, {Languages.CheckAgenda}";
+                }
+                App.Current.MainPage.DisplayAlert(Languages.Notification, message, Languages.Accept);
+            });
         }
 
         private async void LoadServicesAsync()
@@ -136,7 +162,7 @@ namespace AppServices.Prism.ViewModels
             }
 
             List<ServiceTypeModel> list = (List<ServiceTypeModel>)response.Result;
-            foreach (var item in list)
+            foreach (ServiceTypeModel item in list)
             {
                 item.IsCheck = true;
             }
@@ -155,6 +181,7 @@ namespace AppServices.Prism.ViewModels
                     _myServices.Where(p => p.ServicesName.ToUpper().Contains(Search.ToUpper()) ||
                                             p.ServicesName.ToUpper().Contains(Search.ToUpper())));
             }
+            NotFound = Services.Count < 1;
         }
 
         private void FilterServices()
@@ -162,17 +189,18 @@ namespace AppServices.Prism.ViewModels
             IsRunning = true;
             IsNotEnable = false;
             List<ServiceItemViewModel> aux = new List<ServiceItemViewModel>();
-            foreach (var type in TypeServices)
+            foreach (ServiceTypeModel type in TypeServices)
             {
                 if (type.IsCheck)
                 {
-                    aux = aux.Concat(_myServices.Where(p => p.ServiceType.Name.ToUpper().Contains(type.Name.ToUpper()) || 
+                    aux = aux.Concat(_myServices.Where(p => p.ServiceType.Name.ToUpper().Contains(type.Name.ToUpper()) ||
                                                         p.ServiceType.Name.ToUpper().Contains(type.Name.ToUpper()))).ToList();
                 }
             }
             Services = new ObservableCollection<ServiceItemViewModel>(aux);
             IsRunning = false;
             IsNotEnable = true;
+            NotFound = Services.Count < 1;
         }
 
     }

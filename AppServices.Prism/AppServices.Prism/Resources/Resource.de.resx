@@ -360,4 +360,13 @@
   <data name="Waiting" xml:space="preserve">
     <value>Angehalten</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Neue Benachrichtigung</value>
+  </data>
+  <data name="CheckAgenda" xml:space="preserve">
+    <value>Überprüfen Sie Ihre Agenda</value>
+  </data>
+  <data name="NoSuchElements" xml:space="preserve">
+    <value>Es wurden keine Elemente gefunden</value>
+  </data>
 </root>

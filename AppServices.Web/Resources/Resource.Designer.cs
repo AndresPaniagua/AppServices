@@ -61,6 +61,15 @@ namespace AppServices.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check you agenda.
+        /// </summary>
+        public static string CheckAgenda {
+            get {
+                return ResourceManager.GetString("CheckAgenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Email.
         /// </summary>
         public static string ConfirmEmail {
@@ -102,6 +111,15 @@ namespace AppServices.Web.Resources {
         public static string IncorrectCurrentPassword {
             get {
                 return ResourceManager.GetString("IncorrectCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Notification.
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
             }
         }
         

@@ -360,4 +360,13 @@
   <data name="Waiting" xml:space="preserve">
     <value>In Wachtstand</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Nieuwe melding</value>
+  </data>
+  <data name="CheckAgenda" xml:space="preserve">
+    <value>Check je agenda</value>
+  </data>
+  <data name="NoSuchElements" xml:space="preserve">
+    <value>Geen items gevonden</value>
+  </data>
 </root>

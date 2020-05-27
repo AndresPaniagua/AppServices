@@ -6,6 +6,7 @@
              xmlns:i18n="clr-namespace:AppServices.Prism.Helpers"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
              x:Class="AppServices.Prism.Views.MyAgendaWaitingPage"
              BackgroundColor="White"
              Title="{Binding Title}">
@@ -79,7 +80,8 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" 
+
+        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
               AbsoluteLayout.LayoutFlags="PositionProportional">
             <Image Source="EmptyPage3"
                    IsVisible="{Binding IsEmpty}"

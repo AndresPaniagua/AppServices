@@ -1,4 +1,5 @@
-﻿using AppServices.Common.Models;
+﻿using AppServices.Common.Constants;
+using AppServices.Common.Models;
 using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using AppServices.Web.Helpers;
@@ -6,7 +7,9 @@ using AppServices.Web.Resources;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.NotificationHubs;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -108,7 +111,7 @@ namespace AppServices.Web.Controllers.API
                 });
 
             }
-
+            await SendNotificationAsync();
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -152,6 +155,28 @@ namespace AppServices.Web.Controllers.API
                 return Ok(Resource.ReservationStatus);
             }
             return BadRequest(Resource.ReservationDoesnExists);
+        }
+
+        private async Task SendNotificationAsync()
+        {
+            NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(
+                AppConstants.ListenConnectionString,
+                AppConstants.NotificationHubName);
+
+            Dictionary<string, string> templateParameters = new Dictionary<string, string>();
+
+            foreach (string tag in AppConstants.SubscriptionTags)
+            {
+                templateParameters["messageParam"] = "Someone wants to book your services";
+                try
+                {
+                    await hub.SendTemplateNotificationAsync(templateParameters, tag);
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
+            }
         }
 
     }

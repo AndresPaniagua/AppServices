@@ -178,5 +178,11 @@ namespace AppServices.Prism.Helpers
 
         public static string Waiting => Resource.Waiting;
 
+        public static string Notification => Resource.Notification;
+
+        public static string CheckAgenda => Resource.CheckAgenda;
+
+        public static string NoSuchElements => Resource.NoSuchElements;
+
     }
 }

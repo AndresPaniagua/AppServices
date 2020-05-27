@@ -7,6 +7,7 @@
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              x:Class="AppServices.Prism.Views.CreateServicePage">
 
     <NavigationPage.TitleView>
@@ -110,10 +111,13 @@
                         <StackLayout HorizontalOptions="Center" Spacing="0">
                             <Label Margin="0, 0, 0, -5"
                                    Text="{i18n:Translate Price}"/>
-                            <Entry
-                                Keyboard="Numeric"                                
-                                Text="{Binding Service.Price}"
-                                WidthRequest="300"/>
+                            
+                            <numeric:SfNumericUpDown x:Name="NumericUpDown" 
+                                                     Value="{Binding Service.Price}" 
+                                                     ParsingMode="Decimal"
+                                                     WidthRequest="300"
+                                                     EnableGroupSeparator="True"
+                                                     SpinButtonAlignment="Both"/>
                         </StackLayout>
 
                         <StackLayout HorizontalOptions="Center" Spacing="0">

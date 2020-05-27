@@ -142,6 +142,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check you agenda.
+        /// </summary>
+        public static string CheckAgenda {
+            get {
+                return ResourceManager.GetString("CheckAgenda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter the confirm password.
         /// </summary>
         public static string ConfirmNewPasswordError {
@@ -498,6 +507,24 @@ namespace AppServices.Prism.Resources {
         public static string NewPasswordError {
             get {
                 return ResourceManager.GetString("NewPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No items found.
+        /// </summary>
+        public static string NoSuchElements {
+            get {
+                return ResourceManager.GetString("NoSuchElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Notification.
+        /// </summary>
+        public static string Notification {
+            get {
+                return ResourceManager.GetString("Notification", resourceCulture);
             }
         }
         

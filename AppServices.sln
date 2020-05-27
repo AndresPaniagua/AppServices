@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Web", "AppServices.Web\AppServices.Web.csproj", "{D649DB6C-84CA-4D8D-97E8-CFC56F684F35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServices.Web", "AppServices.Web\AppServices.Web.csproj", "{D649DB6C-84CA-4D8D-97E8-CFC56F684F35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Common", "AppServices.Common\AppServices.Common.csproj", "{B868840F-C568-44C1-8428-FCEBAB51713F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServices.Common", "AppServices.Common\AppServices.Common.csproj", "{B868840F-C568-44C1-8428-FCEBAB51713F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Prism", "AppServices.Prism\AppServices.Prism\AppServices.Prism.csproj", "{7158A977-09B1-4078-8C86-1425786A4B7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppServices.Prism", "AppServices.Prism\AppServices.Prism\AppServices.Prism.csproj", "{7158A977-09B1-4078-8C86-1425786A4B7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Prism.Android", "AppServices.Prism\AppServices.Prism.Android\AppServices.Prism.Android.csproj", "{AE009393-CBED-4DC9-935B-E00244C06F78}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Cross.Android", "AppServices.Cross.Android\AppServices.Cross.Android.csproj", "{B502C5DC-494E-4843-A940-D9619AA7F033}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.Cross.iOS", "AppServices.Cross.iOS\AppServices.Cross.iOS.csproj", "{C0C26AB0-D7D5-414B-AC60-182DA896AF09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices.NotificationTest", "AppServices.NotificationTest\AppServices.NotificationTest.csproj", "{BBBA7D66-E538-42F6-9694-570FBAC8E04D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,30 @@ Global
 		{C0C26AB0-D7D5-414B-AC60-182DA896AF09}.Release|iPhone.Build.0 = Release|iPhone
 		{C0C26AB0-D7D5-414B-AC60-182DA896AF09}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{C0C26AB0-D7D5-414B-AC60-182DA896AF09}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|Any CPU.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|iPhone.Build.0 = Release|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BBBA7D66-E538-42F6-9694-570FBAC8E04D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -162,4 +162,10 @@
   <data name="ReservationStatus" xml:space="preserve">
     <value>Die Reservierung wurde angenommen</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Neue Benachrichtigung</value>
+  </data>
+  <data name="CheckAgenda" xml:space="preserve">
+    <value>Überprüfen Sie Ihre Agenda</value>
+  </data>
 </root>

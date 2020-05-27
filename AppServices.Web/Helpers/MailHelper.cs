@@ -1,11 +1,10 @@
-﻿using AppServices.Web.Helpers;
+﻿using AppServices.Common.Models;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
-using AppServices.Common.Models;
 using System;
 
-namespace Soccer.Web.Helpers
+namespace AppServices.Web.Helpers
 {
     public class MailHelper : IMailHelper
     {

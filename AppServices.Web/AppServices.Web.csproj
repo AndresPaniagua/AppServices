@@ -17,8 +17,8 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.AzureKeyVault.HostingStartup" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="3.3.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.1.0.46" />
   </ItemGroup>
 
   <ItemGroup>

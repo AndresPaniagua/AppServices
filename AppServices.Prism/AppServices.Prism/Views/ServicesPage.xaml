@@ -88,6 +88,15 @@
                             Command="{Binding FilterCommand}"/>
                 </StackLayout>
             </cards:SfCardView>
+
+            
+            <Label Text="{i18n:Translate NoSuchElements}"
+                   HorizontalOptions="Center"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   VerticalOptions="Start"
+                   TextColor="Black"
+                   IsVisible="{Binding NotFound}"/>
             
             <CollectionView ItemsSource="{Binding Services}">
                 <CollectionView.ItemsLayout>
