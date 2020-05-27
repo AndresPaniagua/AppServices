@@ -137,7 +137,7 @@ namespace AppServices.Prism.ViewModels
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.CreateService, Languages.Accept);
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, Languages.CreateServiceUser, Languages.Accept);
 
             await _navigationService.NavigateAsync("/AppServicesMasterDetailPage/NavigationPage/ServicesPage");
         }

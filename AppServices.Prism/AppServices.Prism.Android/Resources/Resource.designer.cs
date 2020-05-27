@@ -14802,25 +14802,28 @@ namespace AppServices.Prism.Droid
 			public const int phone = 2131165603;
 			
 			// aapt resource value: 0x7F0701A4
-			public const int Services = 2131165604;
+			public const int plus = 2131165604;
 			
 			// aapt resource value: 0x7F0701A5
-			public const int shadow_effect = 2131165605;
+			public const int Services = 2131165605;
 			
 			// aapt resource value: 0x7F0701A6
-			public const int Silueta = 2131165606;
+			public const int shadow_effect = 2131165606;
 			
 			// aapt resource value: 0x7F0701A7
-			public const int tooltip_frame_dark = 2131165607;
+			public const int Silueta = 2131165607;
 			
 			// aapt resource value: 0x7F0701A8
-			public const int tooltip_frame_light = 2131165608;
+			public const int tooltip_frame_dark = 2131165608;
 			
 			// aapt resource value: 0x7F0701A9
-			public const int TryRemember = 2131165609;
+			public const int tooltip_frame_light = 2131165609;
 			
 			// aapt resource value: 0x7F0701AA
-			public const int UpButton = 2131165610;
+			public const int TryRemember = 2131165610;
+			
+			// aapt resource value: 0x7F0701AB
+			public const int UpButton = 2131165611;
 			
 			static Drawable()
 			{

@@ -187,6 +187,15 @@ namespace AppServices.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The service was successfully created.
+        /// </summary>
+        public static string CreateServiceUser {
+            get {
+                return ResourceManager.GetString("CreateServiceUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Password.
         /// </summary>
         public static string CurrentPassword {

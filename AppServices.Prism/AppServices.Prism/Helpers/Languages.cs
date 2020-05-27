@@ -184,5 +184,7 @@ namespace AppServices.Prism.Helpers
 
         public static string NoSuchElements => Resource.NoSuchElements;
 
+        public static string CreateServiceUser => Resource.CreateServiceUser;
+
     }
 }

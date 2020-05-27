@@ -369,4 +369,7 @@
   <data name="NoSuchElements" xml:space="preserve">
     <value>Es wurden keine Elemente gefunden</value>
   </data>
+  <data name="CreateServiceUser" xml:space="preserve">
+    <value>Dienstleistung erfolgreich erstellt</value>
+  </data>
 </root>

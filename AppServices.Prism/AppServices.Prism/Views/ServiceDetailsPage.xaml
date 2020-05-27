@@ -60,7 +60,7 @@
                             <Label Text="{Binding Service.Price}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                            <Button Text="+" FontSize="20" FontAttributes="Bold" BorderColor="Red" BackgroundColor="Red" WidthRequest="30" CornerRadius="30" Command="{Binding ReservedCommand}"/>
+                            <ImageButton Source="plus" BackgroundColor="Transparent" WidthRequest="60" Command="{Binding ReservedCommand}"/>
                             <Label Text="{i18n:Translate Reserve}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding IsLogin}"/>
                             <Label Text="{i18n:Translate ToLogin}" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center" IsVisible="{Binding NotLogin}"/>
                         </StackLayout>
