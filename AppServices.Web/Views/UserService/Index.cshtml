@@ -41,36 +41,42 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ServiceType.Name)
                             </th>
+                            <th>
+                                Status
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @if (!string.IsNullOrEmpty(item.PhotoPath))
-                                    {
-                                        <img src="@Url.Content(item.PhotoPath)" alt="Image" style="width:150px;height:150px;max-width: 100%; height: auto;" />
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ServicesName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ServiceType.Name)
-                                </td>                                
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.PhotoPath))
+                                {
+                                    <img src="@Url.Content(item.PhotoPath)" alt="Image" style="width:150px;height:150px;max-width: 100%; height: auto;" />
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServicesName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status.Name)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

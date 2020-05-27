@@ -117,14 +117,6 @@ namespace AppServices.Web.Controllers
                 return NotFound();
             }
 
-            return View(serviceTypeEntity);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            ServiceTypeEntity serviceTypeEntity = await _context.ServiceTypes.FindAsync(id);
             _context.ServiceTypes.Remove(serviceTypeEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

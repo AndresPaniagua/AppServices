@@ -20,11 +20,12 @@ namespace AppServices.Web.Controllers
         public async Task<IActionResult> Index()
         {
             return View(_context.Reservations
-                .Include(s => s.Service)
-                .ThenInclude(s => s.ServiceType)
-                .Include(s => s.User)
-                .OrderBy(s => s.DiaryDate.Date)
-                .ThenBy(s => s.Service.Price));
+              .Include(u => u.User)
+              .Include(s => s.Service)
+              .Include(dd => dd.DiaryDate)
+              .ThenInclude(dh => dh.Hours)
+              .Include(r => r.Status)
+              .Where(u => u.User.Email == User.Identity.Name));
         }
 
         public async Task<IActionResult> Create(int? id)

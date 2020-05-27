@@ -31,13 +31,13 @@
                                 @Html.DisplayNameFor(model => model.Service.Description)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Service.ServiceType.Name)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.Service.Price)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.DiaryDate.Date)
+                            </th>
+                            <th>
+                                Status
                             </th>
                             <th></th>
                         </tr>
@@ -59,16 +59,18 @@
                                 @Html.DisplayFor(modelItem => item.Service.Description)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Service.ServiceType.Name)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.Service.Price)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DiaryDate.Date)
+                                -
+                                @Html.DisplayFor(modelItem => item.DiaryDate.Hours.FirstOrDefault().Hour)
                             </td>
                             <td>
-                               <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                @Html.DisplayFor(modelItem => item.Status.Name)
+                            </td>
+                            <td>
+                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                             </td>
                         </tr>
                         }

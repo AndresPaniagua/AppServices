@@ -35,6 +35,7 @@ namespace AppServices.Web.Controllers
             return View(_context.Services
                 .Include(s => s.User)
                 .Include(s => s.ServiceType)
+                .Include(s => s.Status)
                 .Where(s => s.User.Email == User.Identity.Name)
                 .OrderBy(s => s.StartDate)
                 .ThenBy(s => s.Price));
@@ -65,6 +66,7 @@ namespace AppServices.Web.Controllers
                 model.PhotoPath = path;
 
                 ServiceEntity service = await _converter.ToServiceEntityAsync(model, true);
+                service.Status = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == "Active");
 
                 _context.Add(service);
                 await _context.SaveChangesAsync();
