@@ -91,9 +91,9 @@ namespace AppServices.Prism.ViewModels
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (message.StartsWith("Someone wants"))
+                if (message.StartsWith("New Type: "))
                 {
-                    message = $"{message.Substring(7)}, {Languages.CheckAgenda}";
+                    message = $"{message.Substring(10)}";
                 }
                 App.Current.MainPage.DisplayAlert(Languages.Notification, message, Languages.Accept);
             });

@@ -49,9 +49,9 @@ namespace AppServices.Prism.Droid
 
         private void SendLocalNotification(string body)
         {
-            if (body.StartsWith("Someone wants"))
+            if (body.StartsWith("New Type: "))
             {
-                body = $"{body.Substring(7)}, {Languages.CheckAgenda}";
+                body = $"{body.Substring(10)}";
             }
 
             Intent intent = new Intent(this, typeof(MainActivity));

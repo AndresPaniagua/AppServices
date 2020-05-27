@@ -1,7 +1,11 @@
-﻿using AppServices.Web.Data;
+﻿using AppServices.Common.Constants;
+using AppServices.Web.Data;
 using AppServices.Web.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.NotificationHubs;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -51,6 +55,7 @@ namespace AppServices.Web.Controllers
             {
                 _context.Add(serviceTypeEntity);
                 await _context.SaveChangesAsync();
+                await SendNotificationAsync(serviceTypeEntity);
                 return RedirectToAction(nameof(Index));
             }
             return View(serviceTypeEntity);
@@ -126,5 +131,28 @@ namespace AppServices.Web.Controllers
         {
             return _context.ServiceTypes.Any(e => e.Id == id);
         }
+        
+        private async Task SendNotificationAsync(ServiceTypeEntity model)
+        {
+            NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(
+                AppConstants.ListenConnectionString,
+                AppConstants.NotificationHubName);
+
+            Dictionary<string, string> templateParameters = new Dictionary<string, string>();
+
+            foreach (string tag in AppConstants.SubscriptionTags)
+            {
+                templateParameters["messageParam"] = $"New Type: A new type of service was created ({model.Name}), what are you waiting to publish yours!";
+                try
+                {
+                    await hub.SendTemplateNotificationAsync(templateParameters, tag);
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
+            }
+        }
+
     }
 }

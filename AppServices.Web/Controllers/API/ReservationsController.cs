@@ -111,7 +111,7 @@ namespace AppServices.Web.Controllers.API
                 });
 
             }
-            await SendNotificationAsync();
+            //await SendNotificationAsync();
             await _context.SaveChangesAsync();
             return NoContent();
         }

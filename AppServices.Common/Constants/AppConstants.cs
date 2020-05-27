@@ -19,7 +19,7 @@
         /// You should always use the ListenShared connection string. Do not use the
         /// FullShared connection string in a client application.
         /// </summary>
-        public static string ListenConnectionString { get; set; } = "Endpoint=sb://hubappservices.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=2vHynAL5SSGHa20uGddivAGmOC4wVhtZAY7/hQLK00A=";
+        public static string ListenConnectionString { get; set; } = "Endpoint=sb://hubappservices.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=pHNP2DRx3X3whldfMpPAotenrPOe8EN9mDnhESiNfQs=";
 
         /// <summary>
         /// Tag used in log messages to easily filter the device log
